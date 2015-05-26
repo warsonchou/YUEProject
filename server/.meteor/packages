@@ -7,3 +7,8 @@
 meteor-platform
 autopublish
 insecure
+twbs:bootstrap
+mquandalle:jade
+mrt:livescript-latest
+iron:router
+vasaka:livescript-compiler

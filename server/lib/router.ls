@@ -4,4 +4,4 @@ Router.configure {
 
 
 Router.route '/', ->
-    this.render 'main', {}
+    this.render 'index', {}

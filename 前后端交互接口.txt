@@ -61,3 +61,45 @@
             registerTime: Date
         }
     }
+
+    2.Activity {
+        name: string,
+        sponsor: userId,
+        numOfPeople: int,
+        startingTime: Date,
+        deadline: Date,
+        place: string,
+        open-or-not: boolean,
+        type: string,
+        cover: string(path),
+        applyList: {
+            applier: userId, //申请者id
+            success: boolean, //是否通过
+            scoreOfParticipator: int, //发起者对参与者的评分
+            comment: string,
+            scoreOfSponsor: int //参与者对发起者的评分
+        }[], //参与申请对象数组
+        insert(name, sponsor, num-of-people, startingTime, deadline, place, open-or-not, type, cover),
+        //插入（创建）新的活动，返回值为活动Id
+        delete(id),
+        //删除，失败返回'error'，否则返回'success'，参数为目标活动id
+        findById(id),
+        //如方法名，返回查找目标acitibity对象，若找不到返回null
+        findByType(type),
+        //通过类型查找，返回符合类型的activity对象数组，参数为类型名
+        addApplication(id, applier-id, credit, phone),
+        //添加活动参与申请，成功返回'success'，否则返回'error'，参数为活动id，申请者id，申请者的信用度和手机号码
+        getApplications(id)
+        //获取某activity对应的所有活动参与申请,返回申请对象数组，参数为活动id，若id对应活动不存在，返回null
+        getParticipateApplications(id)
+        //获取已经通过的参与申请，返回同上
+        chooseParticipator(id, applier-id)
+        //通过对应applier-id的活动参与申请，参数为活动id和申请人id，若id对应数据不存在，返回'error'，成功则返回'success'
+        calculateScore(id)
+        //计算发起者的评分
+        commentActivity(id, applier-id, comment)
+        //参与者评论活动，参数为活动id，参与者id，评论内容
+    }
+    注：我把可能要对数据库进行的操作都封装成了方法，尽量调用方法去读写数据库，另外user的collection涉及用户认证和密码加密，应该
+        要用meteor的account-password模块，它那里的user对象的属性是固定的。。。只能通过profile扩展，方法也不知道如何去添加。。。
+        type类我去掉了，MS在文档型数据库是不需要的。。。。。。所以现在只有两个collection。实现还没写完，大家可以帮忙看看代码，在lib文件夹的collections文件夹内

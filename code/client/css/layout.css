@@ -1,0 +1,20 @@
+#sidebar {
+    display: inline-block;
+    width: 30%
+}
+
+#sidebar nav button {
+    display: block;
+}
+
+#left {
+    display: inline-block;
+}
+
+#right {
+    display: inline-block;
+}
+
+#main {
+    display: inline-block;
+}

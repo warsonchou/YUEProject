@@ -12,3 +12,5 @@ mquandalle:jade
 mrt:livescript-latest
 iron:router
 vasaka:livescript-compiler
+accounts-password
+accounts-ui

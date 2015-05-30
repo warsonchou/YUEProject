@@ -14,3 +14,16 @@ iron:router
 vasaka:livescript-compiler
 accounts-password
 accounts-ui
+semantic:ui
+semantic:ui-css
+semantic:ui-data
+semantic:ui-icon
+semantic:ui-checkbox
+semantic:ui-table
+semantic:ui-button
+semantic:ui-divider
+semantic:ui-dropdown
+semantic:ui-sidebar
+semantic:ui-label
+semantic:ui-segment
+semantic:ui-menu

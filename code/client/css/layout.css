@@ -18,3 +18,7 @@
 #main {
     display: inline-block;
 }
+
+template {
+	display: block !important;
+}

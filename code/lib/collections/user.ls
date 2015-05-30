@@ -1,7 +1,7 @@
 root = exports ? @
 
 root.User = {
-    register: (username, password, profile，callback)->
+    register: (username, password, profile, callback)->
         Accounts.create-user username, password, profile, callback
 
     login: (username, password, callback)->
@@ -10,7 +10,7 @@ root.User = {
     logout: (callback)->
         Meteor.logout!
 
-    current-user: ()->
+    current-user: ->
         return Meteor.user!
 
     change-password: (old-password, new-password, callback)->

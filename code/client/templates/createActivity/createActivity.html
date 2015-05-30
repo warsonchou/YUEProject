@@ -86,68 +86,109 @@
           </div>
         </div>
       </div>
+<!-- ************************************************************************************* -->
       <div class="twelve wide column">
         <div class="ui horizontal segment">
           <div id="mainPageContent">
-            <div id="pageContentTitle">
+
+            <div id="pageContentTitle" class="ui black segment">
               <h2 class="ui header">
-                <i class="add square icon"></i>
+                <i class="flag icon"></i>
                 <div class="content">发布活动</div>
+                <div class="sub header">约起小伙伴，相与步于中庭。</div>
               </h2>
             </div>
-            <div class="ui divider"></div>
+
+            <!-- <div class="ui hidden divider"></div> -->
+
             <div id="pageContentBody">
-              <div class="ui error form segment">
-                <a class="ui blue right ribbon label">请填写表单</a>
+
+              <div class="ui segment">
+                
+                <a class="ui green ribbon label">温馨提示</a>
+                细心填写表单有助于更多小伙伴参与活动哦～
+
+              </div>
+
+              <div class="ui large error form segment">
+                <a class="ui blue right ribbon label">活动表单</a>
+
                 <div class="ui error message">
                   <div class="header">错误！</div>
                   <p>错误细节</p>
                 </div>
 
-                <div class="field">
-                  <h3 class="ui header">
-                    <div class="content">活动名称</div>
-                  </h3>
+                <div class="required field">
+                  <label for="">活动名称</label>
                   <div class="ui left icon input">
                     <input type="text" placeholder="活动名称">
                     <i class="puzzle piece icon"></i>
                   </div>
                 </div>
-      
-                <div class="field">
-                  <h3 class="ui header">
-                    <div class="content">活动总人数</div>
-                  </h3>
-                  <div class="ui left icon input">
-                    <input type="text" placeholder="活动总人数">
-                    <i class="users icon"></i>
+
+                <div class="fields">
+                  <div class="field">
+                    <label for="">活动开始时间</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="活动开始时间">
+                      <i class="time icon"></i>
+                    </div>
                   </div>
+  
+                  <div class="field">
+                    <label for="">活动结束时间</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="活动结束时间">
+                      <i class="time icon"></i>
+                    </div>
+                  </div>
+  
+                  <div class="field">
+                    <label for="">报名截止日期</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="报名截止日期">
+                      <i class="time icon"></i>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="fields">
+
+                  <div class="field">
+                    <label for="">活动总人数</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="活动总人数">
+                      <i class="users icon"></i>
+                    </div>
+                  </div>
+  
+                  <div class="field">
+                    <label for="">活动类型</label>
+                    <div class="ui selection dropdown">
+                      <input type="hidden" name="">
+                      <div class="default text">类型</div>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <div class="item" data-value="">聚餐</div>
+                        <div class="item" data-value="">运动</div>
+                        <div class="item" data-value="">学习</div>
+                        <div class="item" data-value="">...</div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
     
                 <div class="field error">
-                  <h3 class="ui header">
-                    <div class="content">活动地点</div>
-                  </h3>
+                  <label for="">活动地点</label>
                   <div class="ui left icon input">
                     <input type="text" placeholder="活动地点">
                     <i class="building icon"></i>
                   </div>
                 </div>
-    
-                <div class="field">
-                  <h3 class="ui header">
-                    <div class="content">报名截止日期</div>
-                  </h3>
-                  <div class="ui left icon input">
-                    <input type="text" placeholder="报名截止日期">
-                    <i class="time icon"></i>
-                  </div>
-                </div>
-
-                <h3 class="ui header">
-                  <div class="content">是否公开你的联系方式？</div>
-                </h3>
+                
                 <div class="inline fields">
+                  <label for="">是否公开你的联系方式？</label>
                   <div class="field">
                     <div class="ui radio checkbox">
                       <input type="radio" name="fruit">
@@ -163,9 +204,7 @@
                 </div>
 
                 <div class="field">
-                  <h3 class="ui header">
-                    <div class="content">活动描述</div>
-                  </h3>
+                  <label for="">活动描述</label>
                   <textarea></textarea>
                 </div>
 
@@ -175,11 +214,20 @@
                 </div>
       
               </div>
+
+              <div class="ui segment">
+                
+                <a class="ui green ribbon label">温馨提示</a>
+                提交之前记得核对活动信息 ^_^
+
+              </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+<!-- ************************************************************************************* -->
     <div class="ui hidden divider"></div>
     <div id="footer">
       <div class="ui blue center aligned segment">

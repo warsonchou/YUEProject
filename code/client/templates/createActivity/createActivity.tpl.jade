@@ -56,47 +56,70 @@ html(lang='en')
                     i.tasks.icon
                     .content
                       .header ...
+        // *************************************************************************************
         .twelve.wide.column
           .ui.horizontal.segment
             #mainPageContent
-              #pageContentTitle
+              #pageContentTitle.ui.black.segment
                 h2.ui.header
-                  i.add.square.icon
+                  i.flag.icon
                   .content 发布活动
-              .ui.divider
+                  .sub.header 约起小伙伴，相与步于中庭。
+              // <div class="ui hidden divider"></div>
               #pageContentBody
-                .ui.error.form.segment
-                  a.ui.blue.right.ribbon.label 请填写表单
+                .ui.segment
+                  a.ui.green.ribbon.label 温馨提示
+                  |                 细心填写表单有助于更多小伙伴参与活动哦～
+                .ui.large.error.form.segment
+                  a.ui.blue.right.ribbon.label 活动表单
                   .ui.error.message
                     .header 错误！
                     p 错误细节
-                  .field
-                    h3.ui.header
-                      .content 活动名称
+                  .required.field
+                    label(for='') 活动名称
                     .ui.left.icon.input
                       input(type='text', placeholder='活动名称')
                       i.puzzle.piece.icon
-                  .field
-                    h3.ui.header
-                      .content 活动总人数
-                    .ui.left.icon.input
-                      input(type='text', placeholder='活动总人数')
-                      i.users.icon
+                  .fields
+                    .field
+                      label(for='') 活动开始时间
+                      .ui.left.icon.input
+                        input(type='text', placeholder='活动开始时间')
+                        i.time.icon
+                    .field
+                      label(for='') 活动结束时间
+                      .ui.left.icon.input
+                        input(type='text', placeholder='活动结束时间')
+                        i.time.icon
+                    .field
+                      label(for='') 报名截止日期
+                      .ui.left.icon.input
+                        input(type='text', placeholder='报名截止日期')
+                        i.time.icon
+                  .fields
+                    .field
+                      label(for='') 活动总人数
+                      .ui.left.icon.input
+                        input(type='text', placeholder='活动总人数')
+                        i.users.icon
+                    .field
+                      label(for='') 活动类型
+                      .ui.selection.dropdown
+                        input(type='hidden', name='')
+                        .default.text 类型
+                        i.dropdown.icon
+                        .menu
+                          .item(data-value='') 聚餐
+                          .item(data-value='') 运动
+                          .item(data-value='') 学习
+                          .item(data-value='') ...
                   .field.error
-                    h3.ui.header
-                      .content 活动地点
+                    label(for='') 活动地点
                     .ui.left.icon.input
                       input(type='text', placeholder='活动地点')
                       i.building.icon
-                  .field
-                    h3.ui.header
-                      .content 报名截止日期
-                    .ui.left.icon.input
-                      input(type='text', placeholder='报名截止日期')
-                      i.time.icon
-                  h3.ui.header
-                    .content 是否公开你的联系方式？
                   .inline.fields
+                    label(for='') 是否公开你的联系方式？
                     .field
                       .ui.radio.checkbox
                         input(type='radio', name='fruit')
@@ -106,12 +129,15 @@ html(lang='en')
                         input(type='radio', name='fruit', checked='')
                         label 不，暂时保密
                   .field
-                    h3.ui.header
-                      .content 活动描述
+                    label(for='') 活动描述
                     textarea
                   .ui.vertical.right.aligned.basic.segment
                     .positive.ui.submit.button 提交
                     .negative.ui.button 取消
+                .ui.segment
+                  a.ui.green.ribbon.label 温馨提示
+                  |                 提交之前记得核对活动信息 ^_^
+      // *************************************************************************************
       .ui.hidden.divider
       #footer
         .ui.blue.center.aligned.segment

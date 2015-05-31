@@ -86,23 +86,23 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 						.ui.left.icon.input
 							input(type='text', name="ActivityName", placeholder='活动名称', required)
 							i.puzzle.piece.icon
-					.fields
+					.required.fields
 						.field
 							label(for='') 活动开始时间
 							.ui.left.icon.input
-								input(type='text', name="ActivityStartTime", placeholder='活动开始时间', required)
+								input(type='text', class="datetimepicker", name="ActivityStartTime", placeholder='活动开始时间', required)
 								i.time.icon
 						.field
 							label(for='') 活动结束时间
 							.ui.left.icon.input
-								input(type='text', name="ActivityEndTime", placeholder='活动结束时间', required)
+								input(type='text', class="datetimepicker", name="ActivityEndTime", placeholder='活动结束时间', required)
 								i.time.icon
 						.field
 							label(for='') 报名截止日期
 							.ui.left.icon.input
-								input(type='text', name="ActivityDeadline", placeholder='报名截止日期', required)
+								input(type='text', class="datetimepicker", name="ActivityDeadline", placeholder='报名截止日期', required)
 								i.time.icon
-					.fields
+					.required.fields
 						.field
 							label(for='') 活动总人数
 							.ui.left.icon.input
@@ -110,34 +110,40 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 								i.users.icon
 						.field
 							label(for='') 活动类型
-							.ui.selection.dropdown
-								input(type='hidden', name='ActivityCategory')
-								.default.text 类型
-								i.dropdown.icon
-								.menu
-									.item(data-value='') 聚餐
-									.item(data-value='') 运动
-									.item(data-value='') 学习
-									.item(data-value='') ...
-					.field.error
+							select.ui.dropdown(name='ActivityCategory')
+								option(value="") 类型
+								option(value="1") 运动
+								option(value="2") 学习
+								option(value="3") 吃饭
+								option(value="4") 其他
+					.required.field.error
 						label(for='') 活动地点
 						.ui.left.icon.input
 							input(type='text', name="ActivityPlace", placeholder='活动地点', required)
 							i.building.icon
-					.inline.fields
+					.required.inline.fields
 						label(for='') 是否公开你的联系方式？
+						br
+						br
 						.field
 							.ui.radio.checkbox
-								input(type='radio', name='PublicInfoYes')
+								input(type='radio', name='PublicInfo')
 								label 是的，现在公开
 						.field
 							.ui.radio.checkbox
-								input(type='radio', name='PublicInfoNo', checked='')
+								input(type='radio', name='PublicInfo')
 								label 不，暂时保密
 					.field
 						label(for='') 活动封面
-						input(type='file', name='ActivityCover')
-					.field
+						.ui.card
+							.image
+								img(src="", alt="cover")
+							.content
+								.header 封面预览
+								.description 选择漂亮的封面更容易吸引小伙伴 ：）
+							.extra.content
+						input(type='file', name='ActivityCover' value="选择文件")
+					.required.field
 						label(for='') 活动描述
 						textarea(name="ActivityDescription")
 					.ui.vertical.right.aligned.basic.segment

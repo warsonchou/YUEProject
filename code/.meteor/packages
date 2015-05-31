@@ -32,3 +32,4 @@ semantic:ui-list
 cfs:standard-packages
 cfs:filesystem
 cfs:ejson-file
+ryanswapp:datetime-picker

@@ -13,25 +13,31 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 						h3.ui.header
 							.content Activity Name
 						.ui.left.icon.input
-							input(type='text', placeholder='Activity Name', required)
+							input(type='text', name="ActivityName", placeholder='Activity Name', required)
 							i.user.icon
 					.ui.vertical.segment
 						h3.ui.header
 							.content People Number
 						.ui.left.icon.input
-							input(type='text', placeholder='People Number', required)
+							input(type='text', name='PeopleNumber' placeholder='People Number', required)
 							i.user.icon
 					.ui.vertical.segment
 						h3.ui.header
 							.content Activity Place
 						.ui.left.icon.input
-							input(type='text', placeholder='Activity Place', required)
+							input(type='text', name='ActivityPlace', placeholder='Activity Place', required)
 							i.user.icon
 					.ui.vertical.segment
 						h3.ui.header
 							.content Deadeline
 						.ui.left.icon.input
-							input(type='text', placeholder='Deadeline', required)
+							input(type='text', name='Deadeline', placeholder='Deadeline', required)
+							i.user.icon
+					.ui.vertical.segment
+						h3.ui.header
+							.content Activity Image
+						.ui.left.icon.input
+							input(type='file', name='image', placeholder='ActivityImage')
 							i.user.icon
 					.ui.vertical.segment
 						h3.ui.header
@@ -52,148 +58,151 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 						textarea(name='', id='', cols='80%', rows='15')
 					.ui.vertical.right.aligned.segment
 						.positive.ui.submit.blue.input.submitButton
-							input(name="fds", value="Submit", type="submit")
+							input(name="submitButton", value="Submit", type="submit")
 						.negative.ui.button Cancel
+					div
+						each images
+							img(src="{{this.url}}")
 //- =======
 //- doctype html
 //- html(lang='en')
 //-   head
 //-     meta(charset='UTF-8')
-//-     title 发布活动
-//-     link(rel='stylesheet', href='../../../public/semantic UI/dist/semantic.min.css')
-//-     link(rel='stylesheet', href='./createActivity.css')
+//- 	title 发布活动
+//- 	link(rel='stylesheet', href='../../../public/semantic UI/dist/semantic.min.css')
+//- 	link(rel='stylesheet', href='./createActivity.css')
 //-   body
-//-     #createActivityMain
-//-       #topMenu
-//-         .ui.blue.right.aligned.segment
-//-           .ui.horizontal.list
-//-             .item
-//-               .ui.labeled.icon.primary.button
-//-                 i.user.large.icon
-//-                 |               个人中心
-//-             .item
-//-               img.ui.avatar.image(src='http://p3.qqgexing.com/touxiang/20120731/1220/50175d1de3b66.jpg', alt='avatar')
-//-             .item
-//-               .ui.right.labeled.icon.negative.button
-//-                 i.sign.out.large.icon
-//-                 |               登出
-//-       .ui.hidden.divider
-//-       .ui.two.column.grid
-//-         .four.wide.column
-//-           .ui.horizontal.segment
-//-             #sidebar
-//-               #blockAbove
-//-                 .ui.fluid.huge.label 选项
-//-                 .ui.list
-//-                   .item
-//-                     .ui.labeled.icon.primary.fluid.button
-//-                       i.home.large.icon
-//-                       |                     主页
-//-                   .item
-//-                     .ui.labeled.icon.primary.fluid.button
-//-                       i.add.square.large.icon
-//-                       |                     发布活动
-//-               .ui.horizontal.section.divider divider
-//-               #blockBottom
-//-                 .ui.fluid.huge.label 活动分类
-//-                 .ui.selection.list
-//-                   .item
-//-                     i.tasks.icon
-//-                     .content
-//-                       .header 聚餐
-//-                   .item
-//-                     i.tasks.icon
-//-                     .content
-//-                       .header 运动
-//-                   .item
-//-                     i.tasks.icon
-//-                     .content
-//-                       .header 学习
-//-                   .item
-//-                     i.tasks.icon
-//-                     .content
-//-                       .header ...
-//-         .twelve.wide.column
-//-           .ui.horizontal.segment
-//-             #mainPageContent
-//-               #pageContentTitle.ui.black.segment
-//-                 h2.ui.header
-//-                   i.flag.icon
-//-                   .content 发布活动
-//-                   .sub.header 约起小伙伴，相与步于中庭。
-//-               #pageContentBody
-//-                 .ui.segment
-//-                   a.ui.green.ribbon.label 温馨提示
-//-                   |                 细心填写表单有助于更多小伙伴参与活动哦～
-//-                 .ui.large.error.form.segment
-//-                   a.ui.blue.right.ribbon.label 活动表单
-//-                   .ui.error.message
-//-                     .header 错误！
-//-                     p 错误细节
-//-                   .required.field
-//-                     label(for='') 活动名称
-//-                     .ui.left.icon.input
-//-                       input(type='text', placeholder='活动名称')
-//-                       i.puzzle.piece.icon
-//-                   .fields
-//-                     .field
-//-                       label(for='') 活动开始时间
-//-                       .ui.left.icon.input
-//-                         input(type='text', placeholder='活动开始时间')
-//-                         i.time.icon
-//-                     .field
-//-                       label(for='') 活动结束时间
-//-                       .ui.left.icon.input
-//-                         input(type='text', placeholder='活动结束时间')
-//-                         i.time.icon
-//-                     .field
-//-                       label(for='') 报名截止日期
-//-                       .ui.left.icon.input
-//-                         input(type='text', placeholder='报名截止日期')
-//-                         i.time.icon
-//-                   .fields
-//-                     .field
-//-                       label(for='') 活动总人数
-//-                       .ui.left.icon.input
-//-                         input(type='text', placeholder='活动总人数')
-//-                         i.users.icon
-//-                     .field
-//-                       label(for='') 活动类型
-//-                       .ui.selection.dropdown
-//-                         input(type='hidden', name='')
-//-                         .default.text 类型
-//-                         i.dropdown.icon
-//-                         .menu
-//-                           .item(data-value='') 聚餐
-//-                           .item(data-value='') 运动
-//-                           .item(data-value='') 学习
-//-                           .item(data-value='') ...
-//-                   .field.error
-//-                     label(for='') 活动地点
-//-                     .ui.left.icon.input
-//-                       input(type='text', placeholder='活动地点')
-//-                       i.building.icon
-//-                   .inline.fields
-//-                     label(for='') 是否公开你的联系方式？
-//-                     .field
-//-                       .ui.radio.checkbox
-//-                         input(type='radio', name='fruit')
-//-                         label 是的，现在公开
-//-                     .field
-//-                       .ui.radio.checkbox
-//-                         input(type='radio', name='fruit', checked='')
-//-                         label 不，暂时保密
-//-                   .field
-//-                     label(for='') 活动描述
-//-                     textarea
-//-                   .ui.vertical.right.aligned.basic.segment
-//-                     .positive.ui.submit.button 提交
-//-                     .negative.ui.button 取消
-//-                 .ui.segment
-//-                   a.ui.green.ribbon.label 温馨提示
-//-                   |                 提交之前记得核对活动信息 ^_^
-//-       .ui.hidden.divider
-//-       #footer
-//-         .ui.blue.center.aligned.segment
-//-           h3 这是网站尾部
+//- 	#createActivityMain
+//- 	  #topMenu
+//- 		.ui.blue.right.aligned.segment
+//- 		  .ui.horizontal.list
+//- 			.item
+//- 			  .ui.labeled.icon.primary.button
+//- 				i.user.large.icon
+//- 				|               个人中心
+//- 			.item
+//- 			  img.ui.avatar.image(src='http://p3.qqgexing.com/touxiang/20120731/1220/50175d1de3b66.jpg', alt='avatar')
+//- 			.item
+//- 			  .ui.right.labeled.icon.negative.button
+//- 				i.sign.out.large.icon
+//- 				|               登出
+//- 	  .ui.hidden.divider
+//- 	  .ui.two.column.grid
+//- 		.four.wide.column
+//- 		  .ui.horizontal.segment
+//- 			#sidebar
+//- 			  #blockAbove
+//- 				.ui.fluid.huge.label 选项
+//- 				.ui.list
+//- 				  .item
+//- 					.ui.labeled.icon.primary.fluid.button
+//- 					  i.home.large.icon
+//- 					  |                     主页
+//- 				  .item
+//- 					.ui.labeled.icon.primary.fluid.button
+//- 					  i.add.square.large.icon
+//- 					  |                     发布活动
+//- 			  .ui.horizontal.section.divider divider
+//- 			  #blockBottom
+//- 				.ui.fluid.huge.label 活动分类
+//- 				.ui.selection.list
+//- 				  .item
+//- 					i.tasks.icon
+//- 					.content
+//- 					  .header 聚餐
+//- 				  .item
+//- 					i.tasks.icon
+//- 					.content
+//- 					  .header 运动
+//- 				  .item
+//- 					i.tasks.icon
+//- 					.content
+//- 					  .header 学习
+//- 				  .item
+//- 					i.tasks.icon
+//- 					.content
+//- 					  .header ...
+//- 		.twelve.wide.column
+//- 		  .ui.horizontal.segment
+//- 			#mainPageContent
+//- 			  #pageContentTitle.ui.black.segment
+//- 				h2.ui.header
+//- 				  i.flag.icon
+//- 				  .content 发布活动
+//- 				  .sub.header 约起小伙伴，相与步于中庭。
+//- 			  #pageContentBody
+//- 				.ui.segment
+//- 				  a.ui.green.ribbon.label 温馨提示
+//- 				  |                 细心填写表单有助于更多小伙伴参与活动哦～
+//- 				.ui.large.error.form.segment
+//- 				  a.ui.blue.right.ribbon.label 活动表单
+//- 				  .ui.error.message
+//- 					.header 错误！
+//- 					p 错误细节
+//- 				  .required.field
+//- 					label(for='') 活动名称
+//- 					.ui.left.icon.input
+//- 					  input(type='text', placeholder='活动名称')
+//- 					  i.puzzle.piece.icon
+//- 				  .fields
+//- 					.field
+//- 					  label(for='') 活动开始时间
+//- 					  .ui.left.icon.input
+//- 						input(type='text', placeholder='活动开始时间')
+//- 						i.time.icon
+//- 					.field
+//- 					  label(for='') 活动结束时间
+//- 					  .ui.left.icon.input
+//- 						input(type='text', placeholder='活动结束时间')
+//- 						i.time.icon
+//- 					.field
+//- 					  label(for='') 报名截止日期
+//- 					  .ui.left.icon.input
+//- 						input(type='text', placeholder='报名截止日期')
+//- 						i.time.icon
+//- 				  .fields
+//- 					.field
+//- 					  label(for='') 活动总人数
+//- 					  .ui.left.icon.input
+//- 						input(type='text', placeholder='活动总人数')
+//- 						i.users.icon
+//- 					.field
+//- 					  label(for='') 活动类型
+//- 					  .ui.selection.dropdown
+//- 						input(type='hidden', name='')
+//- 						.default.text 类型
+//- 						i.dropdown.icon
+//- 						.menu
+//- 						  .item(data-value='') 聚餐
+//- 						  .item(data-value='') 运动
+//- 						  .item(data-value='') 学习
+//- 						  .item(data-value='') ...
+//- 				  .field.error
+//- 					label(for='') 活动地点
+//- 					.ui.left.icon.input
+//- 					  input(type='text', placeholder='活动地点')
+//- 					  i.building.icon
+//- 				  .inline.fields
+//- 					label(for='') 是否公开你的联系方式？
+//- 					.field
+//- 					  .ui.radio.checkbox
+//- 						input(type='radio', name='fruit')
+//- 						label 是的，现在公开
+//- 					.field
+//- 					  .ui.radio.checkbox
+//- 						input(type='radio', name='fruit', checked='')
+//- 						label 不，暂时保密
+//- 				  .field
+//- 					label(for='') 活动描述
+//- 					textarea
+//- 				  .ui.vertical.right.aligned.basic.segment
+//- 					.positive.ui.submit.button 提交
+//- 					.negative.ui.button 取消
+//- 				.ui.segment
+//- 				  a.ui.green.ribbon.label 温馨提示
+//- 				  |                 提交之前记得核对活动信息 ^_^
+//- 	  .ui.hidden.divider
+//- 	  #footer
+//- 		.ui.blue.center.aligned.segment
+//- 		  h3 这是网站尾部
 //- >>>>>>> 521f1dcfdfb7cd145c79f319ee8ea38aaf381d7f

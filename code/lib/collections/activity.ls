@@ -2,7 +2,7 @@ root = exports ? @
 
 root.Activity = {
     collection: new Mongo.Collection('Activity')
-    insert: (name, sponsor, num-of-people, startingTime, deadline, place, open-or-not, type, cover)->
+    insert: (name, num-of-people,  deadline, place, cover, sponsor, startingTime, open-or-not, type)->
         return this.collection.insert {
             name: name,
             sponsor: sponsor,
@@ -16,7 +16,6 @@ root.Activity = {
             applyList: [],
             aver-sponsor-score: undefined
         }
-    ,
 
     delete: (id)->
         if not this.find-by-id id

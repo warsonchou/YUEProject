@@ -90,28 +90,28 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 						.field
 							label(for='') 活动开始时间
 							.ui.left.icon.input
-								input(type='text', placeholder='活动开始时间', required)
+								input(type='text', name="ActivityStartTime", placeholder='活动开始时间', required)
 								i.time.icon
 						.field
 							label(for='') 活动结束时间
 							.ui.left.icon.input
-								input(type='text', placeholder='活动结束时间', required)
+								input(type='text', name="ActivityEndTime", placeholder='活动结束时间', required)
 								i.time.icon
 						.field
 							label(for='') 报名截止日期
 							.ui.left.icon.input
-								input(type='text', placeholder='报名截止日期', required)
+								input(type='text', name="ActivityDeadline", placeholder='报名截止日期', required)
 								i.time.icon
 					.fields
 						.field
 							label(for='') 活动总人数
 							.ui.left.icon.input
-								input(type='text', placeholder='活动总人数', required)
+								input(type='text', name="PeopleNumber", placeholder='活动总人数', required)
 								i.users.icon
 						.field
 							label(for='') 活动类型
 							.ui.selection.dropdown
-								input(type='hidden', name='')
+								input(type='hidden', name='ActivityCategory')
 								.default.text 类型
 								i.dropdown.icon
 								.menu
@@ -122,23 +122,23 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 					.field.error
 						label(for='') 活动地点
 						.ui.left.icon.input
-							input(type='text', placeholder='活动地点', required)
+							input(type='text', name="ActivityPlace", placeholder='活动地点', required)
 							i.building.icon
 					.inline.fields
 						label(for='') 是否公开你的联系方式？
 						.field
 							.ui.radio.checkbox
-								input(type='radio', name='fruit')
+								input(type='radio', name='PublicInfoYes')
 								label 是的，现在公开
 						.field
 							.ui.radio.checkbox
-								input(type='radio', name='fruit', checked='')
+								input(type='radio', name='PublicInfoNo', checked='')
 								label 不，暂时保密
 					.field
 						label(for='') 活动描述
-						textarea
+						textarea(name="ActivityDescription")
 					.ui.vertical.right.aligned.basic.segment
-						.positive.ui.submit.button 提交
+						input(name="submitButton", value="提交", type="submit", class="ui positive submit button")
 						.negative.ui.button 取消
 				.ui.segment
 					a.ui.green.ribbon.label 温馨提示

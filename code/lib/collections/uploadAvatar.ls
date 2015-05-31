@@ -1,8 +1,8 @@
 root = exports ? @
 
-root.UploadForActivity = {
-	collection: new FS.Collection("uploadForActivity", {
-		stores: [new FS.Store.FileSystem("uploadForActivity")]
+root.UploadAvatar = {
+	collection: new FS.Collection("uploadAvatar", {
+		stores: [new FS.Store.FileSystem("uploadAvatar")]
 		filter:
 			maxSize: 5122880 #5m
 			allow:
@@ -15,13 +15,14 @@ root.UploadForActivity = {
 					console.log message
 		})
 
-	insert: (files, ActivityName, PeopleNumber, Deadeline, ActivityPlace)->
+	insert: (username, avatar)->
 		for file in files
 			return this.collection.insert file, (err, fileObj)!->
 				if err
 					console.log 'insert picture error'
 				else
-					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id
+					user = this.current-user!
+					# fileObj._id
 
 	find: ->
 		this.collection.find!

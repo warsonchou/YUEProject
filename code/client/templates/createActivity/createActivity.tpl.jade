@@ -135,6 +135,9 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 								input(type='radio', name='PublicInfoNo', checked='')
 								label 不，暂时保密
 					.field
+						label(for='') 活动封面
+						input(type='file', name='ActivityCover')
+					.field
 						label(for='') 活动描述
 						textarea(name="ActivityDescription")
 					.ui.vertical.right.aligned.basic.segment

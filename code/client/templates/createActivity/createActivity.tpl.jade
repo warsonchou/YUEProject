@@ -1,0 +1,55 @@
+form(name="createActivity", class="createActivity", enctype="multipart/form-data")
+	.ui.horizontal.segment
+		#mainPageContent
+			#pageContentTitle
+				h2.ui.header
+					i.add.square.icon
+					.content Create Your Activity
+			.ui.divider
+			#pageContentBody
+				.ui.segment
+					.ui.vertical.segment
+						h3.ui.header
+							.content Activity Name
+						.ui.left.icon.input
+							input(type='text', placeholder='Activity Name', required)
+							i.user.icon
+					.ui.vertical.segment
+						h3.ui.header
+							.content People Number
+						.ui.left.icon.input
+							input(type='text', placeholder='People Number', required)
+							i.user.icon
+					.ui.vertical.segment
+						h3.ui.header
+							.content Activity Place
+						.ui.left.icon.input
+							input(type='text', placeholder='Activity Place', required)
+							i.user.icon
+					.ui.vertical.segment
+						h3.ui.header
+							.content Deadeline
+						.ui.left.icon.input
+							input(type='text', placeholder='Deadeline', required)
+							i.user.icon
+					.ui.vertical.segment
+						h3.ui.header
+							.content Public Your Contact Information?
+						.ui.form
+							.grouped.inline.fields
+								.field
+									.ui.radio.checkbox
+										input(type='radio', name='fruit')
+										label Yes
+								.field
+									.ui.radio.checkbox
+										input(type='radio', name='fruit', checked='checked')
+										label Not Now
+					.ui.vertical.segment
+						h3.ui.header
+							.content Activity Description
+						textarea(name='', id='', cols='80%', rows='15')
+					.ui.vertical.right.aligned.segment
+						.positive.ui.submit.blue.input.submitButton
+							input(name="fds", value="Submit", type="submit")
+						.negative.ui.button Cancel

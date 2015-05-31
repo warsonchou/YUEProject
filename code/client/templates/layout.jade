@@ -1,0 +1,62 @@
+template(name="layout")
+  html(lang='en')
+    head
+      meta(charset='UTF-8')
+      title Create Your Activity
+    body
+      #main
+        #topMenu
+          .ui.blue.right.aligned.segment
+            .ui.horizontal.list
+              .item
+                .ui.labeled.icon.primary.button
+                  i.user.large.icon
+                  |               Personal Center
+              .item
+                img.ui.avatar.image(src='http://p3.qqgexing.com/touxiang/20120731/1220/50175d1de3b66.jpg', alt='avatar')
+              .item
+                .ui.right.labeled.icon.negative.button
+                  i.sign.out.large.icon
+                  |               Sign Out
+        .ui.divider
+        .ui.two.column.grid
+          .four.wide.column
+            .ui.horizontal.segment
+              #sidebar
+                #blockAbove
+                  .ui.fluid.huge.label Option
+                  .ui.list
+                    .item
+                      .ui.labeled.icon.primary.fluid.button
+                        i.home.large.icon
+                        |                     Home
+                    .item
+                      .ui.labeled.icon.primary.fluid.button
+                        i.add.square.large.icon
+                        |                     Create Activity
+                .ui.horizontal.section.divider divider
+                #blockBottom
+                  .ui.fluid.huge.label Activity Category
+                  .ui.selection.list
+                    .item
+                      i.tasks.icon
+                      .content
+                        .header Dinner
+                    .item
+                      i.tasks.icon
+                      .content
+                        .header Sports
+                    .item
+                      i.tasks.icon
+                      .content
+                        .header Music
+                    .item
+                      i.tasks.icon
+                      .content
+                        .header ...
+          .twelve.wide.column
+            +yield
+        .ui.divider
+        #footer
+          .ui.blue.center.aligned.segment
+            h3 And This Is The Footer.

@@ -15,13 +15,13 @@ root.UploadForActivity = {
 					console.log message
 		})
 
-	insert: (files, ActivityName, PeopleNumber, Deadeline, ActivityPlace)->
+	insert: (files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
 		for file in files
 			return this.collection.insert file, (err, fileObj)!->
 				if err
 					console.log 'insert picture error'
 				else
-					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id
+					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
 	find: ->
 		this.collection.find!

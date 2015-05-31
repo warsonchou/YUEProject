@@ -5,19 +5,20 @@ root.Activity = {
     all: ->
         return Activity.collection.find {} .fetch!
 
-    insert: (name, num-of-people,  deadline, place, cover, sponsor, startingTime, open-or-not, type)->
+    insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor)->
         return this.collection.insert {
             name: name,
             sponsor: sponsor,
             num-of-people: num-of-people,
-            starting-time: new Date(),
+            starting-time: startingTime,
+            ending-time: startingTime,
             deadline: deadline,
             place: place,
             open-or-not: open-or-not,
             type: type,
             cover: cover,
             applyList: [],
-            aver-sponsor-score: undefined
+            # aver-sponsor-score: undefined
         }
 
     delete: (id)->

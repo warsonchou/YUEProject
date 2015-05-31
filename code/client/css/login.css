@@ -1,0 +1,42 @@
+.login {
+	width: 40%;
+	margin: 0 auto;
+	position: absolute;
+	top: 30%;
+	left: 30%;
+}
+
+.login-log {
+	position: absolute;
+	top: 30%;
+	left: 30%;
+}
+
+.login-register {
+	position: absolute;
+	top: 6%;
+	left: 30%;
+}
+
+.login-user, .login-password, .login-mail, .login-tel, .login-sexual, .login-qq, .login-name {
+	position: relative;
+}
+
+.login i {
+	position: absolute;
+	top: 11px;
+	left: 10px;
+}
+
+.login .ui .field input {
+	padding-left: 30px;
+}
+
+.login .login-log .ui .hidden {
+	display: none;
+}
+
+.login-register .ui .field .login-sexual select {
+	padding-left: 25px;
+}
+

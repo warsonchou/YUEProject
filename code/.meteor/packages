@@ -27,3 +27,8 @@ semantic:ui-sidebar
 semantic:ui-label
 semantic:ui-segment
 semantic:ui-menu
+semantic:ui-grid
+semantic:ui-header
+semantic:ui-list
+cfs:standard-packages
+cfs:filesystem

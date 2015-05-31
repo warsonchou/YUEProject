@@ -1,0 +1,44 @@
+template(name="register")
+  .login.login-register
+    form(method="post", action="/register")
+      .ui.form.segment
+        .field
+          label Username
+          .login-user
+            i.user.icon
+            input(type="text", placeholder="Username", name="username", required)
+        .field
+          label Password
+          .login-password
+            i.lock.icon
+            input(type="password", placeholder="Password", name="password", required)
+        .field
+          label &#26165;&#31216;
+          .login-name
+            i.users.icon
+            input(type="text", placeholder="Name", name="nickname", required)
+        .field
+          label &#24615;&#21035;
+          .login-sexual
+            i.male.icon
+            select(name="sex")
+              option(value="male") &#30007;
+              option(value="female") &#22899;
+        .field
+          label &#25163;&#26426;&#21495;&#30721;
+          .login-tel
+            i.mobile.icon
+            input(type="text", placeholder="Tel", name="tel", required)
+        .field
+          label QQ
+          .login-qq
+            i.chat.icon
+            input(type="text", placeholder="QQ", name="qq")
+        .field
+          label &#37038;&#31665;
+          .login-mail
+            i.mail.icon
+            input(type="text", placeholder="Mail", name="mail" required)
+        .ui.buttons.login-button
+          .ui.positive.button(type="submit") &#30830;&#23450;
+

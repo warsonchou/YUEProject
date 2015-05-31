@@ -2,6 +2,10 @@ root = exports ? @
 
 root.Activity = {
     collection: new Mongo.Collection('Activity')
+
+    all: ->
+        return Activity.collection.find {} .fetch!
+
     insert: (name, sponsor, num-of-people, startingTime, deadline, place, open-or-not, type, cover)->
         return this.collection.insert {
             name: name,

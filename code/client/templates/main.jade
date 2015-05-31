@@ -2,7 +2,7 @@ template(name="main")
     head
         title YUE Application
     body
-        div.container
+        div.main-container
             header#sidebar
                 nav
                     button(type="button") 首页
@@ -21,7 +21,6 @@ template(name="main")
                 header
                     div
                         a(src="")个人中心
-                    +loginButtons
                 div#content
                     +yield
                     

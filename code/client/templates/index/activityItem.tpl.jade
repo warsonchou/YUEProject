@@ -1,0 +1,9 @@
+template(name="activityItem")
+    div.activity-item.ui.vertical.segment
+        div.activity-cover
+            img(src="#{cover}")
+        div.activity-info
+            h3 #{name}
+            p 时间: #{activityTime}
+            p 地点: #{place}
+            p 发起人: #{sponsorname}

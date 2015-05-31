@@ -1,8 +1,8 @@
 root = exports ? @
 
-root.UploadForActivity = {
-	collection: new FS.Collection("uploadForActivity", {
-		stores: [new FS.Store.FileSystem("uploadForActivity")]
+root.UploadAvatar = {
+	collection: new FS.Collection("uploadAvatar", {
+		stores: [new FS.Store.FileSystem("uploadAvatar")]
 		filter:
 			maxSize: 5122880 #5m
 			allow:
@@ -15,13 +15,16 @@ root.UploadForActivity = {
 					console.log message
 		})
 
-	insert: (files, ActivityName, PeopleNumber, Deadeline, ActivityPlace)->
+	insert: (username, avatar)->
 		for file in files
 			return this.collection.insert file, (err, fileObj)!->
 				if err
 					console.log 'insert picture error'
 				else
-					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id
+				# to do list for FBI, you should modify the user profile to remember the avatar id, and you can refer to user.ls and upload.ls
+					i = 0
+					#user = this.current-user!
+					# fileObj._id
 
 	find: ->
 		this.collection.find!
@@ -30,8 +33,8 @@ root.UploadForActivity = {
 	#such as
 	#				each images			(the array result that returned by the findbyid)
 	#						img(src="{{this.url}}")
-	findbyid: (activityId)->
-		this.collection.find {"_id": activityId}
+	findbyid: (avatarId)->
+		this.collection.find {"_id": avatarId}
 
 
 }

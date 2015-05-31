@@ -5,7 +5,7 @@
      给出一个meteor中文学习文档做参考(若看英文文档辛苦的话。。。。。。): http://zh.discovermeteor.com
 
 1.首页
-    url: '/'
+    url: '/index'
     data: activity[]
     render: index.tpl.jade
 

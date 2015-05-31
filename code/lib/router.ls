@@ -2,8 +2,10 @@ Router.configure {
     layoutTemplate: 'layout'
 }
 
+Router.route '/', ->
+    Router.go '/index'
 
-Router.route '/:activityLimit?', {
+Router.route 'index/:activityLimit?', {
     name: 'index',
     waitOn: ->
         limit = parse-int this.params.activity-limit

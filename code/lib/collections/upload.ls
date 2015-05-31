@@ -30,8 +30,8 @@ root.UploadForActivity = {
 	#such as
 	#				each images			(the array result that returned by the findbyid)
 	#						img(src="{{this.url}}")
-	findbyid: (id)->
-		this.collection.find {"_id": id}
+	findbyid: (activityId)->
+		this.collection.find {"_id": activityId}
 
 
 }

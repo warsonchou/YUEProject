@@ -21,7 +21,9 @@ root.UploadAvatar = {
 				if err
 					console.log 'insert picture error'
 				else
-					user = this.current-user!
+				# to do list for FBI, you should modify the user profile to remember the avatar id, and you can refer to user.ls and upload.ls
+					i = 0
+					#user = this.current-user!
 					# fileObj._id
 
 	find: ->
@@ -31,8 +33,8 @@ root.UploadAvatar = {
 	#such as
 	#				each images			(the array result that returned by the findbyid)
 	#						img(src="{{this.url}}")
-	findbyid: (id)->
-		this.collection.find {"_id": id}
+	findbyid: (avatarId)->
+		this.collection.find {"_id": avatarId}
 
 
 }

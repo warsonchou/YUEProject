@@ -1,0 +1,21 @@
+.activity-cover {
+	display: inline-block;
+}
+
+.activity-info {
+	display: inline-block;
+	float: right;
+}
+
+.activity-name {
+	display: inline-block;
+}
+
+.info-block {
+	display: inline-block;
+	margin-right: 5%;
+}
+
+.activiy-detail {
+	float: right;
+}

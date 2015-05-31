@@ -10,7 +10,7 @@
     render: index.tpl.jade
 
 2.首页(按类筛选活动)
-    url: '/:typename'
+    url: 'type/:typename'
     data: activity[](find by type)
     render: index.tpl.jade
 
@@ -25,7 +25,7 @@
     render: register.tpl.jade
 
 4.活动详情页
-    url: '/:activityId
+    url: 'activity/:activityId
     data: user, activity(find by Id)
     render: activity.tpl.jade
 

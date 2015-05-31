@@ -1,12 +1,9 @@
-template(name="index")
+template(name="type")
     header
         h2.ui.header
             div.content 活动列表
             div.ui.divider
     div.activity-list.ui.segment
-        if typename
-            h3.ui.header #{typename}
-        else
-            h3.ui.header 最近发布的活动
+        h3.ui.header #{typename}
         each activities
             +activityItem

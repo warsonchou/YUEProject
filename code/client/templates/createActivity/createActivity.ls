@@ -21,3 +21,8 @@ Template['createActivity'].helpers {
 	images: ->
 		UploadForActivity.findbyid "QyXbDKWegYppJgyab"
 }
+
+Template['createActivity'].onRendered !->
+	$('.datetimepicker').datetimepicker!
+	$('select.dropdown').dropdown!
+	$('.ui.radio.checkbox').checkbox!

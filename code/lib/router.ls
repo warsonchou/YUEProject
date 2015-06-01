@@ -10,8 +10,6 @@ Router.route 'index/:activityLimit?', {
     waitOn: ->
         limit = parse-int this.params.activity-limit
         return Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: limit}
-        data: {
-        }
 }
 
 Router.route 'type/:typename/:activityLimit?', {

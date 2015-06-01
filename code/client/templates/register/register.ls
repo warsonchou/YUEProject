@@ -19,17 +19,6 @@ Template.register.events {
 		User.register(username, password, profile, (error) ->
 			if not error
 				UploadAvatar.insert avatar
-				# Router.go '/'
+				Router.go '/'
 			)
-}
-
-
-Template.register.helpers {		
-	images: ->
-		user = Meteor.user!
-		if not user
-			profile = user.profile
-		if not user
-			avatar = UploadAvatar.findbyid profile.avatarId
-		avatar
 }

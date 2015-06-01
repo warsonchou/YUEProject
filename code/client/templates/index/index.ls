@@ -1,31 +1,15 @@
 activities = Activity.all!
 
-test-data = [{
-        name: 'fuck',
-        sponsor: 'Wangnima',
-        numOfPeople: 100,
-        activityTime: '2015-06-13',
-        place: 'hotel',
-        type: 'sex',
-        cover: '/public/images/11.jpg'
-},
-{
-        name: 'fuck',
-        sponsor: 'Wangnima',
-        numOfPeople: 100,
-        activityTime: '2015-06-13',
-        place: 'hotel',
-        type: 'sex',
-        cover: '/public/images/11.jpg'
-}
-]
-
 Template.index.helpers({
+<<<<<<< HEAD
     activities: testData
     images: ->
         user = Meteor.user!
         profile = user.profile
         UploadAvatar.findbyid profile.avatarId
+=======
+    activities: activities
+>>>>>>> eadade7fe09adc9b90566274c76b6c400d720070
 })
 
 Template.activityItem.helpers({

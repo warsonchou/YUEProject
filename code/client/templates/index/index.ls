@@ -22,6 +22,10 @@ test-data = [{
 
 Template.index.helpers({
     activities: testData
+    images: ->
+        user = Meteor.user!
+        profile = user.profile
+        UploadAvatar.findbyid profile.avatarId
 })
 
 Template.activityItem.helpers({

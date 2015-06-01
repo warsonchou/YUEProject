@@ -1,6 +1,6 @@
 template(name='login')
   .login.login-log
-    form.login-form(method='post', action='/')
+    form.login-form(method='post')
       .ui.form.segment
         .field
           label Username
@@ -13,7 +13,9 @@ template(name='login')
             i.lock.icon
             input(placeholder='Password', type='password', name='password', required)
         .ui.buttons.login-button
-          .ui.positive.button(type='submit') 登陆
+          button.ui.positive.button(type='submit') 登陆
           .or
           .ui.button
             a(href='/register') 注册
+
+        +loginButtons

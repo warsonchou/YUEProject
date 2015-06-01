@@ -1,8 +1,13 @@
 root = exports ? @
 
 root.User = {
-    register: (username, password, profile, callback)->
-        Accounts.create-user username, password, profile, callback
+    register: (username, password, profile, callback)!->
+        options = {
+            username:  username
+            password: password
+            profile:profile
+        }
+        Accounts.create-user options, callback
 
     login: (username, password, callback)->
         Meteor.login-with-password username, password, callback

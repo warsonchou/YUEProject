@@ -5,5 +5,7 @@ template(name="index")
             div.ui.divider
     div.activity-list.ui.segment
         h3.ui.header 最近发布的活动
+        each images
+            img(src="{{this.url}}")
         each activities
             +activityItem

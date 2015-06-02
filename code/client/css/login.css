@@ -47,8 +47,10 @@
 .login-register .show-avatar {
 	width: 36px;
 	height: 36px;
+	border: 1px solid black;
+	border-radius: 18px;
 	position: absolute;
-	top: 3px;
+	top: 4px;
 	left: 5px;
 	z-index: 2;
 }

@@ -1,4 +1,4 @@
-Template.register.events {
+Template.changeProfile.events {
 	'change .avatar-input': (e)!->
 
 		e.preventDefault!
@@ -15,42 +15,9 @@ Template.register.events {
 	"submit form": (e) ->
 		e.prevent-default!
 
-		username = $(e.target).find '[name=username]' .val!
-		password = $(e.target).find '[name=password]' .val!
 		avatar = $(e.target).find('[name=avatar]')[0].files
 
 		$(".login-register").form {
-			# tel: {
-			# 	identifier : 'tel'
-			# 	rules: [
-			# 		{
-			# 			type : 'is[/^[1][3-8]+\\d{9}/]'
-			# 			prompt : 'Please enter the correct phone number'
-			# 		}
-			# 	]
-			# }
-			username: {
-				identifier : 'username'
-				rules: [
-					{
-						type : 'empty'
-						prompt: 'Please enter your username'
-					}
-				]
-			}
-			password: {
-				identifier : 'password'
-				rules: [
-					{
-						type : 'empty'
-						prompt: 'Please enter your password'
-					}
-					{
-						type : 'length[6]'
-						prompt: 'Your password must be at least 6 characters'
-					}
-				]
-			}
 			nickname: {
 				identifier : 'nickname'
 				rules: [
@@ -60,16 +27,6 @@ Template.register.events {
 					}
 				]
 			}
-			# 没有解决正则表达式如何去匹配
-			# tel: {
-			# 	identifier : 'tel'
-			# 	rules: [
-			# 		{
-			# 			type : 'is["/1\d{10}/"]'
-			# 			prompt : 'Please enter your phone number'
-			# 		}
-			# 	]
-			# }
 			mail: {
 				identifier : 'mail'
 				rules: [
@@ -93,15 +50,9 @@ Template.register.events {
 		}
 		
 
-		User.register(username, password, profile, (error) ->
+		User.change-information(profile, (error) ->
 			if not error
 				UploadAvatar.insert avatar
 				Router.go '/'
 			)
-}
-
-
-Template.register.helpers {
-	registerUsernameError: ->
-		Session.get "register-username-error"
 }

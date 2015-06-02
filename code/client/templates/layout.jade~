@@ -11,7 +11,7 @@ template(name="layout")
 							.item
 								.ui.labeled.icon.primary.button
 									i.user.large.icon
-									|               个人中心
+									a(href='/profile')个人中心
 							.item
 								img.ui.avatar.image(src='http://p3.qqgexing.com/touxiang/20120731/1220/50175d1de3b66.jpg', alt='avatar')
 							.item

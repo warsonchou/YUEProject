@@ -4,21 +4,7 @@ root.Activity = {
     collection: new Mongo.Collection('Activity')
 
     all: ->
-        return this.collection.find {} .fetch!
-
-    insert-test: ->
-        for i from 1 to 50
-            this.collection.insert({
-                no: i,
-                name: 'fuck',
-                sponsor: 'Wangnima',
-                numOfPeople: 100,
-                activityTime: '2015-06-13',
-                place: 'hotel',
-                type: 'sex',
-                cover: '/public/images/11.jpg'
-            })
-        return this.collection
+        return this.collection.find!
 
     insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor)->
         return this.collection.insert {
@@ -112,3 +98,16 @@ root.Activity = {
                     return 'success'
         return 'error'
 }
+
+if Activity.all!.count! is 0
+    for i from 1 to 50
+        Activity.collection.insert({
+            no: i,
+            name: 'user-no-' + i,
+            sponsor: 'Wangnima',
+            numOfPeople: 100,
+            activityTime: '2015-06-13',
+            place: 'gym',
+            type: 'sports',
+            cover: '/public/images/11.jpg'
+        })

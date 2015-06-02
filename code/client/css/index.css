@@ -16,6 +16,11 @@
 	margin-right: 5%;
 }
 
-.activiy-detail {
-	float: right;
+.next-button {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.activity-detail {
+	margin-bottom: 10px;
 }

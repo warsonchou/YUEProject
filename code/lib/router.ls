@@ -63,12 +63,11 @@ Router.route '/createActivity', {
         Meteor.subscribe 'uploadAvatar'
 }
 
-Router.route '/profile', -> {
+Router.route '/profile', {
     name: 'profile',
     waitOn: ->
-        # zhe li xu yao xu gai
-        activity-limit = parse-int(this.params.activity-limit) || 5
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        currentUser = User.current-user
+        find-options = {$or: [ { "sponsor": currentUser.username }, { "applyList": currentUser.username }]}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
@@ -78,8 +77,7 @@ Router.route '/activity/:activityId', {
     name: 'activity'
     waitOn: ->
         # zhe li xu yao xu gai
-        activity-limit = parse-int(this.params.activity-limit) || 5
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        find-options = {"_id": activityId}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'

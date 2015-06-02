@@ -32,6 +32,8 @@ Router.route 'type/:typename/:activityLimit?', {
         activity-limit = parse-int(this.params.activity-limit) || 5
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadAvatar'
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
@@ -53,16 +55,32 @@ Router.route '/register', ->
 Router.route '/createActivity', {
     name: 'createActivity',
     waitOn: ->
-        return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
+        # zhe li xu yao xu gai
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
 }
 
-Router.route '/profile', ->
-    this.render 'profile', {}
+Router.route '/profile', {
+    name: 'profile',
+    waitOn: ->
+        currentUser = User.current-user
+        find-options = {$or: [ { "sponsor": currentUser.username }, { "applyList": currentUser.username }]}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
+}
 
 Router.route '/activity/:activityId', {
     name: 'activity'
     waitOn: ->
-        return Meteor.subscribe 'activities'
+        # zhe li xu yao xu gai
+        find-options = {"_id": activityId}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
 }
 
 require-login = !->

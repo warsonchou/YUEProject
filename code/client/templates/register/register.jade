@@ -7,6 +7,7 @@ template(name="register")
           .login-user
             i.user.icon
             input(type="text", placeholder="Username", name="username")
+            .username-existed #{registerUsernameError}
         .field
           label Password
           .login-password
@@ -41,7 +42,7 @@ template(name="register")
             input(type="text", placeholder="Mail", name="mail")
         .field.show-avatar-field
           .show-avatar
-            img(src="", alt="cover", id="cover")
+            img(src="", id="cover")
           .ui.input
             input(type="file", name="avatar" class="avatar-input")
         .ui.error.message

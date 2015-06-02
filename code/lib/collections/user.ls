@@ -28,5 +28,10 @@ root.User = {
         else
             id = Meteor.user-id!
             Meteor.users.update id, {$set: {profile: profile}}
-
+    find-username: (username)->
+        is-found = Meteor.users.find "username" : username 
+        if is-found
+            return true
+        else
+            return false
 }

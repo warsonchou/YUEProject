@@ -63,5 +63,7 @@
 .login-register .show-avatar-field .show-avatar img {
 	width: 37px;
 	height: 37px;
+	border: none;
 	border-radius: 19px;
+	
 }

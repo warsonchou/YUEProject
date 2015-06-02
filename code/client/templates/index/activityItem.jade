@@ -4,6 +4,8 @@ template(name="activityItem")
             img(src="#{cover}")
         div.activity-name
             h1 #{name}
+        div.activity-info.activity-detail
+            a.ui.blue.button(href="/activity/#{_id}") 活动详情
         div.activity-info
             div.info-block
                 p 时间: #{activityTime}
@@ -14,4 +16,4 @@ template(name="activityItem")
                         img(src="#{photo}")
                     #{sponsorname}
                 p 类型: #{type}
-        a.ui.blue.button.activity-detail(href="/activity/#{_id}")
+

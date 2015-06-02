@@ -9,3 +9,6 @@ template(name="index")
         //-     img(src="{{this.url}}")
         each activities
             +activityItem
+        if nextPath
+            div.next-button
+                a.ui.button(href="#{nextPath}") 加载更多

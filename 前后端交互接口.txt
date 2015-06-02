@@ -78,6 +78,7 @@
         createAt: Date,
         deadline: Date,
         activityTime: Date,
+        description: string,
         place: string,
         open-or-not: boolean,
         type: string,

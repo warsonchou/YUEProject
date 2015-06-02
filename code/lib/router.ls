@@ -1,22 +1,46 @@
+root = exports ? @
+
 Router.configure {
     layoutTemplate: 'layout'
 }
 
-Router.route '/', ->
+Router.route '/', -> 
     Router.go '/index'
 
 Router.route 'index/:activityLimit?', {
     name: 'index',
-    waitOn: ->
-        limit = parse-int this.params.activity-limit
-        return Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: limit} and Meteor.subscribe 'uploadAvatar'
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadAvatar'
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
+        return {
+            activities: Activity.all!
+            next-path: next
+        }
 }
 
 Router.route 'type/:typename/:activityLimit?', {
     name: 'type',
-    waitOn: ->
-        limit = parse-int this.params.activity-limit
-        return Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: limit}
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
+        return {
+            activities: Activity.all!
+            next-path: next
+        }
 }
 
 Router.route '/login', {

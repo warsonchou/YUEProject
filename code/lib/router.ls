@@ -55,16 +55,34 @@ Router.route '/register', ->
 Router.route '/createActivity', {
     name: 'createActivity',
     waitOn: ->
-        return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
+        # zhe li xu yao xu gai
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
 }
 
-Router.route '/profile', ->
-    this.render 'profile', {}
+Router.route '/profile', -> {
+    name: 'profile',
+    waitOn: ->
+        # zhe li xu yao xu gai
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
+}
 
 Router.route '/activity/:activityId', {
     name: 'activity'
     waitOn: ->
-        return Meteor.subscribe 'activities'
+        # zhe li xu yao xu gai
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
 }
 
 require-login = !->

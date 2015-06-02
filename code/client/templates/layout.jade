@@ -8,16 +8,23 @@ template(name="layout")
 				#topMenu
 					.ui.blue.right.aligned.segment
 						.ui.horizontal.list
-							.item
-								.ui.labeled.icon.primary.button
-									i.user.large.icon
-									|               个人中心
-							.item
-								img.ui.avatar.image(src='http://p3.qqgexing.com/touxiang/20120731/1220/50175d1de3b66.jpg', alt='avatar')
-							.item
-								.ui.right.labeled.icon.negative.button
-									i.sign.out.large.icon
+							if userinformation
+								.item
+									a.ui.labeled.icon.primary.button(href="/profile")
+										i.user.large.icon
+										|               个人中心
+								.item
+									each userinformation
+										img.ui.avatar.image(src='{{this.url}}', alt='avatar')
+								.item
+									.ui.right.labeled.icon.negative.button.logout
+										i.sign.out.large.icon
 									|               登出
+							else
+								.item
+									a.ui.right.labeled.icon.negative.button(href="/login")
+										i.sign.out.large.icon
+										|               登录
 				.ui.divider
 				.ui.two.column.grid
 					.four.wide.column
@@ -27,11 +34,11 @@ template(name="layout")
 									.ui.fluid.huge.label 选项
 									.ui.list
 										.item
-											.ui.labeled.icon.primary.fluid.button
+											a.ui.labeled.icon.primary.fluid.button(href="/")
 												i.home.large.icon
 												|                     主页
 										.item
-											.ui.labeled.icon.primary.fluid.button
+											a.ui.labeled.icon.primary.fluid.button(href="/createActivity")
 												i.add.square.large.icon
 												|                     发布活动
 								.ui.horizontal.section.divider divider

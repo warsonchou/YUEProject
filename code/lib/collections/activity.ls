@@ -6,7 +6,7 @@ root.Activity = {
     all: ->
         return this.collection.find!
 
-    insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor)->
+    insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
         return this.collection.insert {
             name: name,
             sponsor: sponsor,

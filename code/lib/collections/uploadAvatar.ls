@@ -15,16 +15,17 @@ root.UploadAvatar = {
 					console.log message
 		})
 
-	insert: (username, avatar)->
-		for file in files
+	insert: (avatar)->
+		for file in avatar
 			return this.collection.insert file, (err, fileObj)!->
 				if err
 					console.log 'insert picture error'
 				else
 				# to do list for FBI, you should modify the user profile to remember the avatar id, and you can refer to user.ls and upload.ls
-					i = 0
-					#user = this.current-user!
-					# fileObj._id
+					user = Meteor.user!
+					profile = user.profile
+					profile.avatarId = fileObj._id
+					User.change-information profile
 
 	find: ->
 		this.collection.find!

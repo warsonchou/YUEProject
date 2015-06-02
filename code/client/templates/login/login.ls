@@ -4,7 +4,7 @@ Template.login.events {
 		username = $(e.target).find '[name=username]' .val!
 		password = $(e.target).find '[name=password]' .val!
 
-		User.login(username, password, (event) ->
+		User.login(username, password, (error) ->
 			if not error
 				Router.go '/'
 			)

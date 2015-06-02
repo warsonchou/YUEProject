@@ -111,7 +111,7 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 						.field
 							label(for='') 活动类型
 							select.ui.dropdown(name='ActivityCategory')
-								option(value="") 类型
+								option(value="0") 类型
 								option(value="1") 运动
 								option(value="2") 学习
 								option(value="3") 吃饭
@@ -127,25 +127,25 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 						br
 						.field
 							.ui.radio.checkbox
-								input(type='radio', name='PublicInfo')
+								input(type='radio', name='PublicInfo', value='yes')
 								label 是的，现在公开
 						.field
 							.ui.radio.checkbox
-								input(type='radio', name='PublicInfo')
+								input(type='radio', name='PublicInfo', value='no', checked)
 								label 不，暂时保密
 					.field
 						label(for='') 活动封面
 						.ui.card
 							.image
-								img(src="", alt="cover")
+								img(src="", alt="cover", id="cover")
 							.content
 								.header 封面预览
 								.description 选择漂亮的封面更容易吸引小伙伴 ：）
 							.extra.content
-						input(type='file', name='ActivityCover' value="选择文件")
+						input(type='file', name='ActivityCover', class='ActivityCover', value="选择文件")
 					.required.field
 						label(for='') 活动描述
-						textarea(name="ActivityDescription")
+						textarea(name="ActivityDescription", required)
 					.ui.vertical.right.aligned.basic.segment
 						input(name="submitButton", value="提交", type="submit", class="ui positive submit button")
 						.negative.ui.button 取消

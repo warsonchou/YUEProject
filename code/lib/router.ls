@@ -13,6 +13,8 @@ Router.route 'index/:activityLimit?', {
         activity-limit = parse-int(this.params.activity-limit) || 5
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadAvatar'
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
@@ -51,7 +53,7 @@ Router.route '/register', ->
 Router.route '/createActivity', {
     name: 'createActivity',
     waitOn: ->
-        return Meteor.subscribe 'activities'
+        return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
 }
 
 Router.route '/profile', ->

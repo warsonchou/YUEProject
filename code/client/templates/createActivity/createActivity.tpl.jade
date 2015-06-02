@@ -133,16 +133,26 @@ form(name="createActivity", class="createActivity", enctype="multipart/form-data
 							.ui.radio.checkbox
 								input(type='radio', name='PublicInfo', value='no', checked)
 								label 不，暂时保密
-					.field
+					.required.field
 						label(for='') 活动封面
-						.ui.card
-							.image
-								img(src="", alt="cover", id="cover")
-							.content
-								.header 封面预览
-								.description 选择漂亮的封面更容易吸引小伙伴 ：）
-							.extra.content
-						input(type='file', name='ActivityCover', class='ActivityCover', value="选择文件")
+						.ui.two.column.grid
+							.column
+								.ui.center.aligned.basic.segment
+									.ui.fluid.card
+										.image
+											img(src="", id="cover")
+										.content
+											.header 封面预览
+											.description 选择漂亮的封面更容易吸引小伙伴
+									input(type='file', name='ActivityCover', class='ActivityCover', value="选择文件")
+							.column
+								.ui.center.aligned.basic.segment
+									.ui.fluid.card
+										.image
+											img(src="http://zhuhai.sysu.edu.cn/images/content/2012-05/20120528115057753276.jpg", alt="cover", id="cover")
+										.content
+											.header 封面示例
+											.description 选择漂亮的封面更容易吸引小伙伴
 					.required.field
 						label(for='') 活动描述
 						textarea(name="ActivityDescription", required)

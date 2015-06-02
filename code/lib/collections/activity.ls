@@ -28,6 +28,11 @@ root.Activity = {
         else
             this.collection.remove id
             return 'success'
+    # zuo wei fa qi reng de ji he
+    find-by-username: (username)->
+        this.collection.find {
+            $or: [ { "sponsor": username }, { "applyList": username }]
+        }
 
     find-by-id: (id)->
         return this.collection.find-one {id: id}

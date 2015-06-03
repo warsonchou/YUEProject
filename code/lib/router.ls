@@ -102,17 +102,12 @@ Router.route '/changeProfile', {
 Router.route '/activity/:activityId', {
     name: 'activity'
     waitOn: ->
-# <<<<<<< HEAD
-        # whichActivity = this.params.activityId
-        # find-options = {"_id": whichActivity}
         Meteor.subscribe 'Activity'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
     data: ->
         Activity.find-by-id this.params.activityId
-# =======
-        return Meteor.subscribe 'activities'
-# >>>>>>> 241a00aa7589af1c8a0428a2c96b27c38b9b585c
+        # return Meteor.subscribe 'activities'
 }
 
 require-login = !->

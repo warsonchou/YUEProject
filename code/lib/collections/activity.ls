@@ -35,7 +35,7 @@ root.Activity = {
         }
 
     find-by-id: (id)->
-        return this.collection.find-one {id: id}
+        return this.collection.find-one {_id: id}
 
     find-by-type: (type)->
         return this.collection.find {type: type}

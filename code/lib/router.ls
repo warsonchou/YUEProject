@@ -10,6 +10,7 @@ Router.route '/', ->
 Router.route 'index/:activityLimit?', {
     name: 'index',
     wait-on: ->
+        Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 5
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
@@ -47,10 +48,16 @@ Router.route 'type/:typename/:activityLimit?', {
 
 Router.route '/login', {
     name: 'login',
+    wait-on: ->
+        Session.set('is-login-register', false)
+        Session.set('is-login', true)
 }
 
 Router.route '/register', ->
     this.render 'register', {}
+    wait-on: ->
+        Session.set('is-login-register', false)
+        Session.set('is-login', false)
 
 Router.route '/createActivity', {
     name: 'createActivity',

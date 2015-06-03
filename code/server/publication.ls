@@ -4,7 +4,7 @@ Meteor.publish 'activities', (options) ->
 			sort: Object,
 			limit: Number
 		}
-
+	console.log(Activity.collection.find({}, options))
 	return Activity.collection.find {}, options
 
 

@@ -1,85 +1,78 @@
-//- <<<<<<< HEAD
-//- template(name="activity")
-//- 	div hello
-//- =======
-Template(name = 'activity')
-   //- .twelve.wide.column
-   //-    .ui.horizontal.segment
-   //-      #mainPageContent
-   //-        h4#activity-detail-title 活动详情
-   //-        #activity-detail-edit-button.ui.primary.button 修改
-   //-        #activity-detail-sponsor-info.ui.two.column.grid
-   //-          .row
-   //-            .column
-   //-              .ui.raised.segment
-   //-                #sponsor-info-name.ui.red.ribbon.label 活动名称
-   //-                p hehe
-   //-                #sponsor-info-order-num.ui.orange.ribbon.label 预定人数
-   //-                p 5
-   //-                #sponsor-info-meeting-address.ui.blue.ribbon.label 约会地点
-   //-                p 雅园
-   //-                #sponsor-info-deadline.ui.green.ribbon.label 截止时间
-   //-                p 2015/03/16
-   //-                #sponsor-info-img.ui.teal.ribbon.label 封面图片
-   //-                p asdasd
-   //-                #sponsor-info-content.ui.green.ribbon.label 内容
-   //-                p 啊实打实大师的
-   //-                #sponsor-info-contact.ui.teal.ribbon.label 个人联系方式
-   //-                p 188194*****
-   //-        #activity-detail-follow
-   //-          .ui.button.blue 报名
-   //-        #activity-detail-select
-   //-          h4.ui.header 筛选人员
-   //-          table.ui.table.segment
-   //-            thead
-   //-              tr
-   //-                th 姓名
-   //-                th 联系方式
-   //-                th 信用度
-   //-            tbody
-   //-              tr.checked
-   //-                td 无特别的名字
-   //-                td 123
-   //-                td#three 2
-   //-              tr
-   //-                td 张三
-   //-                td 123123
-   //-                td 3
-   //-              tr
-   //-                td 李四
-   //-                td 123213321
-   //-                td 4
-   //-              tr
-   //-                td 王五
-   //-                td 181849****
-   //-                td 2
-   //-          .ui.button.blue 确认筛选
-   //-        #activity-detail-comment
-   //-          h4.ui.header 参与人员
-   //-          table.ui.table.segment
-   //-            thead
-   //-              tr
-   //-                th 姓名
-   //-                th 联系方式
-   //-                th 信用度
-   //-            tbody
-   //-              tr.checked
-   //-                td 无特别的名字
-   //-                td 123
-   //-                td#three 2
-   //-              tr
-   //-                td 张三
-   //-                td 123123
-   //-                td 3
-   //-              tr
-   //-                td 李四
-   //-                td 123213321
-   //-                td 4
-   //-              tr
-   //-                td 王五
-   //-                td 181849****
-   //-                td 2
-   //-          .ui.button.orange 评论
-   div.test
-     h2 ilovu
-//- >>>>>>> 66345e94b9fb7fba453d557db42b059a76dca89a
+.twelve.wide.column
+	.ui.horizontal.segment
+		#mainPageContent
+		h4#activity-detail-title 活动详情
+		#activity-detail-edit-button.ui.primary.button 修改
+		#activity-detail-sponsor-info.ui.two.column.grid
+			.row
+				.column
+					.ui.raised.segment
+						#sponsor-info-name.ui.red.ribbon.label 活动名称
+						p hehe
+						#sponsor-info-order-num.ui.orange.ribbon.label 预定人数
+						p 5
+						#sponsor-info-meeting-address.ui.blue.ribbon.label 约会地点
+						p 雅园
+						#sponsor-info-deadline.ui.green.ribbon.label 截止时间
+						p 2015/03/16
+						#sponsor-info-img.ui.teal.ribbon.label 封面图片
+						p asdasd
+						#sponsor-info-content.ui.green.ribbon.label 内容
+						p 啊实打实大师的
+						#sponsor-info-contact.ui.teal.ribbon.label 个人联系方式
+						p 188194*****
+		#activity-detail-follow
+			.ui.button.blue 报名
+		#activity-detail-select
+			h4.ui.header 筛选人员
+			table.ui.table.segment
+				thead
+					tr
+						th 姓名
+						th 联系方式
+						th 信用度
+				tbody
+					tr.checked
+						td 无特别的名字
+						td 123
+						td#three 2
+					tr
+						td 张三
+						td 123123
+						td 3
+					tr
+						td 李四
+						td 123213321
+						td 4
+					tr
+						td 王五
+						td 181849****
+						td 2
+			.ui.button.blue 确认筛选
+		#activity-detail-comment
+			h4.ui.header 参与人员
+			table.ui.table.segment
+				thead
+					tr
+						th 姓名
+						th 联系方式
+						th 信用度
+				tbody
+					tr.checked
+						td 无特别的名字
+						td 123
+						td#three 2
+					tr
+						td 张三
+						td 123123
+						td 3
+					tr
+						td 李四
+						td 123213321
+						td 4
+					tr
+						td 王五
+						td 181849****
+						td 2
+		.ui.button.orange #{activity.name}
+

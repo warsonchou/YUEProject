@@ -1,22 +1,48 @@
+root = exports ? @
+
 Router.configure {
     layoutTemplate: 'layout'
 }
 
-Router.route '/', ->
+Router.route '/', -> 
     Router.go '/index'
 
 Router.route 'index/:activityLimit?', {
     name: 'index',
-    waitOn: ->
-        limit = parse-int this.params.activity-limit
-        return Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: limit} and Meteor.subscribe 'uploadAvatar'
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadAvatar'
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
+        return {
+            activities: Activity.all!
+            next-path: next
+        }
 }
 
 Router.route 'type/:typename/:activityLimit?', {
     name: 'type',
-    waitOn: ->
-        limit = parse-int this.params.activity-limit
-        return Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: limit}
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 5
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadAvatar'
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
+        return {
+            activities: Activity.all!
+            next-path: next
+        }
 }
 
 Router.route '/login', {
@@ -32,32 +58,44 @@ Router.route '/createActivity', {
         return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
 }
 
-Router.route '/profile', ->
-    this.render 'profile', {}
-
-Router.route '/profile', {
-    name: 'profile',
-    waitOn: ->
-        currentUser = User.current-user!
-        find-options = {$or: [ { "sponsor": currentUser.username }, { "applyList": currentUser.username }]}
+Router.route '/profile/:activityLimit?', {
+    name : 'profile',
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 6
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username("12330031").count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
+        return {
+            activities: Activity.find-by-username "12330031"
+            next-path: next
+        }
+}
+ 
+Router.route '/changeProfile', {
+    name: 'changeProfile',
+    wait-on: ->
+        user = User.find-user "12330031"
+        Meteor.subscribe 'user', user
+        Meteor.subscribe 'user', User.find-user "12330031"
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
+    data: ->
+        user = User.find-user "12330031"
+        console.log user
+        return {
+            users: User.find-user "12330031"
+        }
 }
 
-
 Router.route '/activity/:activityId', {
-    name: 'activity',
+    name: 'activity'
     waitOn: ->
-
         return Meteor.subscribe 'activities'
-
-        # zhe li xu yao xu gai
-        find-options = {"name": "sd"}
-        Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'uploadForActivity'
-        Meteor.subscribe 'uploadAvatar'
-
 }
 
 require-login = !->
@@ -68,12 +106,3 @@ require-login = !->
         this.next!
 
 Router.on-before-action require-login, {only: 'createActivity', 'profile', 'homework-page'}
-
-Router.route '/comment', {
-    #this.render 'comment', {}
-    name: 'comment'
-    /*waitOn: ->
-        activityId = parse-int this.params.activityId
-        return Meteor.subscribe 'activityForComment' activityId , !->
-            console.log("数据订阅完成")*/
-}

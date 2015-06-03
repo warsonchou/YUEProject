@@ -16,7 +16,7 @@ root.User = {
         Meteor.logout!
 
     current-user: ->
-        return Meteor.user!
+        Meteor.user!
 
     change-password: (old-password, new-password, callback)->
         Accounts.change-password old-password, new-password, callback
@@ -29,9 +29,11 @@ root.User = {
             id = Meteor.user-id!
             Meteor.users.update id, {$set: {profile: profile}}
     find-username: (username)->
-        is-found = Meteor.users.find {"username" : username } .count!
-        if is-found is 1
+        is-found = Meteor.users.find "username" : username 
+        if is-found
             return true
         else
             return false
+    find-user: (username)->
+        Meteor.users.findOne $or: [{'username': username}]
 }

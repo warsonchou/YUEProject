@@ -4,23 +4,9 @@ root.Activity = {
     collection: new Mongo.Collection('Activity')
 
     all: ->
-        return this.collection.find {} .fetch!
+        return this.collection.find!
 
-    insert-test: ->
-        for i from 1 to 50
-            this.collection.insert({
-                no: i,
-                name: 'fuck',
-                sponsor: 'Wangnima',
-                numOfPeople: 100,
-                activityTime: '2015-06-13',
-                place: 'hotel',
-                type: 'sex',
-                cover: '/public/images/11.jpg'
-            })
-        return this.collection
-
-    insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor)->
+    insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
         return this.collection.insert {
             name: name,
             sponsor: sponsor,
@@ -42,6 +28,11 @@ root.Activity = {
         else
             this.collection.remove id
             return 'success'
+    # zuo wei fa qi reng de ji he
+    find-by-username: (username)->
+        this.collection.find {
+            $or: [ { "sponsor": username }, { "applyList": username }]
+        }
 
     find-by-id: (id)->
         return this.collection.find-one {id: id}
@@ -50,15 +41,15 @@ root.Activity = {
         return this.collection.find {type: type}
 
     add-application: (id, applier-id, credit, phone)->
-        applications = this.get-applications id
+        applications = this.get-applications
         if not applications
             return 'error'
         for application in applications
             if application.applier is applier-id
                 return 'error'
         applications.push {
-            #id: applyList.length,
-            applier: applier-id,
+            id: applyList.length,
+            applier: applier,
             success: false,
             score-of-participator: undefined,
             comment: undefined,
@@ -86,7 +77,7 @@ root.Activity = {
         return 'error' if not applications
         find = 0
         for application in applications
-            if application.applier == applier-id
+            if application.applier = applier-id
                 find = 1
                 application.success = true
         return 'success'
@@ -112,3 +103,5 @@ root.Activity = {
                     return 'success'
         return 'error'
 }
+console.log Activity.all!.count!
+

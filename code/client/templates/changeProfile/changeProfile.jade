@@ -1,0 +1,38 @@
+template(name="changeProfile")
+    header
+        h2.ui.header
+            div.content 个人资料
+            div.ui.divider
+    section
+      form(method="post")
+        .ui.form.segment
+          .field
+            label &#26165;&#31216;
+            .login-name
+              input(type="text", placeholder="Name", name="nickname" value="")
+          .field
+            label &#24615;&#21035;
+            .login-sexual
+              select(name="sex")
+                option(value="male") &#30007;
+                option(value="female") &#22899;
+          .field
+            label &#25163;&#26426;&#21495;&#30721;
+            .login-tel
+              input(type="text", placeholder="Tel", name="tel")
+          .field
+            label QQ
+            .login-qq
+              input(type="text", placeholder="QQ", name="qq")
+          .field
+            label &#37038;&#31665;
+            .login-mail
+              input(type="text", placeholder="Mail", name="mail")
+          .field.show-avatar-field
+            .show-avatar
+              img(src="", id="cover")
+            .ui.input
+              input(type="file", name="avatar" class="avatar-input")
+          .ui.error.message
+          .ui.buttons.login-button
+            button.ui.positive.button(type="submit") &#30830;&#23450;

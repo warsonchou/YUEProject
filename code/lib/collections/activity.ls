@@ -103,7 +103,9 @@ root.Activity = {
                     return 'success'
         return 'error'
 }
+console.log Activity.all!.count!
 
+# <<<<<<< HEAD
 # if Activity.all!.count! is 0
 #     for i from 1 to 50
 #         Activity.collection.insert({
@@ -116,3 +118,5 @@ root.Activity = {
 #             type: 'sports',
 #             cover: '/public/images/11.jpg'
 #         })
+# =======
+# >>>>>>> 241a00aa7589af1c8a0428a2c96b27c38b9b585c

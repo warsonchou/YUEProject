@@ -18,3 +18,6 @@ Meteor.publish 'uploadAvatar' ->
 # publish the uploaded images for activity
 Meteor.publish 'uploadForActivity' ->
 	return UploadForActivity.find!
+
+Meteor.publish 'activityForComment', (activityId)->
+	return Activity.find-by-id activityId

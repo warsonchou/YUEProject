@@ -10,6 +10,7 @@ Router.route '/', ->
 Router.route 'index/:activityLimit?', {
     name: 'index',
     wait-on: ->
+        Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 5
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
@@ -47,35 +48,61 @@ Router.route 'type/:typename/:activityLimit?', {
 
 Router.route '/login', {
     name: 'login',
+    wait-on: ->
+        Session.set('is-login-register', false)
+        Session.set('is-login', true)
 }
 
 Router.route '/register', ->
     this.render 'register', {}
+    wait-on: ->
+        Session.set('is-login-register', false)
+        Session.set('is-login', false)
 
 Router.route '/createActivity', {
     name: 'createActivity',
     waitOn: ->
-        # zhe li xu yao xu gai
-        activity-limit = parse-int(this.params.activity-limit) || 5
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'uploadForActivity'
-        Meteor.subscribe 'uploadAvatar'
+        return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
 }
 
-Router.route '/profile', {
-    name: 'profile',
-    waitOn: ->
-        currentUser = User.current-user!
-        find-options = {$or: [ { "sponsor": currentUser.username }, { "applyList": currentUser.username }]}
+Router.route '/profile/:activityLimit?', {
+    name : 'profile',
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 6
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username("12330031").count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
+        return {
+            activities: Activity.find-by-username "12330031"
+            next-path: next
+        }
+}
+ 
+Router.route '/changeProfile', {
+    name: 'changeProfile',
+    wait-on: ->
+        user = User.find-user "12330031"
+        Meteor.subscribe 'user', user
+        Meteor.subscribe 'user', User.find-user "12330031"
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
+    data: ->
+        user = User.find-user "12330031"
+        console.log user
+        return {
+            users: User.find-user "12330031"
+        }
 }
 
 Router.route '/activity/:activityId', {
-    name: 'activity',
+    name: 'activity'
     waitOn: ->
+# <<<<<<< HEAD
         # whichActivity = this.params.activityId
         # find-options = {"_id": whichActivity}
         Meteor.subscribe 'Activity'
@@ -83,6 +110,9 @@ Router.route '/activity/:activityId', {
         Meteor.subscribe 'uploadAvatar'
     data: ->
         Activity.find-by-id this.params.activityId
+# =======
+        return Meteor.subscribe 'activities'
+# >>>>>>> 241a00aa7589af1c8a0428a2c96b27c38b9b585c
 }
 
 require-login = !->

@@ -21,9 +21,7 @@ root.UploadForActivity = {
 				if err
 					console.log 'insert picture error'
 				else
-					currentUser = User.current-user!
-					currentUserUsername = currentUser.username
-					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
+					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
 	find: ->
 		this.collection.find!

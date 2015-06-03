@@ -2,6 +2,9 @@ root = exports ? @
 
 Router.configure {
     layoutTemplate: 'layout'
+    wait-on: ->
+        Meteor.subscribe 'uploadAvatar'
+
 }
 
 Router.route '/', -> 
@@ -15,7 +18,6 @@ Router.route 'index/:activityLimit?', {
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'uploadAvatar'
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
@@ -34,7 +36,6 @@ Router.route 'type/:typename/:activityLimit?', {
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'uploadAvatar'
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
@@ -107,7 +108,6 @@ Router.route '/activity/:activityId', {
         # find-options = {"_id": whichActivity}
         Meteor.subscribe 'Activity'
         Meteor.subscribe 'uploadForActivity'
-        Meteor.subscribe 'uploadAvatar'
     data: ->
         Activity.find-by-id this.params.activityId
 # =======

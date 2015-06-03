@@ -2,6 +2,25 @@ Template['createActivity'].events {
 	'submit form': (e)->
 		e.preventDefault!
 
+		# $(".createActivityForm").form {
+		# 	ActivityName: {
+		# 		identifier: 'ActivityName'
+		# 		rules: [
+		# 			{
+		# 				type: 'empty'
+		# 			}
+		# 		]
+		# 	}
+		# 	# ActivityPlace:
+		# 	# ActivityDeadline:
+		# 	# ActivityCover:
+		# 	# ActivityStartTime:
+		# 	# ActivityEndTime:
+		# 	# ActivityCategory:
+		# 	# PeopleNumber:
+		# 	# ActivityDescription:
+		# }
+
 
 		ActivityName = $(e.target).find('[name=ActivityName]').val()
 
@@ -51,6 +70,7 @@ Template['createActivity'].events {
 		reader.readAsDataURL file
 		reader.onload = (e)!->
 			$ '#cover' .attr 'src', reader.result
+
 
 }
 

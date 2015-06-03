@@ -54,11 +54,13 @@ Router.route '/login', {
         Session.set('is-login', true)
 }
 
-Router.route '/register', ->
-    this.render 'register', {}
+Router.route '/register', {
+    name: 'register',
     wait-on: ->
         Session.set('is-login-register', false)
         Session.set('is-login', false)
+        Meteor.subscribe 'userAccount'
+}
 
 Router.route '/createActivity', {
     name: 'createActivity',
@@ -111,7 +113,6 @@ Router.route '/activity/:activityId', {
 }
 
 require-login = !->
-    console.log 'hehe'
     if not Meteor.user-id()
         Router.go '/login'
     else

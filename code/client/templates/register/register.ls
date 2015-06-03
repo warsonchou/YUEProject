@@ -60,16 +60,25 @@ Template.register.events {
 					}
 				]
 			}
-			# 没有解决正则表达式如何去匹配
-			# tel: {
-			# 	identifier : 'tel'
-			# 	rules: [
-			# 		{
-			# 			type : 'is["/1\d{10}/"]'
-			# 			prompt : 'Please enter your phone number'
-			# 		}
-			# 	]
-			# }
+			#没有解决正则表达式如何去匹配
+			tel: {
+				identifier : 'tel'
+				rules: [
+					{
+						type : 'length[6]'
+						prompt : 'Please enter your phone number'
+					}
+				]
+			}
+			qq: {
+				identifier : 'qq'
+				rules: [
+					{
+						type : 'empty'
+						prompt : 'Please enter your qq number'
+					}
+				]
+			}
 			mail: {
 				identifier : 'mail'
 				rules: [
@@ -91,10 +100,10 @@ Template.register.events {
 			mail: $(e.target).find '[name=mail]' .val!
 			avatarId: null
 		}
-		is-found = User.find-username username
-		if is-found
-			Session.set("register-username-error": "用户名已存在")
-			return
+		# is-found = User.find-username username
+		# if is-found
+		# 	Session.set("register-username-error": "用户名已存在")
+		# 	return
 
 		User.register(username, password, profile, (error) ->
 			if not error

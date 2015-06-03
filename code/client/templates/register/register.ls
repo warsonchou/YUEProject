@@ -91,10 +91,10 @@ Template.register.events {
 			mail: $(e.target).find '[name=mail]' .val!
 			avatarId: null
 		}
-		is-found = User.find-username username
-		if is-found
-			Session.set("register-username-error": "用户名已存在")
-			return
+		# is-found = User.find-username username
+		# if is-found
+		# 	Session.set("register-username-error": "用户名已存在")
+		# 	return
 
 		User.register(username, password, profile, (error) ->
 			if not error

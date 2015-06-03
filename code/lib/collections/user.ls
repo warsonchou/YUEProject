@@ -29,11 +29,14 @@ root.User = {
             id = Meteor.user-id!
             Meteor.users.update id, {$set: {profile: profile}}
     find-username: (username)->
-        is-found = Meteor.users.find "username" : username 
-        if is-found
+        is-found = Meteor.users.find {"username" : username}
+        if is-found.count() >= 1
             return true
         else
             return false
     find-user: (username)->
         Meteor.users.findOne $or: [{'username': username}]
+
+    find-all-users: ->
+        Meteor.users.find!
 }

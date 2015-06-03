@@ -21,3 +21,7 @@ Meteor.publish 'uploadForActivity' ->
 
 Meteor.publish 'activityForComment', (activityId)->
 	return Activity.find-by-id activityId
+
+#publish user account 
+Meteor.publish 'userAccount', ->
+	return Meteor.users.find!

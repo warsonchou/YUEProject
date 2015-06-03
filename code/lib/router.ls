@@ -66,7 +66,7 @@ Router.route '/createActivity', {
 Router.route '/profile', {
     name: 'profile',
     waitOn: ->
-        currentUser = User.current-user
+        currentUser = User.current-user!
         find-options = {$or: [ { "sponsor": currentUser.username }, { "applyList": currentUser.username }]}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'uploadForActivity'
@@ -74,10 +74,10 @@ Router.route '/profile', {
 }
 
 Router.route '/activity/:activityId', {
-    name: 'activity'
+    name: 'activity',
     waitOn: ->
         # zhe li xu yao xu gai
-        find-options = {"_id": activityId}
+        find-options = {"name": "sd"}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'

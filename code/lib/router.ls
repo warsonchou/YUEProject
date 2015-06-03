@@ -10,6 +10,7 @@ Router.route '/', ->
 Router.route 'index/:activityLimit?', {
     name: 'index',
     wait-on: ->
+        Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 5
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
@@ -47,10 +48,16 @@ Router.route 'type/:typename/:activityLimit?', {
 
 Router.route '/login', {
     name: 'login',
+    wait-on: ->
+        Session.set('is-login-register', false)
+        Session.set('is-login', true)
 }
 
 Router.route '/register', ->
     this.render 'register', {}
+    wait-on: ->
+        Session.set('is-login-register', false)
+        Session.set('is-login', false)
 
 Router.route '/createActivity', {
     name: 'createActivity',
@@ -93,13 +100,19 @@ Router.route '/changeProfile', {
 }
 
 Router.route '/activity/:activityId', {
-    name: 'activity',
+    name: 'activity'
     waitOn: ->
-        # zhe li xu yao xu gai
-        # find-options = {"_id": activityId}
-        Meteor.subscribe 'activities'
+# <<<<<<< HEAD
+        # whichActivity = this.params.activityId
+        # find-options = {"_id": whichActivity}
+        Meteor.subscribe 'Activity'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
+    data: ->
+        Activity.find-by-id this.params.activityId
+# =======
+        return Meteor.subscribe 'activities'
+# >>>>>>> 241a00aa7589af1c8a0428a2c96b27c38b9b585c
 }
 
 require-login = !->

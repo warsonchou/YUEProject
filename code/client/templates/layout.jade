@@ -4,66 +4,72 @@ template(name="layout")
 			meta(charset='UTF-8')
 			title Create Your Activity
 		body
-			#layoutMain
-				#topMenu
-					.ui.blue.right.aligned.segment
-						.ui.horizontal.list
-							if userinformation
-								.item
-									a.ui.labeled.icon.primary.button(href="/profile")
-										i.user.large.icon
-										|               个人中心
-								.item
-									each userinformation
-										img.ui.avatar.image(src='{{this.url}}', alt='avatar')
-								.item
-									.ui.right.labeled.icon.negative.button.logout
-										i.sign.out.large.icon
-										|               登出
-							else
-								.item
-									a.ui.right.labeled.icon.negative.button(href="/login")
-										i.sign.out.large.icon
-										|               登录
-				.ui.divider
-				.ui.two.column.grid
-					.four.wide.column
-						.ui.horizontal.segment
-							#sidebar
-								#blockAbove
-									.ui.fluid.huge.label 选项
-									.ui.list
-										.item
-											a.ui.labeled.icon.primary.fluid.button(href="/")
-												i.home.large.icon
-												|                     主页
-										.item
-											a.ui.labeled.icon.primary.fluid.button(href="/createActivity")
-												i.add.square.large.icon
-												|                     发布活动
-								.ui.horizontal.section.divider divider
-								#blockBottom
-									.ui.fluid.huge.label 活动分类
-									.ui.selection.list
-										.item
-											i.tasks.icon
-											.content
-												.header 聚餐
-										.item
-											i.tasks.icon
-											.content
-												.header 运动
-										.item
-											i.tasks.icon
-											.content
-												.header 学习
-										.item
-											i.tasks.icon
-											.content
-												.header ...
-					.twelve.wide.column
-						+yield
-				.ui.divider
-				#footer
-					.ui.blue.center.aligned.segment
-						h3 这是网站尾部
+			if isLoginRegister
+				#layoutMain
+					#topMenu
+						.ui.blue.right.aligned.segment
+							.ui.horizontal.list
+								if userinformation
+									.item
+										a.ui.labeled.icon.primary.button(href="/profile")
+											i.user.large.icon
+											|               个人中心
+									.item
+										each userinformation
+											img.ui.avatar.image(src='{{this.url}}', alt='avatar')
+									.item
+										.ui.right.labeled.icon.negative.button.logout
+											i.sign.out.large.icon
+											|               登出
+								else
+									.item
+										.login-btn.ui.right.labeled.icon.negative.button
+											i.sign.out.large.icon
+											|               登录
+					.ui.divider
+					.ui.two.column.grid
+						.four.wide.column
+							.ui.horizontal.segment
+								#sidebar
+									#blockAbove
+										.ui.fluid.huge.label 选项
+										.ui.list
+											.item
+												a.ui.labeled.icon.primary.fluid.button(href="/")
+													i.home.large.icon
+													|                     主页
+											.item
+												a.ui.labeled.icon.primary.fluid.button(href="/createActivity")
+													i.add.square.large.icon
+													|                     发布活动
+									.ui.horizontal.section.divider divider
+									#blockBottom
+										.ui.fluid.huge.label 活动分类
+										.ui.selection.list
+											.item
+												i.tasks.icon
+												.content
+													.header 聚餐
+											.item
+												i.tasks.icon
+												.content
+													.header 运动
+											.item
+												i.tasks.icon
+												.content
+													.header 学习
+											.item
+												i.tasks.icon
+												.content
+													.header ...
+						.twelve.wide.column
+							+yield
+					.ui.divider
+					#footer
+						.ui.blue.center.aligned.segment
+							h3 这是网站尾部
+			else
+				if isLogin
+					+login
+				else
+					+register

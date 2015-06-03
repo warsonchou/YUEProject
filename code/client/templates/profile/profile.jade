@@ -17,9 +17,8 @@ template(name="profile")
 						span 发起人:
 							span #{sponsor}
 				div.extra.content
-					div.ui.right.floated.primary.button
-						评论
+					div.ui.right.floated.primary.button 评论
 		if nextPath
-			div(class='next-button' style='margin:10px auto')
+			.next-button(style='margin:10px auto')
 				a.ui.button(href="#{nextPath}") 加载更多
 					

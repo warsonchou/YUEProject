@@ -1,4 +1,4 @@
-Meteor.publish 'activities', (options) ->
+Meteor.publish 'activities', (options)->
 	if not options
 		check options, {
 			sort: Object,
@@ -7,6 +7,9 @@ Meteor.publish 'activities', (options) ->
 	console.log(Activity.collection.find({}, options))
 	return Activity.collection.find {}, options
 
+
+Meteor.publish 'Activity', ->
+	return Activity.collection.find {}
 
 # here people related the images should add some logic here
 Meteor.publish 'uploadAvatar' ->

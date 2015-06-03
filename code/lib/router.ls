@@ -107,7 +107,7 @@ Router.route '/activity/:activityId', {
         Meteor.subscribe 'uploadAvatar'
     data: ->
         Activity.find-by-id this.params.activityId
-        return Meteor.subscribe 'Activity'
+        # return Meteor.subscribe 'Activity'
 }
 
 require-login = !->

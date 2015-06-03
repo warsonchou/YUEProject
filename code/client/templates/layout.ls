@@ -24,6 +24,12 @@ Template.layout.events {
 
 	'click .login-btn': !->
 		Router.go "/login"
+
+	"click .createActivityButton": !->
+		if User.current-user!
+			Router.go "/createActivity"
+		else
+			Router.go "/login"
 }
 
 

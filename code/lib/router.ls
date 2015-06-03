@@ -62,7 +62,7 @@ Router.route '/register', ->
 Router.route '/createActivity', {
     name: 'createActivity',
     waitOn: ->
-        return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
+        return Meteor.subscribe 'Activity' and Meteor.subscribe 'uploadForActivity'
 }
 
 Router.route '/profile/:activityLimit?', {
@@ -111,7 +111,7 @@ Router.route '/activity/:activityId', {
     data: ->
         Activity.find-by-id this.params.activityId
 # =======
-        return Meteor.subscribe 'activities'
+        return Meteor.subscribe 'Activity'
 # >>>>>>> 241a00aa7589af1c8a0428a2c96b27c38b9b585c
 }
 

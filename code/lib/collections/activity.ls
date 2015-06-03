@@ -19,6 +19,7 @@ root.Activity = {
             type: type,
             cover: cover,
             applyList: [],
+            description: description
             # aver-sponsor-score: undefined
         }
 
@@ -35,7 +36,7 @@ root.Activity = {
         }
 
     find-by-id: (id)->
-        return this.collection.find-one {id: id}
+        return this.collection.find-one {_id: id}
 
     find-by-type: (type)->
         return this.collection.find {type: type}

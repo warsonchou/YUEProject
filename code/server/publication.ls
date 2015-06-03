@@ -8,6 +8,9 @@ Meteor.publish 'activities', (options)->
 	return Activity.collection.find {}, options
 
 
+Meteor.publish 'Activity', ->
+	return Activity.collection.find {}
+
 # here people related the images should add some logic here
 Meteor.publish 'uploadAvatar' ->
 	return UploadAvatar.find!

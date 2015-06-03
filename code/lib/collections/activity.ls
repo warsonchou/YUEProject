@@ -104,15 +104,15 @@ root.Activity = {
         return 'error'
 }
 
-if Activity.all!.count! is 0
-    for i from 1 to 50
-        Activity.collection.insert({
-            no: i,
-            name: 'user-no-' + i,
-            sponsor: 'Wangnima',
-            numOfPeople: 100,
-            activityTime: '2015-06-13',
-            place: 'gym',
-            type: 'sports',
-            cover: '/public/images/11.jpg'
-        })
+# if Activity.all!.count! is 0
+#     for i from 1 to 50
+#         Activity.collection.insert({
+#             no: i,
+#             name: 'user-no-' + i,
+#             sponsor: 'Wangnima',
+#             numOfPeople: 100,
+#             activityTime: '2015-06-13',
+#             place: 'gym',
+#             type: 'sports',
+#             cover: '/public/images/11.jpg'
+#         })

@@ -76,11 +76,13 @@ Router.route '/profile', {
 Router.route '/activity/:activityId', {
     name: 'activity',
     waitOn: ->
-        # zhe li xu yao xu gai
-        find-options = {"name": "sd"}
-        Meteor.subscribe 'activities', find-options
+        # whichActivity = this.params.activityId
+        # find-options = {"_id": whichActivity}
+        Meteor.subscribe 'Activity'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
+    data: ->
+        Activity.find-by-id this.params.activityId
 }
 
 require-login = !->

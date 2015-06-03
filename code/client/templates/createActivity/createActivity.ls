@@ -37,6 +37,8 @@ Template['createActivity'].events {
 		# upload file and insert the activity detail
 		UploadForActivity.insert files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
+		Router.go('/index')
+
 
 	# display the uploading file
 	'change .ActivityCover': (e)!->

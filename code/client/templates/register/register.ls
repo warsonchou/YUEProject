@@ -109,6 +109,8 @@ Template.register.events {
 			if not error
 				UploadAvatar.insert avatar
 				Router.go '/'
+			else
+				alert 'error'
 			)
 }
 

@@ -19,6 +19,7 @@ root.Activity = {
             type: type,
             cover: cover,
             applyList: [],
+            description: description
             # aver-sponsor-score: undefined
         }
 

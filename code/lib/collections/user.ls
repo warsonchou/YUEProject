@@ -16,7 +16,7 @@ root.User = {
         Meteor.logout!
 
     current-user: ->
-        return Meteor.user!
+        Meteor.user!
 
     change-password: (old-password, new-password, callback)->
         Accounts.change-password old-password, new-password, callback
@@ -34,4 +34,6 @@ root.User = {
             return true
         else
             return false
+    find-user: (username)->
+        Meteor.users.findOne $or: [{'username': username}]
 }

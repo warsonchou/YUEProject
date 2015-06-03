@@ -55,32 +55,55 @@ Router.route '/register', ->
 Router.route '/createActivity', {
     name: 'createActivity',
     waitOn: ->
-        # zhe li xu yao xu gai
-        activity-limit = parse-int(this.params.activity-limit) || 5
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'uploadForActivity'
-        Meteor.subscribe 'uploadAvatar'
+        return Meteor.subscribe 'activities' and Meteor.subscribe 'uploadForActivity'
 }
 
-Router.route '/profile', {
-    name: 'profile',
-    waitOn: ->
-        currentUser = User.current-user
-        find-options = {$or: [ { "sponsor": currentUser.username }, { "applyList": currentUser.username }]}
+Router.route '/profile/:activityLimit?', {
+    name : 'profile',
+    wait-on: ->
+        activity-limit = parse-int(this.params.activity-limit) || 6
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+    data: ->
+        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username("12330031").count!
+        next = null
+        if more
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
+        return {
+            activities: Activity.find-by-username "12330031"
+            next-path: next
+        }
+}
+ 
+Router.route '/changeProfile', {
+    name: 'changeProfile',
+    wait-on: ->
+        user = User.find-user "12330031"
+        Meteor.subscribe 'user', user
+        Meteor.subscribe 'user', User.find-user "12330031"
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
+    data: ->
+        user = User.find-user "12330031"
+        console.log user
+        return {
+            users: User.find-user "12330031"
+        }
 }
 
 Router.route '/activity/:activityId', {
     name: 'activity',
     waitOn: ->
+<<<<<<< HEAD
         # zhe li xu yao xu gai
         # find-options = {"_id": activityId}
         Meteor.subscribe 'activities'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
+=======
+        return Meteor.subscribe 'activities'
+>>>>>>> 21298d1e65933a77bf99703c1816e1839169889e
 }
 
 require-login = !->

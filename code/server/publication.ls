@@ -1,4 +1,4 @@
-Meteor.publish 'activities', (options) ->
+Meteor.publish 'activities', (options)->
 	if not options
 		check options, {
 			sort: Object,

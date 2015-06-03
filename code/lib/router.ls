@@ -100,13 +100,9 @@ Router.route '/changeProfile', {
 }
 
 Router.route '/activity/:activityId', {
-    name: 'activity',
+    name: 'activity'
     waitOn: ->
-        # zhe li xu yao xu gai
-        # find-options = {"_id": activityId}
-        Meteor.subscribe 'activities'
-        Meteor.subscribe 'uploadForActivity'
-        Meteor.subscribe 'uploadAvatar'
+        return Meteor.subscribe 'activities'
 }
 
 require-login = !->

@@ -23,7 +23,6 @@ Template.layout.events {
 		Router.go "/"
 
 	'click .login-btn': !->
-		$('#layoutMain') .empty()
 		Router.go "/login"
 }
 

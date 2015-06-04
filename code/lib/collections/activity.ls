@@ -106,18 +106,3 @@ root.Activity = {
 }
 console.log Activity.all!.count!
 
-# <<<<<<< HEAD
-# if Activity.all!.count! is 0
-#     for i from 1 to 50
-#         Activity.collection.insert({
-#             no: i,
-#             name: 'user-no-' + i,
-#             sponsor: 'Wangnima',
-#             numOfPeople: 100,
-#             activityTime: '2015-06-13',
-#             place: 'gym',
-#             type: 'sports',
-#             cover: '/public/images/11.jpg'
-#         })
-# =======
-# >>>>>>> 241a00aa7589af1c8a0428a2c96b27c38b9b585c

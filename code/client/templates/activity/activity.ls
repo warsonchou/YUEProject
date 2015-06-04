@@ -1,4 +1,5 @@
 # Template.activity.helpers {
-# 	current-user-phone: -> Meteor.user().profile.tel
+# 	is-sponsor: ->
+# 		Meteor.user ! .profile.username == 
 # }
 

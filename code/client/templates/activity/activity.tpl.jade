@@ -2,27 +2,32 @@
   .ui.horizontal.segment
     #mainPageContent
       h4#activity-detail-title 活动详情
-      #activity-detail-edit-button.ui.primary.button 修改
+      if isSponsor
+        #activity-detail-edit-button.ui.primary.button 修改
       #activity-detail-sponsor-info.ui.two.column.grid
         .row
           .column
             .ui.raised.segment
               #sponsor-info-name.ui.red.ribbon.label 活动名称
-              p #{name}
+              p #{activity.name}
               #sponsor-info-order-num.ui.orange.ribbon.label 预定人数
-              p #{numOfPeople}
+              p #{activity.numOfPeople}
               #sponsor-info-meeting-address.ui.blue.ribbon.label 约会地点
-              p #{place}
+              p #{activity.place}
               #sponsor-info-deadline.ui.green.ribbon.label 截止时间
-              p #{deadline}
+              p #{activity.deadline}
               #sponsor-info-img.ui.teal.ribbon.label 封面图片
-              p #{cover}
+              p #{activity.cover}
               #sponsor-info-content.ui.green.ribbon.label 内容
-              p #{description}
+              p #{activity.description}
               #sponsor-info-contact.ui.teal.ribbon.label 个人联系方式
-              p 188194*****
-      #activity-detail-follow
-        .ui.button.blue 报名
+              if isAgree
+                p #{sponsorPhone}
+              else
+                p 保密
+      unless isSponsor
+        #activity-detail-follow
+          .ui.button.blue 报名
       #activity-detail-select
         h4.ui.header 筛选人员
         table.ui.table.segment

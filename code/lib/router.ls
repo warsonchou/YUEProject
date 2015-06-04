@@ -111,8 +111,8 @@ Router.route '/activity/:activityId', {
         return {
             activity : Activity.find-by-id this.params.activityId
             is-agree : Activity.find-by-id this.params.activityId .open-or-not
-            sponsor-phone: User.find-user (Activity.find-by-id this.params.activityId .sponsor) .profile.tel
             is-sponsor: Meteor.user! .username == Activity.find-by-id this.params.activityId .sponsor
+            sponsor-phone: User.find-user (Activity.find-by-id this.params.activityId .sponsor) .profile.tel
         }
 }
 

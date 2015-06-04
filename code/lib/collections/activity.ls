@@ -104,5 +104,6 @@ root.Activity = {
                     return 'success'
         return 'error'
 }
+
 console.log Activity.all!.count!
 

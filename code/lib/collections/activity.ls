@@ -43,21 +43,22 @@ root.Activity = {
 
     add-application: (id, applier-id, credit, phone)->
         applications = this.get-applications id
-        if not applications
-            return 'error'
-        for application in applications
-            if application.applier is applier-id
-                return 'error'
+        if applications
+            for application in applications
+                if application.applier is applier-id
+                    return 'already applied'
         applications.push {
-            id: applyList.length,
-            applier: applier,
+            applier-name: Meteor.users.find-one {_id: applier-id} .username
+            applier: applier-id,
             success: false,
-            score-of-participator: undefined,
-            comment: undefined,
+            score-of-participator: 0,
+            comment: '',
             createAt: new Date(),
-            score-of-sponsor: undefined,
+            score-of-sponsor: 0,
+            credit: credit,
+            phone: phone
         }
-        this.collection.update id, {$set: {applyList: applications}}
+        this.collection.update {_id: id}, {$set: {applyList: applications}}
         return 'success'
 
     get-applications: (id)->

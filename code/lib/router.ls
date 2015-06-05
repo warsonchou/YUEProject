@@ -108,13 +108,7 @@ Router.route '/activity/:activityId', {
         Meteor.subscribe 'Activity'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'userAccount'
-    data: ->
-        return {
-            activity : Activity.find-by-id this.params.activityId
-            is-agree : Activity.find-by-id this.params.activityId .open-or-not
-            is-sponsor: Meteor.user! .username == Activity.find-by-id this.params.activityId .sponsor
-            sponsor-phone: User.find-user (Activity.find-by-id this.params.activityId .sponsor) .profile.tel
-        }
+        Session.set "activityId", this.params.activityId
 }
 
 require-login = !->

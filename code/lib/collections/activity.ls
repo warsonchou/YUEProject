@@ -42,7 +42,7 @@ root.Activity = {
         return this.collection.find {type: type}
 
     add-application: (id, applier-id, credit, phone)->
-        applications = this.get-applications
+        applications = this.get-applications id
         if not applications
             return 'error'
         for application in applications
@@ -54,8 +54,10 @@ root.Activity = {
             success: false,
             score-of-participator: undefined,
             comment: undefined,
+            createAt: new Date(),
             score-of-sponsor: undefined,
         }
+        this.collection.update id, {$set: {applyList: applications}}
         return 'success'
 
     get-applications: (id)->
@@ -81,6 +83,7 @@ root.Activity = {
             if application.applier = applier-id
                 find = 1
                 application.success = true
+        this.collection.update id, {$set: {applyList: applications}}
         return 'success'
 
     calculate-score: (id)->
@@ -94,16 +97,14 @@ root.Activity = {
         return scores * 1.0 / num
  
     comment-activity: (id, applier-id, comment)->
-        participators = this.get-participate-applications id
+        participators = this.get-applications id
         for participartor in participators
-            if participator.applier is applier-id
+            if participator.success and participator.applier is applier-id
                 if participator.comment isnt undefined
                     return 'error'
                 else
                     participator.comment = comment
+                    this.collection.update id, {$set: {applyList: participators}}
                     return 'success'
         return 'error'
 }
-
-console.log Activity.all!.count!
-

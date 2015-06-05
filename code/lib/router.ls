@@ -103,10 +103,11 @@ Router.route '/changeProfile', {
 }
 
 Router.route '/activity/:activityId', {
-    name: 'activity'
+    name: 'activity',
     waitOn: ->
         Meteor.subscribe 'Activity'
         Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'userAccount'
     data: ->
         return {
             activity : Activity.find-by-id this.params.activityId

@@ -28,56 +28,41 @@
       unless isSponsor
         #activity-detail-follow
           .ui.button.blue 报名
-      #activity-detail-select
-        h4.ui.header 筛选人员
-        table.ui.table.segment
-          thead
-            tr
-              th 姓名
-              th 联系方式
-              th 信用度
-          tbody
-            tr.checked
-              td 无特别的名字
-              td 123
-              td#three 2
-            tr
-              td 张三
-              td 123123
-              td 3
-            tr
-              td 李四
-              td 123213321
-              td 4
-            tr
-              td 王五
-              td 181849****
-              td 2
-        .ui.button.blue 确认筛选
+      if isSponsor
+        #activity-detail-select
+          h4.ui.header 筛选人员
+          table.ui.table.segment
+            thead
+              tr
+                th 姓名
+                th 联系方式
+                th 信用度
+            tbody
+              each activity.applyList
+                tr
+                  td #{username}
+                  td #{profile.tel}
+                  td 2
+          .ui.button.blue 确认筛选
       #activity-detail-comment
         h4.ui.header 参与人员
         table.ui.table.segment
           thead
             tr
               th 姓名
-              th 联系方式
               th 信用度
           tbody
             tr.checked
               td 无特别的名字
-              td 123
               td#three 2
             tr
               td 张三
-              td 123123
               td 3
             tr
               td 李四
-              td 123213321
               td 4
             tr
               td 王五
-              td 181849****
               td 2
         .ui.button.orange 评论
 

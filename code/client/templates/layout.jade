@@ -11,12 +11,12 @@ template(name="layout")
 							.ui.horizontal.list
 								if userinformation
 									.item
-										a.ui.labeled.icon.primary.button(href="/profile")
+										.ui.labeled.icon.primary.button.personalProfile
 											i.user.large.icon
 											|               个人中心
 									.item
 										each userinformation
-											img.ui.avatar.image(src='{{this.url}}', alt='avatar')
+											img.ui.avatar.image.changeProfile(src='{{this.url}}', alt='avatar')
 									.item
 										.ui.right.labeled.icon.negative.button.logout
 											i.sign.out.large.icon

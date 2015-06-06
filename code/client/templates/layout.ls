@@ -33,6 +33,13 @@ Template.layout.events {
 
 	"click .go-to-main-page": !->
 		Router.go "/"
+
+	"click .personalProfile": !->
+		Router.go "/profile"
+
+	"click .changeProfile": !->
+		Router.go "/changeProfile"
+
 }
 
 

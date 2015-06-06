@@ -5,7 +5,7 @@ root.User = {
         options = {
             username:  username
             password: password
-            profile:profile
+            profile: profile
         }
         Accounts.create-user options, callback
 

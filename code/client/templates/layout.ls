@@ -6,6 +6,15 @@ Template.layout.helpers {
 			avatar = UploadAvatar.findbyid currentUser.profile.avatarId
 		
 		return avatar
+		
+	currentUserNickName: ->
+		currentUserNickName = User.current-user! .profile.nickname
+		currentUserNickName
+
+	/*userNickname: ->
+		if User.current-user!
+			currentUser = User.current-user!
+			return currentUser.profile.nickname*/
 
 
 	isLoginRegister: ->
@@ -18,26 +27,26 @@ Template.layout.helpers {
 
 
 Template.layout.events {
-	'click .logout': !->
+	'click .logout-btn': !->
 		User.logout!
 		Router.go "/"
 
 	'click .login-btn': !->
 		Router.go "/login"
 
-	"click .createActivityButton": !->
+	"click .createActivity-btn": !->
 		if User.current-user!
 			Router.go "/createActivity"
 		else
 			Router.go "/login"
 
-	"click .go-to-main-page": !->
+	"click .home-btn": !->
 		Router.go "/"
 
-	"click .personalProfile": !->
+	"click .profile-btn": !->
 		Router.go "/profile"
 
-	"click .changeProfile": !->
+	"click .changeProfile-btn": !->
 		Router.go "/changeProfile"
 
 }

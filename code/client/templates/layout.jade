@@ -2,66 +2,97 @@ template(name="layout")
 	html(lang='en')
 		head
 			meta(charset='UTF-8')
-			title Create Your Activity
+			title Seek
 		body
 			if isLoginRegister
 				#layoutMain
 					#topMenu
-						.ui.blue.right.aligned.segment
-							.ui.horizontal.list
-								if userinformation
-									.item
-										.ui.labeled.icon.primary.button.personalProfile
-											i.user.large.icon
-											|               个人中心
-									.item
-										each userinformation
-											img.ui.avatar.image.changeProfile(src='{{this.url}}', alt='avatar')
-									.item
-										.ui.right.labeled.icon.negative.button.logout
-											i.sign.out.large.icon
+						.ui.blue.large.menu
+							if userinformation
+								.left.menu
+									a.header.item.home-btn SEEK(APP Name)
+										.ui.red.horizontal.label 欢迎
+								.right.menu
+									a.item.home-btn#homeMenuItem
+										i.home.icon
+										|	主页
+									a.item.profile-btn#centerMenuItem
+										i.user.icon
+										|	个人中心
+									a.item
+										.ui.right.labeled.icon.negative.button.logout-btn
+											i.sign.out.icon
 											|               登出
-								else
-									.item
-										.login-btn.ui.right.labeled.icon.negative.button
-											i.sign.out.large.icon
+							else
+								.left.menu
+									a.header.item.home-btn SEEK(App Name)
+										.ui.green.horizontal.label 欢迎
+								.right.menu
+									a.item
+										.ui.right.labeled.icon.positive.button.login-btn
+											i.sign.in.icon
 											|               登录
 					.ui.divider
 					.ui.two.column.grid
 						.four.wide.column
 							.ui.horizontal.segment
 								#sidebar
-									#blockAbove
-										.ui.fluid.huge.label 选项
-										.ui.list
-											.item
-												.ui.labeled.icon.primary.fluid.button.go-to-main-page
-													i.home.large.icon
-													|                     主页
-											.item.createActivityButton
-												.ui.labeled.icon.primary.fluid.button
-													i.add.square.large.icon
-													|                     发布活动
-									.ui.horizontal.section.divider divider
-									#blockBottom
-										.ui.fluid.huge.label 活动分类
+
+									.sidebarBlock
+										.ui.fluid.blue.label 个人信息
+										.ui.center.aligned.basic.segment
+											each userinformation
+												img.ui.centered.image#userAvatar(src='{{this.url}}', alt="avatar")
+											
+											a.ui.header.profile-btn {{currentUserNickName}}
+
+									.sidebarBlock
+										.ui.fluid.blue.label 选项
+										.ui.selection.list
+											a.item.home-btn
+												i.search.icon
+												.content
+													.header	我要参与活动
+											a.item.createActivity-btn
+												i.flag.icon
+												.content
+													.header	我要发布活动
+											a.item.changeProfile-btn
+												i.setting.icon
+												.content
+													.header	修改个人资料
+
+									.sidebarBlock
+										.ui.fluid.blue.label 活动分类
 										.ui.selection.list
 											.item
-												i.tasks.icon
+												i.food.icon
 												.content
-													.header 聚餐
+													.header 餐饮
 											.item
-												i.tasks.icon
+												i.sun.icon
 												.content
 													.header 运动
 											.item
-												i.tasks.icon
+												i.book.icon
 												.content
 													.header 学习
 											.item
+												i.film.icon
+												.content
+													.header 电影
+											.item
+												i.shop.icon
+												.content
+													.header 逛街
+											.item
+												i.game.icon
+												.content
+													.header 开黑
+											.item
 												i.tasks.icon
 												.content
-													.header ...
+													.header 其他
 						.twelve.wide.column
 							+yield
 					.ui.divider

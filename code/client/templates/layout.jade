@@ -37,30 +37,30 @@ template(name="layout")
 						.four.wide.column
 							.ui.horizontal.segment
 								#sidebar
+									if userinformation
+										.sidebarBlock
+											.ui.fluid.blue.label 个人信息
+											.ui.center.aligned.basic.segment
+												each userinformation
+													img.ui.centered.image#userAvatar(src='{{this.url}}', alt="avatar")
+												
+												a.ui.header.profile-btn {{currentUserNickName}}
 
-									.sidebarBlock
-										.ui.fluid.blue.label 个人信息
-										.ui.center.aligned.basic.segment
-											each userinformation
-												img.ui.centered.image#userAvatar(src='{{this.url}}', alt="avatar")
-											
-											a.ui.header.profile-btn {{currentUserNickName}}
-
-									.sidebarBlock
-										.ui.fluid.blue.label 选项
-										.ui.selection.list
-											a.item.home-btn
-												i.search.icon
-												.content
-													.header	我要参与活动
-											a.item.createActivity-btn
-												i.flag.icon
-												.content
-													.header	我要发布活动
-											a.item.changeProfile-btn
-												i.setting.icon
-												.content
-													.header	修改个人资料
+										.sidebarBlock
+											.ui.fluid.blue.label 选项
+											.ui.selection.list
+												a.item.home-btn
+													i.search.icon
+													.content
+														.header	我要参与活动
+												a.item.createActivity-btn
+													i.flag.icon
+													.content
+														.header	我要发布活动
+												a.item.changeProfile-btn
+													i.setting.icon
+													.content
+														.header	修改个人资料
 
 									.sidebarBlock
 										.ui.fluid.blue.label 活动分类

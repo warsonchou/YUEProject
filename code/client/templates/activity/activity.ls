@@ -9,6 +9,16 @@ Template.activity.helpers {
 		User.find-user (Activity.find-by-id Session.get "activityId" .sponsor) .profile.tel
 	username: ->
 		Activity.find-by-id Session.get "activityId" .applyList
+	is-sponsor-or-participant: ->
+		return true if Meteor.user! .username == Activity.find-by-id Session.get "activityId" .sponsor
+		for participant in Activity.find-by-id Session.get "activityId" .applyList
+			if participant.applier is Meteor.user!._id
+				return participant.success
+		false
+	images: ->
+		image-id = Activity.find-by-id Session.get "activityId" .cover
+		console.log image-id
+		UploadForActivity.findbyid image-id
 }
 
 Template.activity.events {
@@ -30,8 +40,10 @@ Template.activity.events {
 		activity-id = Session.get "activityId"
 		for id in Activity.temporary-container
 			console.log(activity-id, id)
-			Activity.choose-participator(activity-id, id)
+			Activity.choose-participator(activity-id, id, true)
 		while Activity.temporary-container.length is not 0
 			Activity.temporary-container.pop!
+	"click .cancel_select": (event)!->
+		Activity.choose-participator(Session.get("activityId"), this.applier, false)
 }
 

@@ -17,7 +17,10 @@
               #sponsor-info-deadline.ui.green.ribbon.label 截止时间
               p #{activity.deadline}
               #sponsor-info-img.ui.teal.ribbon.label 封面图片
-              p #{activity.cover}
+              p
+              each images
+                img(src="#{this.url}")
+              p
               #sponsor-info-content.ui.green.ribbon.label 内容
               p #{activity.description}
               #sponsor-info-contact.ui.teal.ribbon.label 个人联系方式
@@ -30,39 +33,39 @@
           button.ui.button.blue.apply 报名
       #activity-detail-select
         h4.ui.header 筛选人员
-        table.ui.table.segment
-          thead
-            tr
-              th 姓名
-              th 联系方式
-              th 信用度
-          tbody
-              tr.checked.select
-              each activity.applyList
-                if this.success
-                  null
-                else
-                  tr.select
-                    td #{applierName}
-                    td #{phone}
-                    td(id="three") 2
+        #activity-detail-select-table
+          #table-header
+            ul
+              li 姓名
+              li 联系方式
+              li 信用度
+          each activity.applyList
+            unless this.success
+              .table-body
+                ul.select
+                  li #{applierName}
+                  li #{phone}
+                  li 2
         if isSponsor
           .ui.button.blue.ensure-select 确认筛选
         else
           .ui.button.orange 评论
-      if isSponsor 
+      if isSponsorOrParticipant
         #activity-detail-comment
           h4.ui.header 参与人员
-          table.ui.table.segment
-            thead
-              tr
-                th 姓名
-                th 信用度
-            tbody
-              each activity.applyList
-                if this.success
-                  tr
-                    td #{applierName}
-                    td 3
-          .ui.button.orange 评论
+          #activity-detail-take-part-in-table
+            #table-header
+              ul
+                li 姓名
+                li 信用度
+            each activity.applyList
+              if this.success
+                .table-body
+                  ul
+                    li #{applierName}
+                    li 4
+                    if isSponsor
+                      .cancel_select
+
+        .ui.button.orange 评论
 

@@ -78,14 +78,12 @@ root.Activity = {
             result.push application if application.success
         return result
 
-    choose-participator: (id, applier-id)->
+    choose-participator: (id, applier-id, select-or-cancle)->
         applications = this.get-applications id
         return 'error' if not applications
-        find = 0
         for application in applications
             if application.applier is applier-id
-                find = 1
-                application.success = true
+                application.success = select-or-cancle
         this.collection.update id, {$set: {applyList: applications}}
         return 'success'
 

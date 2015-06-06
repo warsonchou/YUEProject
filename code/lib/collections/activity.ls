@@ -3,6 +3,8 @@ root = exports ? @
 root.Activity = {
     collection: new Mongo.Collection('Activity')
 
+    temporary-container: []
+
     all: ->
         return this.collection.find!
 
@@ -115,7 +117,7 @@ root.Activity = {
         return 'error' if not applications
         find = 0
         for application in applications
-            if application.applier = applier-id
+            if application.applier is applier-id
                 find = 1
                 application.success = true
         this.collection.update id, {$set: {applyList: applications}}

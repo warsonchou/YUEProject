@@ -3,6 +3,8 @@ root = exports ? @
 root.Activity = {
     collection: new Mongo.Collection('Activity')
 
+    temporary-container: []
+
     all: ->
         return this.collection.find!
 
@@ -30,10 +32,44 @@ root.Activity = {
             this.collection.remove id
             return 'success'
     # zuo wei fa qi reng de ji he
+    find-by-username-has-not-participated: (username)->
+        this.collection.find {
+            $or: [
+                {"sponsor": username},
+                {
+                    "applyList": {
+                        $elemMatch: {
+                            "applier-name": username,
+                            "success": false
+                                    }
+                                }
+                }
+            ]
+        }
+    find-by-username-as-sponor: (sponsor)->
+        this.collection.find {
+            "sponsor": sponsor
+        }
+    find-by-username-has-participated: (username)->
+        this.collection.find {
+            $or: [
+                {"sponsor": username},
+                {
+                    "applyList": {
+                        $elemMatch: {
+                            "applier-name": username,
+                            "success": true
+                                    }
+                                }
+                }
+            ]
+        }
+
     find-by-username: (username)->
         this.collection.find {
-            $or: [ { "sponsor": username }, { "applyList": username }]
+            "applyList.applier-name": username
         }
+
 
     find-by-id: (id)->
         return this.collection.find-one {_id: id}
@@ -81,7 +117,7 @@ root.Activity = {
         return 'error' if not applications
         find = 0
         for application in applications
-            if application.applier = applier-id
+            if application.applier is applier-id
                 find = 1
                 application.success = true
         this.collection.update id, {$set: {applyList: applications}}

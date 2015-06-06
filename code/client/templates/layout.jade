@@ -11,12 +11,12 @@ template(name="layout")
 							.ui.horizontal.list
 								if userinformation
 									.item
-										a.ui.labeled.icon.primary.button(href="/profile")
+										.ui.labeled.icon.primary.button.personalProfile
 											i.user.large.icon
 											|               个人中心
 									.item
 										each userinformation
-											img.ui.avatar.image(src='{{this.url}}', alt='avatar')
+											img.ui.avatar.image.changeProfile(src='{{this.url}}', alt='avatar')
 									.item
 										.ui.right.labeled.icon.negative.button.logout
 											i.sign.out.large.icon
@@ -35,7 +35,7 @@ template(name="layout")
 										.ui.fluid.huge.label 选项
 										.ui.list
 											.item
-												.ui.labeled.icon.primary.fluid.button
+												.ui.labeled.icon.primary.fluid.button.go-to-main-page
 													i.home.large.icon
 													|                     主页
 											.item.createActivityButton

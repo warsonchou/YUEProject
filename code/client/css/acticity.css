@@ -15,8 +15,11 @@
 	margin: 20px 0 20px 0;
 }
 .checked #three{
-	background: url("./check.png") no-repeat right;
+	background: url("images/check.png") no-repeat right;
 	background-size: 20px 20px;
+}
+#activity-detail-select tbody tr:hover {
+	background-color: #F4F4F4;
 }
 .hidden {
 	visibility: hidden;

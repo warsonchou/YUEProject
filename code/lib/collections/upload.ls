@@ -25,6 +25,15 @@ root.UploadForActivity = {
 					currentUserUsername = currentUser.username
 					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
 
+	update: (files, id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
+		for file in files
+			return this.collection.insert file, (err, fileObj)!->
+				if err
+					console.log 'insert picture error'
+				else
+					currentUser = User.current-user!
+					currentUserUsername = currentUser.username
+					Activity.update  id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
 	find: ->
 		this.collection.find!
 	#you should careful about here, because the CollectionFS does not offer the findone,

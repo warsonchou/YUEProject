@@ -128,6 +128,13 @@ Router.route '/activity/:activityId', {
         Session.set "activityId", this.params.activityId
 }
 
+Router.route '/modifyActivity/:activityId', {
+    name: 'modifyActivity',
+    wait-on: ->
+        return Meteor.subscribe 'Activity' and Meteor.subscribe 'uploadForActivity'
+        Session.set "activityId", this.params.activityId
+}
+
 require-login = !->
     if not Meteor.user-id()
         Router.go '/login'

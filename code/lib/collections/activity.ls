@@ -25,6 +25,27 @@ root.Activity = {
             # aver-sponsor-score: undefined
         }
 
+    update: (id, name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
+        return this.collection.update (
+            {_id: id}
+            {$set:
+                {
+                    name: name,
+                    sponsor: sponsor,
+                    num-of-people: num-of-people,
+                    starting-time: startingTime,
+                    ending-time: startingTime,
+                    deadline: deadline,
+                    place: place,
+                    open-or-not: open-or-not,
+                    type: type,
+                    cover: cover,
+                    description: description
+                }
+
+            }
+        )
+
     delete: (id)->
         if not this.find-by-id id
             return 'error'

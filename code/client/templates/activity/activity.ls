@@ -27,15 +27,16 @@ Template.activity.events {
 		result = Activity.add-application (Session.get "activityId"), (Meteor.user! ._id), 2, (Meteor.user! .profile.tel)
 		alert(result)
 	"click .select" : (event)!->
-		parent = event.target.parentNode
-		console.log(this)
-		if (parent.class-list.contains("checked"))
-			for id,i in Activity.temporary-container
-				if id is this.applier then Activity.temporary-container.splice(i, 1); break
-			parent.class-list.remove("checked")
-		else
-			Activity.temporary-container.push this.applier
-			parent.class-list.add("checked")
+		if Meteor.user! .username == Activity.find-by-id Session.get "activityId" .sponsor
+			parent = event.target.parentNode
+			console.log(this)
+			if (parent.class-list.contains("checked"))
+				for id,i in Activity.temporary-container
+					if id is this.applier then Activity.temporary-container.splice(i, 1); break
+				parent.class-list.remove("checked")
+			else
+				Activity.temporary-container.push this.applier
+				parent.class-list.add("checked")
 	"click .ensure-select" : (event)!->
 		activity-id = Session.get "activityId"
 		for id in Activity.temporary-container
@@ -45,5 +46,8 @@ Template.activity.events {
 			Activity.temporary-container.pop!
 	"click .cancel_select": (event)!->
 		Activity.choose-participator(Session.get("activityId"), this.applier, false)
+
+	"click .modify": ->
+		Router.go('/modifyActivity/' + Session.get("activityId"))
 }
 

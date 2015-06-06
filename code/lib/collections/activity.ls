@@ -32,7 +32,7 @@ root.Activity = {
     # zuo wei fa qi reng de ji he
     find-by-username: (username)->
         this.collection.find {
-            $or: [ { "sponsor": username }, { "applyList": username }]
+            $or: [ { "sponsor": username }, { "applyList.applier": username }]
         }
 
     find-by-id: (id)->

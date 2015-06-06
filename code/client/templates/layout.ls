@@ -30,6 +30,9 @@ Template.layout.events {
 			Router.go "/createActivity"
 		else
 			Router.go "/login"
+
+	"click .go-to-main-page": !->
+		Router.go "/"
 }
 
 

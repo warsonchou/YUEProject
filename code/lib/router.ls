@@ -1,5 +1,17 @@
 root = exports ? @
 
+get-local-time = (time)->
+        time-string = time.get-full-year! + '/'
+        time-string += '0' if (time.get-month! + 1) < 10
+        time-string += (time.get-month! + 1) + '/'
+        time-string += '0' if time.get-date! < 10
+        time-string += time.get-date! + ' '
+        time-string += '0' if time.get-hours! < 10
+        time-string += time.get-hours! + ':'
+        time-string += '0' if time.get-minutes! < 10
+        time-string += time.get-minutes!
+        return time-string
+
 Router.configure {
     layoutTemplate: 'layout'
     wait-on: ->
@@ -15,16 +27,18 @@ Router.route 'index/:activityLimit?', {
     wait-on: ->
         Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 5
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        find-options = {sort: {starting-time: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadForActivity'
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
+        now-time = new Date!
+        now-time = get-local-time now-time
         return {
-            activities: Activity.all!
+            activities: Activity.collection.find {deadline: {$gt: now-time}}
             next-path: next
         }
 }
@@ -32,17 +46,20 @@ Router.route 'index/:activityLimit?', {
 Router.route 'type/:typename/:activityLimit?', {
     name: 'type',
     wait-on: ->
+        Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 5
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        find-options = {sort: {starting-time: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadForActivity'
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
+        now-time = new Date!
+        now-time = get-local-time now-time
         return {
-            activities: Activity.all!
+            activities: Activity.collection.find {deadline: {$gt: now-time}, type: this.params.typename}
             next-path: next
         }
 }
@@ -117,4 +134,4 @@ require-login = !->
     else
         this.next!
 
-Router.on-before-action require-login, {only: 'createActivity', 'profile', 'homework-page'}
+Router.on-before-action require-login, {only: 'createActivity', 'profile'}

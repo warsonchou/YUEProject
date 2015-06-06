@@ -32,10 +32,44 @@ root.Activity = {
             this.collection.remove id
             return 'success'
     # zuo wei fa qi reng de ji he
+    find-by-username-has-not-participated: (username)->
+        this.collection.find {
+            $or: [
+                {"sponsor": username},
+                {
+                    "applyList": {
+                        $elemMatch: {
+                            "applier-name": username,
+                            "success": false
+                                    }
+                                }
+                }
+            ]
+        }
+    find-by-username-as-sponor: (sponsor)->
+        this.collection.find {
+            "sponsor": sponsor
+        }
+    find-by-username-has-participated: (username)->
+        this.collection.find {
+            $or: [
+                {"sponsor": username},
+                {
+                    "applyList": {
+                        $elemMatch: {
+                            "applier-name": username,
+                            "success": true
+                                    }
+                                }
+                }
+            ]
+        }
+
     find-by-username: (username)->
         this.collection.find {
-            $or: [ { "sponsor": username }, { "applyList.applier": username }]
+            "applyList.applier-name": username
         }
+
 
     find-by-id: (id)->
         return this.collection.find-one {_id: id}

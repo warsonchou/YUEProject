@@ -53,8 +53,8 @@ Template['modifyActivity'].events {
 
 		ActivityDescription = $(e.target).find('[name=ActivityDescription]').val()
 
-		# upload file and insert the activity detail
-		UploadForActivity.insert files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
+		# upload file and update the activity detail
+		UploadForActivity.update (Session.get "activityId"), files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
 		Router.go('/index')
 

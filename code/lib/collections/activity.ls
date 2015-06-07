@@ -3,6 +3,8 @@ root = exports ? @
 root.Activity = {
     collection: new Mongo.Collection('Activity')
 
+    temporary-container: []
+
     all: ->
         return this.collection.find!
 
@@ -19,8 +21,30 @@ root.Activity = {
             type: type,
             cover: cover,
             applyList: [],
+            description: description
             # aver-sponsor-score: undefined
         }
+
+    update: (id, name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
+        return this.collection.update (
+            {_id: id}
+            {$set:
+                {
+                    name: name,
+                    sponsor: sponsor,
+                    num-of-people: num-of-people,
+                    starting-time: startingTime,
+                    ending-time: startingTime,
+                    deadline: deadline,
+                    place: place,
+                    open-or-not: open-or-not,
+                    type: type,
+                    cover: cover,
+                    description: description
+                }
+
+            }
+        )
 
     delete: (id)->
         if not this.find-by-id id
@@ -29,32 +53,69 @@ root.Activity = {
             this.collection.remove id
             return 'success'
     # zuo wei fa qi reng de ji he
-    find-by-username: (username)->
+    find-by-username-has-not-participated: (username)->
         this.collection.find {
-            $or: [ { "sponsor": username }, { "applyList": username }]
+            $or: [
+                {"sponsor": username},
+                {
+                    "applyList": {
+                        $elemMatch: {
+                            "applier-name": username,
+                            "success": false
+                                    }
+                                }
+                }
+            ]
+        }
+    find-by-username-as-sponor: (sponsor)->
+        this.collection.find {
+            "sponsor": sponsor
+        }
+    find-by-username-has-participated: (username)->
+        this.collection.find {
+            $or: [
+                {"sponsor": username},
+                {
+                    "applyList": {
+                        $elemMatch: {
+                            "applier-name": username,
+                            "success": true
+                                    }
+                                }
+                }
+            ]
         }
 
+    find-by-username: (username)->
+        this.collection.find {
+            "applyList.applier-name": username
+        }
+
+
     find-by-id: (id)->
-        return this.collection.find-one {id: id}
+        return this.collection.find-one {_id: id}
 
     find-by-type: (type)->
         return this.collection.find {type: type}
 
     add-application: (id, applier-id, credit, phone)->
-        applications = this.get-applications
-        if not applications
-            return 'error'
-        for application in applications
-            if application.applier is applier-id
-                return 'error'
+        applications = this.get-applications id
+        if applications
+            for application in applications
+                if application.applier is applier-id
+                    return 'already applied'
         applications.push {
-            id: applyList.length,
-            applier: applier,
+            applier-name: Meteor.users.find-one {_id: applier-id} .username
+            applier: applier-id,
             success: false,
-            score-of-participator: undefined,
-            comment: undefined,
-            score-of-sponsor: undefined,
+            score-of-participator: 0,
+            comment: '',
+            createAt: new Date(),
+            score-of-sponsor: 0,
+            credit: credit,
+            phone: phone
         }
+        this.collection.update {_id: id}, {$set: {applyList: applications}}
         return 'success'
 
     get-applications: (id)->
@@ -72,14 +133,13 @@ root.Activity = {
             result.push application if application.success
         return result
 
-    choose-participator: (id, applier-id)->
+    choose-participator: (id, applier-id, select-or-cancle)->
         applications = this.get-applications id
         return 'error' if not applications
-        find = 0
         for application in applications
-            if application.applier = applier-id
-                find = 1
-                application.success = true
+            if application.applier is applier-id
+                application.success = select-or-cancle
+        this.collection.update id, {$set: {applyList: applications}}
         return 'success'
 
     calculate-score: (id)->
@@ -93,15 +153,14 @@ root.Activity = {
         return scores * 1.0 / num
  
     comment-activity: (id, applier-id, comment)->
-        participators = this.get-participate-applications id
+        participators = this.get-applications id
         for participartor in participators
-            if participator.applier is applier-id
+            if participator.success and participator.applier is applier-id
                 if participator.comment isnt undefined
                     return 'error'
                 else
                     participator.comment = comment
+                    this.collection.update id, {$set: {applyList: participators}}
                     return 'success'
         return 'error'
 }
-console.log Activity.all!.count!
-

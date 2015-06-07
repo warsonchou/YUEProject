@@ -1,16 +1,15 @@
-template(name="profile")
+template(name="_profile")
 	header
 		h2.ui.header
 			div.content 个人活动列表
-			div.ui.buttons.right
-				a(class="ui button" href="/profile/") 作为发起人
-				a(class="ui button" href="/_profile/") 作为参与者
 			div.ui.divider
-			
+		div.ui.buttons
+			a(class="ui button" href="/profile/") 作为发起人
+			a(class="ui button" href="/_profile/") 作为参与者
 	section.ui.three.cards
-		div.sponsor
-		each activities
-			div(class='card' )
+		if _activities
+			each _activities
+				div(class='card' )
 				div.image
 					a(href='/activity/#{_id}' style="display:block")
 						img(src="#{cover}" style="width:100%")
@@ -22,7 +21,8 @@ template(name="profile")
 							span #{sponsor}
 				div.extra.content
 					div.ui.right.floated.primary.button 评论
-		if nextPath
-			.next-button(style='margin:10px auto')
-				a.ui.button(href="#{nextPath}") 加载更多
-		
+			if nextPath
+				.next-button(style='margin:10px auto')
+					a.ui.button(href="#{nextPath}") 加载更多
+		else
+			kong

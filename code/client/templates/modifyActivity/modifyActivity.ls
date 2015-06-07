@@ -1,8 +1,8 @@
-Template['createActivity'].events {
+Template['modifyActivity'].events {
 	'submit form': (e)->
 		e.preventDefault!
 
-		# $(".createActivityForm").form {
+		# $(".modifyActivityForm").form {
 		# 	ActivityName: {
 		# 		identifier: 'ActivityName'
 		# 		rules: [
@@ -75,12 +75,44 @@ Template['createActivity'].events {
 }
 
 
-Template['createActivity'].helpers {
+Template['modifyActivity'].helpers {
 	images: ->
-		UploadForActivity.findbyid "QyXbDKWegYppJgyab"
+		image-id = Activity.find-by-id Session.get "activityId" .cover
+		console.log image-id
+		UploadForActivity.findbyid image-id
+	activity : ->
+		Activity.find-by-id Session.get "activityId"
+	option: ->
+		return {
+			type0: ->
+				if Activity.find-by-id Session.get "activityId" .type == '0'
+					return 'selected'
+			type1: ->
+				if Activity.find-by-id Session.get "activityId" .type == '1'
+					return 'selected'
+			type2: ->
+				if Activity.find-by-id Session.get "activityId" .type == '2'
+					return 'selected'
+			type3: ->
+				if Activity.find-by-id Session.get "activityId" .type == '3'
+					return 'selected'
+			type4: ->
+				if Activity.find-by-id Session.get "activityId" .type == '4'
+					return 'selected'
+		}
+	radio-check: ->
+		return {
+			no: ->
+				if Activity.find-by-id Session.get "activityId" .open-or-not == false
+					return 'checked'
+			yes: ->
+				if Activity.find-by-id Session.get "activityId" .open-or-not == true
+					return 'checked'
+		}
+
 }
 
-Template['createActivity'].onRendered !->
+Template['modifyActivity'].onRendered !->
 	$ '.datetimepicker' .datetimepicker!
 	$ 'select.dropdown' .dropdown!
 	$ '.ui.radio.checkbox' .checkbox!

@@ -9,7 +9,7 @@ template(name="changeProfile")
           .field
             label &#26165;&#31216;
             .login-name
-              input(type="text", placeholder="Name", name="nickname" value="")
+              input(type="text", placeholder="Name", name="nickname" value="#{profile.nickname}")
           .field
             label &#24615;&#21035;
             .login-sexual
@@ -19,18 +19,19 @@ template(name="changeProfile")
           .field
             label &#25163;&#26426;&#21495;&#30721;
             .login-tel
-              input(type="text", placeholder="Tel", name="tel")
+              input(type="text", placeholder="Tel", name="tel", value="#{profile.tel}")
           .field
             label QQ
             .login-qq
-              input(type="text", placeholder="QQ", name="qq")
+              input(type="text", placeholder="QQ", name="qq",value="#{profile.qq}")
           .field
             label &#37038;&#31665;
             .login-mail
-              input(type="text", placeholder="Mail", name="mail")
+              input(type="text", placeholder="Mail", name="mail", value="#{profile.mail}")
           .field.show-avatar-field
             .show-avatar
-              img(src="", id="cover")
+            each avatar
+              img.ui.image#userAvatar(src='{{this.url}}', alt="avatar")
             .ui.input
               input(type="file", name="avatar" class="avatar-input")
           .ui.error.message

@@ -3,6 +3,25 @@
 	margin: 1% auto 5%;
 }
 
-#layoutMain .blue .item img {
-	border: 1px solid #e0e0e0;
+#userAvatar {
+	border-radius: 50%;
+	box-shadow: 5px 2px 10px #000;
+	width: 100px;
+	height: 100px;
+	margin-bottom: 15px;
+	display: block;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+#sidebar {
+/* 	border: 3px solid #428bca;
+border-radius: 6px; */
+}
+
+.sidebarBlock {
+	margin-bottom: 20px;
+	
 }

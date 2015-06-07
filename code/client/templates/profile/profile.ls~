@@ -1,0 +1,16 @@
+Template.profile.helpers {
+	($ '.sponsor').show!
+	($ '.participated').hide!
+}
+
+
+Template.profile.events {
+	'click .sponsor': !->
+		alert 1
+
+	'click .participated': !->
+		alert 2
+
+}
+
+

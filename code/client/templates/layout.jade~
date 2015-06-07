@@ -16,7 +16,7 @@ template(name="layout")
 									a.item.home-btn#homeMenuItem
 										i.home.icon
 										|	主页
-									a.item.profile-btn#centerMenuItem
+									a.item.profileSponsor-btn#centerMenuItem
 										i.user.icon
 										|	个人中心
 									a.item

@@ -9,4 +9,7 @@ Template.login.events {
 				Router.go '/'
 			)
 
+	"click .login-register-btn": !->
+		Session.set('is-login', false)
+		Router.go '/register'
 }

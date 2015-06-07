@@ -107,7 +107,7 @@ Router.route '/profile/:activityLimit?', {
         }
 }
 
-Router.route '/_profile/:_activityLimit?', {
+Router.route '/_profile/:activityLimit?', {
     name : '_profile',
     wait-on: ->
         _activity-limit = parse-int(this.params.activity-limit) || 6

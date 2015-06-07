@@ -80,6 +80,7 @@ semantic:ui-button@1.12.3
 semantic:ui-checkbox@1.12.3
 semantic:ui-css@1.12.3
 semantic:ui-data@1.12.1_1
+semantic:ui-dimmer@1.12.3
 semantic:ui-divider@1.12.3
 semantic:ui-dropdown@1.12.3
 semantic:ui-grid@1.12.3
@@ -88,6 +89,7 @@ semantic:ui-icon@1.12.3
 semantic:ui-label@1.12.3
 semantic:ui-list@1.12.3
 semantic:ui-menu@1.12.3
+semantic:ui-modal@1.12.3
 semantic:ui-segment@1.12.3
 semantic:ui-sidebar@1.12.3
 semantic:ui-table@1.12.3

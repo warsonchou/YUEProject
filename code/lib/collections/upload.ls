@@ -31,7 +31,7 @@ root.UploadForActivity = {
 					currentUserUsername = currentUser.username
 					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
 					# UploadForActivity.delete fileObj._id
-	update: (files, id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
+	update: (id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
 		for file in files
 			return this.collection.insert file, (err, fileObj)!->
 				if err

@@ -113,6 +113,8 @@ Template['modifyActivity'].helpers {
 }
 
 Template['modifyActivity'].onRendered !->
+	ActivityInformation = Activity.find-by-id Session.get "activityId"
+	$('#descriptionForActivity').text(ActivityInformation.description)
 	$ '.datetimepicker' .datetimepicker!
 	$ 'select.dropdown' .dropdown!
 	$ '.ui.radio.checkbox' .checkbox!

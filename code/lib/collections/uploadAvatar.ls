@@ -26,6 +26,11 @@ root.UploadAvatar = {
 					profile = user.profile
 					profile.avatarId = fileObj._id
 					User.change-information profile
+					
+	delete: (avatarId)->
+		this.collection.remove {
+			"_id": avatarId
+		}
 
 	find: ->
 		this.collection.find!

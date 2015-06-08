@@ -26,12 +26,8 @@ root.Activity = {
         }
 
     update: (id, name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
-<<<<<<< HEAD
-        return this.collection.update (
-            {_id: id}
-=======
+
         return this.collection.update {_id: id},
->>>>>>> e39633074dfcd5304cf36646222746d58ef23596
             {$set:
                 {
                     name: name,
@@ -48,10 +44,7 @@ root.Activity = {
                 }
 
             }
-<<<<<<< HEAD
-        )
-=======
->>>>>>> e39633074dfcd5304cf36646222746d58ef23596
+
 
     delete: (id)->
         if not this.find-by-id id
@@ -161,12 +154,12 @@ root.Activity = {
  
     comment-activity: (id, applier-id, comment)->
         participators = this.get-applications id
-        for participartor in participators
-            if participator.success and participator.applier is applier-id
-                if participator.comment isnt undefined
+        for item in participators
+            if item.success and item.applier is applier-id
+                if item.comment isnt ''
                     return 'error'
                 else
-                    participator.comment = comment
+                    item.comment = comment
                     this.collection.update id, {$set: {applyList: participators}}
                     return 'success'
         return 'error'

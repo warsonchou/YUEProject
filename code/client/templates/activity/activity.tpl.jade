@@ -68,3 +68,42 @@
                       .cancel_select
 
       .ui.button.orange 评论
+
+      //- show comments
+      div.ui.blue.segment.form
+        h3.ui.header
+          i.icon.inverted.circular.blue.comment
+          |  关于这次活动的评论 
+        .ui.comments
+          if noneComment
+            h3
+              | 暂时没有评论，快来抢沙发～～
+          else
+            each commentors
+              .comment
+                a.avatar
+                  h3
+                    i.icon.user.inverted.green.circular
+                .content
+                  a.author #{applierName}
+                  .metadata
+                    span.date 2天前
+                  .text
+                    | #{comment}
+      //-write down your commment
+      if isParticipantSuccess
+        form(method="post")
+          .ui.blue.segment
+            .ui.form
+              if isCommented
+                .grouped.fields
+                  .field
+                    .ui.button
+                      | 你已经评论过，谢谢你的评论！
+              else
+                .grouped.fields
+                  .field
+                    textarea(name='comment' placeholder="你可以在这里写下你的评论！")
+                  button.ui.fluid.blue.labeled.submit.icon.button(type='submit')
+                    i.icon.edit
+                    |  我也来评论一下！

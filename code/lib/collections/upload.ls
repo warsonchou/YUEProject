@@ -30,16 +30,22 @@ root.UploadForActivity = {
 					currentUser = User.current-user!
 					currentUserUsername = currentUser.username
 					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
-					# UploadForActivity.delete fileObj._id
-	update: (id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
-		for file in files
-			return this.collection.insert file, (err, fileObj)!->
-				if err
-					console.log 'insert picture error'
-				else
-					currentUser = User.current-user!
-					currentUserUsername = currentUser.username
-					Activity.update  id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
+					
+	update: (id, ori-id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
+		if files.length == 0
+			currentUser = User.current-user!
+			currentUserUsername = currentUser.username
+			Activity.update  id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ori-id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
+		else
+			UploadForActivity.delete ori-id
+			for file in files
+				return this.collection.insert file, (err, fileObj)!->
+					if err
+						console.log 'insert picture error'
+					else
+						currentUser = User.current-user!
+						currentUserUsername = currentUser.username
+						Activity.update  id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
 
 	find: ->
 		this.collection.find!

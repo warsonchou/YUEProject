@@ -29,6 +29,8 @@ Template['modifyActivity'].events {
 		Deadeline = $(e.target).find('[name=ActivityDeadline]').val()
 
 		files = $(e.target).find('[name=ActivityCover]')[0].files
+		# files-length = files.length
+		# console.log files-length
 
 		open-or-not = $('input:radio[name="PublicInfo"]:checked').val()
 		open-or-not-information = false
@@ -54,7 +56,8 @@ Template['modifyActivity'].events {
 		ActivityDescription = $(e.target).find('[name=ActivityDescription]').val()
 
 		# upload file and update the activity detail
-		UploadForActivity.update (Session.get "activityId"), files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
+		ori-id = Activity.find-by-id Session.get "activityId" .cover
+		UploadForActivity.update (Session.get "activityId"), ori-id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
 		Router.go('/activity/' + Session.get "activityId")
 

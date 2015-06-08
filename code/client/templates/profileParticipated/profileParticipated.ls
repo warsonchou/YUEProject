@@ -1,8 +1,6 @@
-Template.profile.helpers ({
+Template.profileParticipated.helpers ({
 	images: ->
 		cover = this.cover
-		console.log cover
 		return UploadForActivity.findbyid cover
 
 })
-

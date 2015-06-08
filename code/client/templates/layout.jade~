@@ -16,7 +16,7 @@ template(name="layout")
 									a.item.home-btn#homeMenuItem
 										i.home.icon
 										|	主页
-									a.item.profileSponsor-btn#centerMenuItem
+									a.item.profile-btn#centerMenuItem
 										i.user.icon
 										|	个人中心
 									a.item
@@ -41,8 +41,8 @@ template(name="layout")
 										.sidebarBlock
 											.ui.fluid.blue.label 个人信息
 											.ui.center.aligned.basic.segment
-												each userinformation
-													img.ui.centered.image#userAvatar(src='{{this.url}}', alt="avatar")
+												
+													img.ui.centered.image#userAvatar(src='{{userinformation.url}}', alt="avatar")
 												
 												a.ui.header.profile-btn {{currentUserNickName}}
 

@@ -43,7 +43,7 @@ Template.layout.events {
 		Router.go "/"
 
 	"click .profile-btn": !->
-		Router.go "/profile"
+		Router.go "/profileabc"
 
 	"click .changeProfile-btn": !->
 		Router.go "/changeProfile"

@@ -92,6 +92,7 @@ Router.route '/profile/:activityLimit?', {
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadForActivity'
     data: ->
         name = User.current-user!
         more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username-as-sponor(name.username).count!
@@ -102,28 +103,29 @@ Router.route '/profile/:activityLimit?', {
         
         return {
             activities: Activity.find-by-username-as-sponor(name.username)
-            
             next-path: next
         }
 }
 
-Router.route '/_profile/:_activityLimit?', {
-    name : '_profile',
+Router.route '/profileParticipated/:activityLimit?', {
+    name : 'profileParticipated',
     wait-on: ->
-        _activity-limit = parse-int(this.params.activity-limit) || 6
-        _find-options = {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'activities', _find-options
-        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: _activity-limit}
+        activity-limit = parse-int(this.params.activity-limit) || 6
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'uploadForActivity'
     data: ->
         name = User.current-user!
-        more = (parse-int(this.params._activity-limit) || 6) is Activity.find-by-username-has-participated(name.username).count!
-
+        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username(name.username).count!
+        alert "参与成功："+Activity.find-by-username-has-participated(name.username).count!
+        alert "未参与成功："+Activity.find-by-username-has-not-participated(name.username).count!
+        alert "参与成功和未参与成功："+Activity.find-by-username(name.username).count!
         next = null
         if more
-            next = this.route.path({_activity-limit: (parse-int(this.params._activity-limit) || 6) + 6})
+            next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
         return {
-            _activities: Activity.find-by-username-has-participated(name.username)
-            
+            activities: Activity.find-by-username(name.username)
             next-path: next
         }
 }

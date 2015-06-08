@@ -3,10 +3,11 @@ template(name="_profile")
 		h2.ui.header
 			div.content 个人活动列表
 			div.ui.divider
-		div.ui.buttons
+		div(class="ui buttons" style="float:right")
 			a(class="ui button" href="/profile/") 作为发起人
 			a(class="ui button" href="/_profile/") 作为参与者
 	section.ui.three.cards
+		div asdfasdfsd
 		if _activities
 			each _activities
 				div(class='card' )

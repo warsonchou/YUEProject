@@ -14,12 +14,6 @@ root.UploadForActivity = {
 				else
 					console.log message
 		})
-	
-	delete: (coverId)->
-		issuccess = this.collection.remove {
-			"_id": coverId
-		}
-		return issuccess
 
 	insert: (files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
 		for file in files
@@ -30,6 +24,7 @@ root.UploadForActivity = {
 					currentUser = User.current-user!
 					currentUserUsername = currentUser.username
 					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
+
 					
 	update: (id, ori-id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
 		if files.length == 0

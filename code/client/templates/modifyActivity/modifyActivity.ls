@@ -55,11 +55,12 @@ Template['modifyActivity'].events {
 
 		ActivityDescription = $(e.target).find('[name=ActivityDescription]').val()
 
-		# upload file and update the activity detail
+
 		ori-id = Activity.find-by-id Session.get "activityId" .cover
 		UploadForActivity.update (Session.get "activityId"), ori-id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
-		Router.go('/activity/' + Session.get "activityId")
+
+		Router.go('/index')
 
 
 	# display the uploading file
@@ -116,8 +117,6 @@ Template['modifyActivity'].helpers {
 }
 
 Template['modifyActivity'].onRendered !->
-	ActivityInformation = Activity.find-by-id Session.get "activityId"
-	$('#descriptionForActivity').text(ActivityInformation.description)
 	$ '.datetimepicker' .datetimepicker!
 	$ 'select.dropdown' .dropdown!
 	$ '.ui.radio.checkbox' .checkbox!

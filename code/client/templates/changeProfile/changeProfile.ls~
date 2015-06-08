@@ -48,11 +48,21 @@ Template.changeProfile.events {
 			mail: $(e.target).find '[name=mail]' .val!
 			avatarId: null
 		}
-		
 
-		User.register(username, password, profile, (error) ->
+		User.change-information(profile, (error) ->
 			if not error
 				UploadAvatar.insert avatar
-				Router.go '/'
+				Router.go '/changeProfile/'
+			else
+				alert 'error'
 			)
+}
+Template.changeProfile.helpers {
+	userinformation: ->
+		avatar = null
+		if User.current-user!
+			currentUser = User.current-user!
+			avatar = UploadAvatar.findbyid currentUser.profile.avatarId
+			console.lg avatar
+		return avatar
 }

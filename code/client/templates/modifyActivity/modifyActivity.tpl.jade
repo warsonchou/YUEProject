@@ -91,7 +91,7 @@
 												.description 选择漂亮的封面更容易吸引小伙伴
 						.required.field
 							label(for='') 活动描述
-							textarea(name="ActivityDescription", id="descriptionForActivity")
+							textarea(name="ActivityDescription", value='#{activity.discrption}' required)
 						.ui.vertical.right.aligned.basic.segment
 							input(name="submitButton", value="提交", type="submit", class="ui positive submit button")
 							.negative.ui.button 取消

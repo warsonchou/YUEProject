@@ -27,7 +27,7 @@ root.User = {
             callback 1
         else
             id = Meteor.user-id!
-            Meteor.users.update id, {$set: {profile: profile}}, callback
+            Meteor.users.update id, {$set: {profile: profile}}
     find-username: (username)->
         is-found = Meteor.users.find {"username" : username}
         if is-found.count() >= 1

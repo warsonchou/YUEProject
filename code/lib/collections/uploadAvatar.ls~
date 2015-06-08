@@ -25,7 +25,6 @@ root.UploadAvatar = {
 					user = Meteor.user!
 					profile = user.profile
 					profile.avatarId = fileObj._id
-					console.log fileObj._id
 					User.change-information profile
 
 	find: ->

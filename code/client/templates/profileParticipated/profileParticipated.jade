@@ -1,4 +1,4 @@
-template(name="profile")
+template(name="profileParticipated")
 	header
 		h2.ui.header
 			div.content 个人活动列表
@@ -13,8 +13,8 @@ template(name="profile")
 			div(class='card' )
 				div.image
 					a(href='/activity/#{_id}' style="display:block")
-					each images
-						img(src="{{this.url}}" style="width:100%")
+						each images
+							img(src="{{this.url}}" style="width:100%")
 					
 				div.content
 					div.header #{name}

@@ -146,5 +146,13 @@ data = {
 	description: 'yue'
 }
 
+<<<<<<< HEAD
 Activity.collection.insert data
 */
+=======
+Template.activity.onRendered !->
+	current-date = new Date!
+	if current-date > new Date (Activity.find-by-id Session.get "activityId" .startingTime)
+		console.log 'hi'
+		$ '.modify' .attr 'disabled', 'disabled'
+>>>>>>> d194740507b3697bedb06e756727f3add283c55a

@@ -26,8 +26,13 @@ root.Activity = {
         }
 
     update: (id, name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
+<<<<<<< HEAD
 
         return this.collection.update {_id: id},
+=======
+        return this.collection.update (
+            {_id: id}
+>>>>>>> d194740507b3697bedb06e756727f3add283c55a
             {$set:
                 {
                     name: name,
@@ -44,7 +49,11 @@ root.Activity = {
                 }
 
             }
+<<<<<<< HEAD
 
+=======
+        )
+>>>>>>> d194740507b3697bedb06e756727f3add283c55a
 
     delete: (id)->
         if not this.find-by-id id

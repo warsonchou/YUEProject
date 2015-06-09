@@ -1,0 +1,25 @@
+template(name="profile")
+	header
+		h2.ui.header
+			div.content 个人活动列表
+			div.ui.divider
+	section.ui.three.cards
+		each activities
+			a(class='card' href='/activity/#{_id}')
+				div.image
+					img(src="#{cover}")
+				div.content
+					div.header #{name}
+					div.meta #{startingTime}
+					div.meta
+						span 热度:
+							span 100人
+						span 发起人:
+							span #{sponsor}
+				div.extra.content
+					div.ui.right.floated.primary.button
+						评论
+		if nextPath
+			div.next-button
+				a.ui.button(href="#{nextPath}") 加载更多
+					

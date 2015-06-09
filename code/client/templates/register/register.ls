@@ -12,12 +12,16 @@ Template.register.events {
 		reader.onload = (e)!->
 			$ '#cover' .attr 'src', reader.result
 
-	"submit form": (e) ->
-		e.prevent-default!
+	"click .register-back-login": !->
+		Session.set('is-login-register', false)
+		Session.set('is-login', true)
+		Router.go '/login'
 
-		username = $(e.target).find '[name=username]' .val!
-		password = $(e.target).find '[name=password]' .val!
-		avatar = $(e.target).find('[name=avatar]')[0].files
+	"click .confirm": (e) !->
+		# if $('.message').find('ul').length == 1
+		# 	# console.log "fuck you"
+		# 	$(".login-register .segment") .addClass "error"
+		$(".login-register .segment") .addClass "error"
 
 		$(".login-register").form {
 			# tel: {
@@ -65,7 +69,7 @@ Template.register.events {
 				identifier : 'tel'
 				rules: [
 					{
-						type : 'length[6]'
+						type : 'empty'
 						prompt : 'Please enter your phone number'
 					}
 				]
@@ -88,10 +92,42 @@ Template.register.events {
 					}
 				]
 			}
+			avatar: {
+				identifier : 'avatar'
+				rules: [
+					{
+						type : 'empty'
+						prompt : 'Please upload your avatar'
+					}
+				]
+			}
 		}
 
-		$(".login-register .segment") .addClass "error"
+		re = /^1\d{10}$/
+		tel = $('.tel').find '[name=tel]' .val!
+		msg = '<li>Your phone number must be 11 characters only in number</li>'
+		if !re.test(tel)
+			console.log 'func you'
+			$('.tel') .addClass 'error'
+			$('.message').find('ul') .append msg
 
+		re1 = /\d{5}[0-9]+/
+		qq = $('.qq').find '[name=qq]' .val!
+		msg2 = '<li>Your qq number must be only number more than six</li>'
+		if !re1.test(qq)
+			$('.qq') .addClass 'error'
+			$('.message').find('ul') .append msg2
+
+
+	"submit form": (e) ->
+		e.prevent-default!
+
+		username = $(e.target).find '[name=username]' .val!
+		password = $(e.target).find '[name=password]' .val!
+		avatar = $(e.target).find('[name=avatar]')[0].files
+
+		console.log 'fuck fuck fuck'
+		
 		profile = {
 			nickname: $(e.target).find '[name=nickname]' .val!
 			sex: $(e.target).find '[name=sex]' .val!
@@ -109,8 +145,6 @@ Template.register.events {
 			if not error
 				UploadAvatar.insert avatar
 				Router.go '/'
-			else
-				alert 'error'
 			)
 }
 

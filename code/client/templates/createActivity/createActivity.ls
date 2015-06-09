@@ -2,26 +2,6 @@ Template['createActivity'].events {
 	'submit form': (e)->
 		e.preventDefault!
 
-		# $(".createActivityForm").form {
-		# 	ActivityName: {
-		# 		identifier: 'ActivityName'
-		# 		rules: [
-		# 			{
-		# 				type: 'empty'
-		# 			}
-		# 		]
-		# 	}
-		# 	# ActivityPlace:
-		# 	# ActivityDeadline:
-		# 	# ActivityCover:
-		# 	# ActivityStartTime:
-		# 	# ActivityEndTime:
-		# 	# ActivityCategory:
-		# 	# PeopleNumber:
-		# 	# ActivityDescription:
-		# }
-
-
 		ActivityName = $(e.target).find('[name=ActivityName]').val()
 
 		ActivityPlace = $(e.target).find('[name=ActivityPlace]').val()
@@ -42,10 +22,14 @@ Template['createActivity'].events {
 		# here i comment with english because messy code: 
 		#ActivityCategory has following types(we can more later, it is example here 
 			#and you refer to the Template for detail):
+		#  0->eating
 		#  1->sports
-		#  2->study
-		#  3->eating
-		#  4->others
+		#  2->sutdy
+		#  3->movue
+		#  4->shopping
+		#  5->playTogether
+		#  6->others
+		#
 		#so i store 1 or 2 or 3 or 4 to the database instead of sports or study or eating or others
 		ActivityCategory = $(e.target).find('[name=ActivityCategory]').val()
 

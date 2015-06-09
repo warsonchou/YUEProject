@@ -25,6 +25,7 @@ Template.activity.helpers {
 		commentor = []
 		for participator in all-participators
 			if participator.comment isnt ''
+				#participator.headPhoto = UploadForActivity.findbyid participator.applier 
 				commentor.push participator
 		return commentor
 	none-comment: ->
@@ -86,73 +87,10 @@ Template.activity.events {
 			Activity.commentActivity Session.get("activityId") , Meteor.user-id! ,comment
 }
 
-/*
-#test data
-data = {
-	name: 'Go dating',
-	sponsor: 'wangqing',
-	num-of-people: 4,
-	starting-time: '2015/6/09',
-	ending-time: '2015/6/10',
-	deadline: '2015/6/09',
-	place: 'gogo',
-	open-or-not: true,
-	type: 'yue',
-	cover: 'image/1.jpg',
-	applyList: [{
-				applier : 0,
-				applier-name: 'Amy',
-				success: true,
-				score-of-participator: 0,
-				comment: '',
-				score-of-sponsor: 0,
-				createAt: new Date(),
-				credit: 0,
-				phone: 18903457891
-				},
-		{
-			applier : 1,
-			applier-name: 'Jack',
-			success: true,
-			score-of-participator: 0,
-			comment: '',
-			score-of-sponsor: 0,
-			createAt: new Date(),
-			credit: 0,
-			phone: 18903459876
-		}, 
-		{
-			applier : 2,
-			applier-name: 'Angelababy',
-			success: true,
-			score-of-participator: 0,
-			comment: 'falling in love!!!!',
-			score-of-sponsor: 0,
-			createAt: new Date(),
-			credit: 0,
-			phone: 18903451100
-		}, 
-		{
-			applier : 3,
-			applier-name: 'xiaoming',
-			success: true,
-			score-of-participator: 0,
-			comment: 'Nice to meet Angelababy$$$',
-			score-of-sponsor: 0,
-			createAt: new Date(),
-			credit: 0,
-			phone: 18903450987
-		}],
-	description: 'yue'
-}
 
-<<<<<<< HEAD
-Activity.collection.insert data
-*/
-=======
 Template.activity.onRendered !->
 	current-date = new Date!
 	if current-date > new Date (Activity.find-by-id Session.get "activityId" .startingTime)
 		console.log 'hi'
 		$ '.modify' .attr 'disabled', 'disabled'
->>>>>>> d194740507b3697bedb06e756727f3add283c55a
+

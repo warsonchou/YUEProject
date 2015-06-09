@@ -84,7 +84,9 @@
               .comment
                 a.avatar
                   h3
-                    i.icon.user.inverted.green.circular
+                    //-i.icon.user.inverted.green.circular
+                    each headPhoto
+                      img.rounded.ui.image(src="#{this.url}")
                 .content
                   a.author #{applierName}
                   .metadata

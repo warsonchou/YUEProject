@@ -25,8 +25,7 @@ root.UploadForActivity = {
 					currentUserUsername = currentUser.username
 					Activity.insert  ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
 
-<<<<<<< HEAD
-=======
+
 					
 	update: (id, ori-id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription)->
 		if files.length == 0
@@ -43,7 +42,7 @@ root.UploadForActivity = {
 						currentUser = User.current-user!
 						currentUserUsername = currentUser.username
 						Activity.update  id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
->>>>>>> d194740507b3697bedb06e756727f3add283c55a
+
 
 	find: ->
 		this.collection.find!

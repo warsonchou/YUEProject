@@ -61,7 +61,7 @@ Template['modifyActivity'].events {
 		UploadForActivity.update (Session.get "activityId"), ori-id, files, ActivityName, PeopleNumber, Deadeline, ActivityPlace, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, ActivityDescription
 
 
-		Router.go('/index')
+		Router.go('/activity/' + Session.get "activityId")
 
 
 	# display the uploading file

@@ -26,8 +26,7 @@ root.Activity = {
         }
 
     update: (id, name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
-        return this.collection.update (
-            {_id: id}
+        return this.collection.update {_id: id},
             {$set:
                 {
                     name: name,
@@ -44,7 +43,6 @@ root.Activity = {
                 }
 
             }
-        )
 
 
     delete: (id)->
@@ -61,7 +59,7 @@ root.Activity = {
                 {
                     "applyList": {
                         $elemMatch: {
-                            "applier-name": username,
+                            "applierName": username,
                             "success": false
                                     }
                                 }
@@ -79,7 +77,7 @@ root.Activity = {
                 {
                     "applyList": {
                         $elemMatch: {
-                            "applier-name": username,
+                            "applierName": username,
                             "success": true
                                     }
                                 }
@@ -89,7 +87,7 @@ root.Activity = {
 
     find-by-username: (username)->
         this.collection.find {
-            "applyList.applier-name": username
+            "applyList.applierName": username
         }
 
 

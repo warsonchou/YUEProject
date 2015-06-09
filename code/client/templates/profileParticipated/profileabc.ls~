@@ -1,8 +1,0 @@
-Template.profileabc.helpers ({
-	images: ->
-		alert 1
-		cover = this.cover
-		console.log cover
-		return UploadForActivity.findbyid cover
-
-})

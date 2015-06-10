@@ -54,8 +54,8 @@ Template['createActivity'].events {
 			#and you refer to the Template for detail):
 		#  0->eating
 		#  1->sports
-		#  2->sutdy
-		#  3->movue
+		#  2->study
+		#  3->movie
 		#  4->shopping
 		#  5->playTogether
 		#  6->others

@@ -86,6 +86,9 @@ Template['createActivity'].events {
 		reader.readAsDataURL file
 		reader.onload = (e)!->
 			$ '#cover' .attr 'src', reader.result
+
+	'click .CancelForActivity': !->
+		Router.go "/"
 }
 
 

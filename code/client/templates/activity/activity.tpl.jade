@@ -54,19 +54,40 @@
       if isSponsorOrParticipant
         #activity-detail-comment
           h4.ui.header 参与人员
-          #activity-detail-take-part-in-table
-            #table-header
-              ul
-                li 姓名
-                li 信用度
-            each activity.applyList
-              if this.success
-                .table-body
-                  ul
-                    li #{applierName}
-                    li 4
-                    if isSponsor
+          if isSponsor
+            #activity-detail-take-part-in-table
+              #table-header
+                ul
+                  li 姓名
+                  li 信用度
+                  li 评分
+              each activity.applyList
+                if this.success
+                  .table-body
+                    ul
+                      li #{applierName}
+                      li 4
+                      li
+                        .ui.rating.active.heart
+                          i.icon
+                          i.icon
+                          i.icon
+                          i.icon
+                          i.icon
                       .cancel_select
+          else
+            #activity-detail-take-part-in-table-for-participator
+              #table-header
+                ul
+                  li 姓名
+                  li 信用度
+              each activity.applyList
+                if this.success
+                  .table-body
+                    ul
+                      li #{applierName}
+                      li 4
+
 
       .ui.button.orange 评论
 
@@ -85,7 +106,7 @@
                 a.avatar
                   h3
                     //-i.icon.user.inverted.green.circular
-                    each headPhoto
+                    each this.headPhoto
                       img.rounded.ui.image(src="#{this.url}")
                 .content
                   a.author #{applierName}

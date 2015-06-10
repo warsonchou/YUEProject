@@ -46,8 +46,13 @@
 	width: 33%;
 }
 #activity-detail-take-part-in-table li {
+	width: 33%;
+}
+
+#activity-detail-take-part-in-table-for-participator li {
 	width: 50%;
 }
+
 #activity-detail-take-part-in-table ul {
 	position: relative;
 }

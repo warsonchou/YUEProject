@@ -12,9 +12,13 @@ template(name='login')
           .login-password
             i.lock.icon
             input(placeholder='Password', type='password', name='password', required)
+        .ui.error.message
+          ui.list
         .ui.buttons.login-button
           button.ui.positive.button(type='submit') 登陆
           .or
-          button.ui.button.login-register-btn 注册
+          button.ui.positive.button.login-register-btn 注册
+          .or
+          button.ui.positive.button.login-back-home 主页
 
         +loginButtons

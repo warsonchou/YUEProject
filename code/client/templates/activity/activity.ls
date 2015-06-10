@@ -25,7 +25,7 @@ Template.activity.helpers {
 		commentor = []
 		for participator in all-participators
 			if participator.comment isnt ''
-				#participator.headPhoto = UploadForActivity.findbyid participator.applier 
+				participator.headPhoto = UploadForActivity.findbyid participator.applier 
 				commentor.push participator
 		return commentor
 	none-comment: ->
@@ -89,6 +89,7 @@ Template.activity.events {
 
 
 Template.activity.onRendered !->
+	$('.ui.rating').rating("enable")
 	current-date = new Date!
 	if current-date > new Date (Activity.find-by-id Session.get "activityId" .startingTime)
 		console.log 'hi'

@@ -30,24 +30,33 @@ Template.layout.events {
 		User.logout!
 		Router.go "/"
 
-	'click .login-btn': !->
+	'click .login-btn': !->	
 		Router.go "/login"
 
 	"click .createActivity-btn": !->
+		$ ".homeMenuItem" .remove-class "active"
+		$ ".centerMenuItem" .remove-class "active"
 		if User.current-user!
 			Router.go "/createActivity"
 		else
 			Router.go "/login"
 
 	"click .home-btn": !->
+		$ ".homeMenuItem" .add-class "active"
+		$ ".centerMenuItem" .remove-class "active"
 		Router.go "/"
 
 	"click .profile-btn": !->
+		$ ".homeMenuItem" .remove-class "active"
+		$ ".centerMenuItem" .add-class "active"
 		Router.go "/profile"
 
 	"click .changeProfile-btn": !->
+		$ ".homeMenuItem" .remove-class "active"
+		$ ".centerMenuItem" .remove-class "active"
 		Router.go "/changeProfile"
 
 }
+
 
 

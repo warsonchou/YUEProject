@@ -19,13 +19,43 @@ Template['createActivity'].events {
 
 		ActivityEndTime = $(e.target).find('[name=ActivityEndTime]').val()
 
+		CurrentDate = new Date()
+		CurrentDatetToString = CurrentDate.format2!
+		$ ".timeProblemForBeginGtCurrent" .add-class "hidden"
+		$ ".timeProblemForRegisterLtCurrent" .add-class "hidden"
+		$ ".timeProblemForBeginGtEnd" .add-class "hidden"
+		$ ".timeProblemForRegistertLtBegin" .add-class "hidden"
+
+		if ActivityStartTime < CurrentDatetToString
+			$ ".timeProblemForBeginGtCurrent" .remove-class "hidden"
+			return
+		else
+			$ ".timeProblemForBeginGtCurrent" .add-class "hidden"
+
+		if Deadeline  < CurrentDatetToString
+			$ ".timeProblemForRegisterLtCurrent" .remove-class "hidden"
+			return
+		else
+			$ ".timeProblemForRegisterLtCurrent" .add-class "hidden"
+
+		if ActivityStartTime > ActivityEndTime
+			$ ".timeProblemForBeginGtEnd" .remove-class "hidden"
+			return
+		else
+			$ ".timeProblemForBeginGtEnd" .add-class "hidden"
+
+		if Deadeline < ActivityStartTime
+			$ ".timeProblemForRegistertLtBegin" .remove-class "hidden"
+			return
+		else
+			$ ".timeProblemForRegistertLtBegin" .add-class "hidden"
 		# here i comment with english because messy code: 
 		#ActivityCategory has following types(we can more later, it is example here 
 			#and you refer to the Template for detail):
 		#  0->eating
 		#  1->sports
-		#  2->sutdy
-		#  3->movue
+		#  2->study
+		#  3->movie
 		#  4->shopping
 		#  5->playTogether
 		#  6->others
@@ -56,6 +86,9 @@ Template['createActivity'].events {
 		reader.readAsDataURL file
 		reader.onload = (e)!->
 			$ '#cover' .attr 'src', reader.result
+
+	'click .CancelForActivity': !->
+		Router.go "/"
 }
 
 

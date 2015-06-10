@@ -7,6 +7,6 @@ Template.activityItem.helpers ({
 		sponsor = User.find-user this.sponsor
 		return UploadAvatar.findbyid sponsor.profile.avatarId
 	typename: ->
-		typelist = ["运动", "学习", "聚餐", "其它"]
+		typelist = ["餐饮", "运动", "学习", "电影", "逛街", "开黑", "其他"]
 		return typelist[parse-int(this.type) - 1]
 })

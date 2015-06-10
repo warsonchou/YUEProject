@@ -25,7 +25,9 @@ Template.activity.helpers {
 		commentor = []
 		for participator in all-participators
 			if participator.comment isnt ''
-				participator.headPhoto = UploadForActivity.findbyid participator.applier 
+				pictures = UploadForActivity.findbyid participator.applier
+				for picture in pictures
+					participator.headPhoto = picture.url
 				commentor.push participator
 		return commentor
 	none-comment: ->
@@ -85,11 +87,32 @@ Template.activity.events {
 			alert '你的评论还没有写哦！'
 		else
 			Activity.commentActivity Session.get("activityId") , Meteor.user-id! ,comment
+
+	"click .ui.rating": (e)!->
+		points = $(e.target.parentNode).rating("getRating")
+		activity-id = Session.get "activityId"
+		applier-id = $(e.target.parentNode).attr("id")
+		flag = Activity.give-marks-to-participator activity-id, applier-id, points
+		if flag is "success"
+			$(e.target.parentNode).rating("disable")
+			alert "谢谢你的评分！（评分后不能更改了）"
+
 }
 
 
 Template.activity.onRendered !->
-	$('.ui.rating').rating("enable")
+	all-participators = Activity.get-participate-applications Session.get "activityId"
+	all-rating = $('.ui.rating')
+	for participator in all-participators
+		for item in all-rating
+			if $(item).attr("id") is participator.applier
+				if participator.scoreOfParticipator is 0
+					$(item).rating("enable")
+				else
+					for i from 0 to (participator.scoreOfParticipator-1)
+						$($("#"+participator.applier+">i")[i]).addClass("active")
+					$(item).rating("disable")
+
 	current-date = new Date!
 	if current-date > new Date (Activity.find-by-id Session.get "activityId" .startingTime)
 		console.log 'hi'

@@ -25,9 +25,6 @@ Template.activity.helpers {
 		commentor = []
 		for participator in all-participators
 			if participator.comment isnt ''
-				pictures = UploadForActivity.findbyid participator.applier
-				for picture in pictures
-					participator.headPhoto = picture.url
 				commentor.push participator
 		return commentor
 	none-comment: ->

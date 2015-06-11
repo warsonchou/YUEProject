@@ -149,6 +149,7 @@ Router.route '/activity/:activityId', {
     name: 'activity',
     waitOn: ->
         Meteor.subscribe 'Activity'
+        Meteor.subscribe 'uploadAvatar'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'userAccount'
         Session.set "activityId", this.params.activityId

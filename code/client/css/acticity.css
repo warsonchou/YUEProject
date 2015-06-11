@@ -76,3 +76,9 @@
 .hidden {
 	visibility: hidden;
 }
+
+.headphoto {
+	border-radius: 500em !important;
+	height: 2em !important;
+	width: 2em !important;
+}

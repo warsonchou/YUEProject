@@ -88,6 +88,7 @@ Router.route '/createActivity', {
 Router.route '/profile/:activityLimit?', {
     name : 'profile',
     wait-on: ->
+        Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 6
         find-options = {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
@@ -96,7 +97,6 @@ Router.route '/profile/:activityLimit?', {
     data: ->
         name = User.current-user!
         more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username-as-sponor(name.username).count!
-
         next = null
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
@@ -110,17 +110,15 @@ Router.route '/profile/:activityLimit?', {
 Router.route '/profileParticipated/:activityLimit?', {
     name : 'profileParticipated',
     wait-on: ->
-        activity-limit = parse-int(this.params.activity-limit) || 6
-        find-options = {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        Session.set('is-login-register', true)
+        Meteor.subscribe 'activities'
         Meteor.subscribe 'uploadForActivity'
     data: ->
         name = User.current-user!
-        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username(User.current-user!.username).count!
-        alert "参与成功："+Activity.find-by-username-has-participated(User.current-user!.username).count!
-        alert "未参与成功："+Activity.find-by-username-has-not-participated(User.current-user!.username).count!
-        alert "参与成功和未参与成功："+Activity.find-by-username(User.current-user!.username).count!
+        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username(name.username).count!
+        console.log "参与成功："+Activity.find-by-username-has-participated(name.username).count!
+        console.log "未参与成功："+Activity.find-by-username-has-not-participated(name.username).count!
+        console.log "参与成功和未参与成功："+Activity.find-by-username(name.username).count!
         next = null
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
@@ -151,6 +149,7 @@ Router.route '/activity/:activityId', {
     name: 'activity',
     waitOn: ->
         Meteor.subscribe 'Activity'
+        Meteor.subscribe 'uploadAvatar'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'userAccount'
         Session.set "activityId", this.params.activityId

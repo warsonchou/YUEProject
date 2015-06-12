@@ -68,7 +68,7 @@
                       li #{applierName}
                       li 4
                       li
-                        .ui.rating.active.heart
+                        .ui.rating.active.heart(id="#{applier}")
                           i.icon
                           i.icon
                           i.icon
@@ -102,18 +102,7 @@
               | 暂时没有评论，快来抢沙发～～
           else
             each commentors
-              .comment
-                a.avatar
-                  h3
-                    //-i.icon.user.inverted.green.circular
-                    each this.headPhoto
-                      img.rounded.ui.image(src="#{this.url}")
-                .content
-                  a.author #{applierName}
-                  .metadata
-                    span.date 2天前
-                  .text
-                    | #{comment}
+              +commentoritem
       //-write down your commment
       if isParticipantSuccess
         form(method="post")

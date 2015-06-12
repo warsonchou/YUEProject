@@ -162,4 +162,16 @@ root.Activity = {
                     this.collection.update id, {$set: {applyList: participators}}
                     return 'success'
         return 'error'
+
+    give-marks-to-participator: (activity-id, applier-id, grade)->
+        participators = this.get-applications activity-id
+        for item in participators
+            if item.success and item.applier is applier-id
+                if item.score-of-participator isnt 0
+                    return 'error'
+                else
+                    item.score-of-participator = grade
+                    this.collection.update activity-id, {$set: {applyList: participators}}
+                    return 'success'
+        return 'error'
 }

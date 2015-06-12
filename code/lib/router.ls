@@ -117,15 +117,15 @@ Router.route '/profileParticipated/:activityLimit?', {
         Meteor.subscribe 'uploadForActivity'
     data: ->
         name = User.current-user!
-        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username(name.username).count!
-        alert "参与成功："+Activity.find-by-username-has-participated(name.username).count!
-        alert "未参与成功："+Activity.find-by-username-has-not-participated(name.username).count!
-        alert "参与成功和未参与成功："+Activity.find-by-username(name.username).count!
+        more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username(User.current-user!.username).count!
+        alert "参与成功："+Activity.find-by-username-has-participated(User.current-user!.username).count!
+        alert "未参与成功："+Activity.find-by-username-has-not-participated(User.current-user!.username).count!
+        alert "参与成功和未参与成功："+Activity.find-by-username(User.current-user!.username).count!
         next = null
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
         return {
-            activities: Activity.find-by-username(name.username)
+            activities: Activity.find-by-username(User.current-user!.username)
             next-path: next
         }
 }

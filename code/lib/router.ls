@@ -111,7 +111,10 @@ Router.route '/profileParticipated/:activityLimit?', {
     name : 'profileParticipated',
     wait-on: ->
         Session.set('is-login-register', true)
-        Meteor.subscribe 'activities'
+        activity-limit = parse-int(this.params.activity-limit) || 6
+        find-options = {sort: {createAt: -1}, limit: activity-limit}
+        Meteor.subscribe 'activities', find-options
+        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'uploadForActivity'
     data: ->
         name = User.current-user!
@@ -131,7 +134,7 @@ Router.route '/profileParticipated/:activityLimit?', {
 Router.route '/changeProfile', {
     name: 'changeProfile',
     wait-on: ->
-        Meteor.subscribe 'user'
+        Meteor.subscribe 'userAccount'
         Meteor.subscribe 'uploadForActivity'
         Meteor.subscribe 'uploadAvatar'
     data: ->
@@ -142,6 +145,7 @@ Router.route '/changeProfile', {
         return {
             profile: user.profile,
             avatar: avatar
+            Currentuser: User.current-user!
         }
 }
 

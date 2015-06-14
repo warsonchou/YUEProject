@@ -10,30 +10,41 @@ template(name="changeProfile")
             .field
               label &#26165;&#31216;
               .login-name
-                input(type="text", placeholder="Name", name="nickname" value="")
+                input(type="text", placeholder="Name", name="nickname", value="#{Currentuser.profile.nickname}")
             .field
               label &#24615;&#21035;
               .login-sexual
                 select(name="sex")
-                  option(value="male") &#30007;
-                  option(value="female") &#22899;
+                  option(value="male", selected="#{sex.male}") &#30007;
+                  option(value="female", selected="#{sex.female}") &#22899;
             .field.tel
               label &#25163;&#26426;&#21495;&#30721;
               .login-tel
-                input(type="text", placeholder="Tel", name="tel")
+                input(type="text", placeholder="Tel", name="tel", value="#{Currentuser.profile.tel}")
             .field.qq
               label QQ
               .login-qq
-                input(type="text", placeholder="QQ", name="qq")
+                input(type="text", placeholder="QQ", name="qq", value="#{Currentuser.profile.qq}")
             .field
               label &#37038;&#31665;
               .login-mail
-                input(type="text", placeholder="Mail", name="mail")
+                input(type="text", placeholder="Mail", name="mail", value="#{Currentuser.profile.mail}")
+            .field.password
+              label 密码
+              .login-qq
+                input(type="password", placeholder="Password", name="password")
+            .field.confirmPassword
+              label 确认密码
+              .login-qq
+                input(type="password", placeholder="Password", name="confirmPassword")
+            .field
             .field.show-avatar-field-changeprofile
               .show-avatar-changeprofile
                 img(src="", id="cover")
               .ui.input
                 input(type="file", name="avatar" class="avatar-input")
             .ui.error.message
-            .ui.buttons.login-button
+            .ui.vertical.left.aligned.basic.segment
               button.ui.positive.button.submit.confirm(type="submit") &#30830;&#23450;
+              a.item(href="/")
+                    .negative.ui.button 取消

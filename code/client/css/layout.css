@@ -1,3 +1,7 @@
+body {
+	background: #fff;
+}
+
 #layoutMain {
 	width: 90%;
 	margin: 1% auto 5%;
@@ -14,6 +18,7 @@
 
 a:hover {
 	cursor: pointer;
+	text-decoration: none;
 }
 
 #sidebar {
@@ -23,5 +28,63 @@ border-radius: 6px; */
 
 .sidebarBlock {
 	margin-bottom: 20px;
-	
 }
+
+.apptitle {
+	background: url("/images/logo.jpg") no-repeat;
+	background-size: 100px 36px;
+	background-position: 50px 0px;
+	height:36px;
+	/* border: 1px solid #000; */
+	margin: 20px auto 10px;
+}
+
+.introduction_pic {
+	background-image: url("/images/introduction.jpg");
+	background-repeat: no-repeat;
+	background-position: right 68px;
+	height: 400px;
+}
+
+.introduction_txt {
+	width: 230px;
+}
+
+#login_main {
+	margin: 50px auto;
+	/* box-shadow: 5px 5px 5px gray; */
+	/* border: 2px solid #000; */
+}
+
+/* .login_footer {
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+} */
+/* .register_div {
+	position: relative;
+	border: 2px solid #000;
+} */
+
+/* .login_footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	height: 50px;
+}
+
+.footer_ul li {
+	display: inline;
+	list-style: none;
+	margin: 5px;
+}
+
+.footer_ul li a {
+	color: #FFF;
+}
+
+.footer_ul li a:hover {
+	color: #000;
+}
+ */

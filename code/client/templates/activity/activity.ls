@@ -26,6 +26,7 @@ Template.activity.helpers {
 		for participator in all-participators
 			if participator.comment isnt ''
 				commentor.push participator
+		commentor.sort (a,b) -> if a.comment-date > b.comment-date then 1 else -1
 		return commentor
 	none-comment: ->
 		all-participators = Activity.get-participate-applications Session.get "activityId"
@@ -45,7 +46,12 @@ Template.activity.helpers {
 		for participant in Activity.find-by-id Session.get "activityId" .applyList
 			if  participant.applier is Meteor.user!._id and participant.comment isnt ''
 				return true
-		false 
+		false
+	comment-context: ->
+		for participant in Activity.find-by-id Session.get "activityId" .applyList
+			if  participant.applier is Meteor.user!._id
+				return participant.comment
+		return ""
 }
 
 Template.activity.events {
@@ -80,10 +86,16 @@ Template.activity.events {
 	"submit form" : (e) !->
 		e.prevent-default!
 		comment = $(e.target).find '[name=comment]' .val!
+		current-time = new Date!
+		console.log current-time
 		if comment === ''
 			alert '你的评论还没有写哦！'
 		else
-			Activity.commentActivity Session.get("activityId") , Meteor.user-id! ,comment
+			flag = Activity.commentActivity Session.get("activityId") , Meteor.user-id! , comment, current-time
+			if flag is "success"
+				alert '评论成功!'
+			else
+				alert '评论失败!'
 
 	"click .ui.rating": (e)!->
 		points = $(e.target.parentNode).rating("getRating")

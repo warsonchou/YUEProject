@@ -88,9 +88,6 @@
                       li #{applierName}
                       li 4
 
-
-      .ui.button.orange 评论
-
       //- show comments
       div.ui.blue.segment.form
         h3.ui.header
@@ -113,6 +110,11 @@
                   .field
                     .ui.button
                       | 你已经评论过，谢谢你的评论！
+                  .field
+                    textarea(name='comment') #{commentContext}
+                  button.ui.fluid.blue.labeled.submit.icon.button(type='submit')
+                    i.icon.edit
+                    | 修改我的评论!
               else
                 .grouped.fields
                   .field

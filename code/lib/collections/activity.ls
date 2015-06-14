@@ -109,6 +109,7 @@ root.Activity = {
             success: false,
             score-of-participator: 0,
             comment: '',
+            comment-date: new Date(),
             createAt: new Date(),
             score-of-sponsor: 0,
             credit: credit,
@@ -151,16 +152,14 @@ root.Activity = {
                 ++num
         return scores * 1.0 / num
  
-    comment-activity: (id, applier-id, comment)->
+    comment-activity: (id, applier-id, comment, date)->
         participators = this.get-applications id
         for item in participators
             if item.success and item.applier is applier-id
-                if item.comment isnt ''
-                    return 'error'
-                else
-                    item.comment = comment
-                    this.collection.update id, {$set: {applyList: participators}}
-                    return 'success'
+                item.comment = comment
+                item.comment-date = date
+                this.collection.update id, {$set: {applyList: participators}}
+                return 'success'
         return 'error'
 
     give-marks-to-participator: (activity-id, applier-id, grade)->

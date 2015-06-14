@@ -104,6 +104,12 @@ Template['modifyActivity'].helpers {
 			type4: ->
 				if Activity.find-by-id Session.get "activityId" .type == '4'
 					return 'selected'
+			type5: ->
+				if Activity.find-by-id Session.get "activityId" .type == '5'
+					return 'selected'
+			type6: ->
+				if Activity.find-by-id Session.get "activityId" .type == '6'
+					return 'selected'
 		}
 	radio-check: ->
 		return {

@@ -12,11 +12,11 @@ Meteor.publish 'Activity', ->
 	return Activity.collection.find {}
 
 # here people related the images should add some logic here
-Meteor.publish 'uploadAvatar' ->
+Meteor.publish 'uploadAvatar', ->
 	return UploadAvatar.find!
 
 # publish the uploaded images for activity
-Meteor.publish 'uploadForActivity' ->
+Meteor.publish 'uploadForActivity', ->
 	return UploadForActivity.find!
 
 Meteor.publish 'activityForComment', (activityId)->

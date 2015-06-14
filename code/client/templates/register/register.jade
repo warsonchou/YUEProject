@@ -6,13 +6,13 @@ template(name="register")
           label 用户名
           .login-user
             i.user.icon
-            input(type="text", placeholder="Username", name="username")
+            input(type="text", placeholder="Username", name="usernameForRegister")
             .username-existed #{registerUsernameError}
         .field
           label 密码
           .login-password
             i.lock.icon
-            input(type="password", placeholder="Password", name="password")
+            input(type="password", placeholder="Password", name="passwordForRegister")
         .field
           label 昵称
           .login-name
@@ -47,7 +47,7 @@ template(name="register")
           .ui.input
             input(type="file", name="avatar" class="avatar-input")
         .ui.error.message
-        .ui.buttons.login-button
+        .ui.buttons
           button.ui.positive.button.confirm.submit(type="submit") 确定
           .or
           button.ui.positive.button.register-back-login 返回

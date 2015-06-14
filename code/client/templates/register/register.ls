@@ -34,7 +34,7 @@ Template.register.events {
 			# 	]
 			# }
 			username: {
-				identifier : 'username'
+				identifier : 'usernameForRegister'
 				rules: [
 					{
 						type : 'empty'
@@ -43,7 +43,7 @@ Template.register.events {
 				]
 			}
 			password: {
-				identifier : 'password'
+				identifier : 'passwordForRegister'
 				rules: [
 					{
 						type : 'empty'
@@ -122,8 +122,8 @@ Template.register.events {
 	"submit form": (e) ->
 		e.prevent-default!
 
-		username = $(e.target).find '[name=username]' .val!
-		password = $(e.target).find '[name=password]' .val!
+		username = $(e.target).find '[name=usernameForRegister]' .val!
+		password = $(e.target).find '[name=passwordForRegister]' .val!
 		avatar = $(e.target).find('[name=avatar]')[0].files
 
 		console.log 'fuck fuck fuck'

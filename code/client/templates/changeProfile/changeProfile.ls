@@ -13,7 +13,7 @@ Template.changeProfile.events {
 			$ '#cover' .attr 'src', reader.result
 
 	"click .confirm": (e) !->
-		$(".segment") .addClass "error"
+		# $(".segment") .addClass "error"
 
 		$(".changeProfile").form {
 			nickname: {
@@ -47,22 +47,16 @@ Template.changeProfile.events {
 				identifier : 'mail'
 				rules: [
 					{
+						type : 'empty'
+						prompt : 'Please enter your mail'
+					}
+					{
 						type : 'email'
 						prompt : 'Please enter a valid email address'
 					}
 				]
 			}
-			avatar: {
-				identifier : 'avatar'
-				rules: [
-					{
-						type : 'empty'
-						prompt : 'Please upload your avatar'
-					}
-				]
-			}
 		}
-
 		re = /^1\d{10}$/
 		tel = $('.tel').find '[name=tel]' .val!
 		msg = '<li>Your phone number must be 11 characters only in number</li>'
@@ -70,6 +64,7 @@ Template.changeProfile.events {
 			console.log 'func you'
 			$('.tel') .addClass 'error'
 			$('.message').find('ul') .append msg
+			# return
 
 		re1 = /\d{5}[0-9]+/
 		qq = $('.qq').find '[name=qq]' .val!
@@ -77,11 +72,32 @@ Template.changeProfile.events {
 		if !re1.test(qq)
 			$('.qq') .addClass 'error'
 			$('.message').find('ul') .append msg2
+			# return
+
 
 	"submit form": (e) ->
 		e.prevent-default!
+		# $('.tel') .removeClass 'error'
+		# $('.qq') .removeClass 'error'
+		# $ ".password" .removeClass 'error'
+		# $ ".confirmPassword" .removeClass 'error'
+
+		
+
+		# passwordForSubmit = $('.password').find('[name=password]') .val!
+		# confirmPassword = $('.confirmPassword').find('[name=confirmPassword]') .val!
+
+		# # msg3 = '<li>Your password number must be only number more than six</li>'
+		# if passwordForSubmit.length < 6
+		# 	$ ".password" .addClass 'error'
+		# 	return
+		# 	# $('.message').find('ul') .append msg3
+		# if passwordForSubmit != confirmPassword
+		# 	$ ".confirmPassword" .addClass 'error'
+		# 	return
 
 		avatar = $(e.target).find('[name=avatar]')[0].files
+		password = $(e.target).find('[name=password]')
 
 		profile = {
 			nickname: $(e.target).find '[name=nickname]' .val!
@@ -89,13 +105,27 @@ Template.changeProfile.events {
 			tel: $(e.target).find '[name=tel]' .val!
 			qq: $(e.target).find '[name=qq]' .val!
 			mail: $(e.target).find '[name=mail]' .val!
-			avatarId: null
+			# avatarId: null
 		}
 		
 
-		User.change-information(profile, (error) ->
+		User.change-information(profile, password, (error) ->
 			if not error
-				UploadAvatar.insert avatar
+				if avatar is not null
+					UploadAvatar.insert avatar
 				Router.go '/'
 			)
+}
+
+Template.changeProfile.helpers {
+	sex: ->
+		user=User.current-user!
+		return {
+			male: ->
+				if user.profile.sex is "male"
+					return "selected"
+			female: ->
+				if user.profile.sex is "female"
+					return "selected"
+		}
 }

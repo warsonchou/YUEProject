@@ -21,6 +21,7 @@ Template.register.events {
 		# if $('.message').find('ul').length == 1
 		# 	# console.log "fuck you"
 		# 	$(".login-register .segment") .addClass "error"
+
 		$(".login-register .segment") .addClass "error"
 
 		$(".login-register").form {
@@ -52,6 +53,15 @@ Template.register.events {
 					{
 						type : 'length[6]'
 						prompt: 'Your password must be at least 6 characters'
+					}
+				]
+			}
+			passwordConfirm: {
+				identifier : 'passwordForRegisterConfirm'
+				rules: [
+					{
+						type : 'match[passwordForRegister]'
+						prompt: 'Please check out your password'
 					}
 				]
 			}
@@ -107,7 +117,6 @@ Template.register.events {
 		tel = $('.tel').find '[name=tel]' .val!
 		msg = '<li>Your phone number must be 11 characters only in number</li>'
 		if !re.test(tel)
-			console.log 'func you'
 			$('.tel') .addClass 'error'
 			$('.message').find('ul') .append msg
 
@@ -120,14 +129,14 @@ Template.register.events {
 
 
 	"submit form": (e) ->
-		e.prevent-default!
+		# e.prevent-default!
 
 		username = $(e.target).find '[name=usernameForRegister]' .val!
 		password = $(e.target).find '[name=passwordForRegister]' .val!
 		avatar = $(e.target).find('[name=avatar]')[0].files
-
-		console.log 'fuck fuck fuck'
 		
+		console.log 'fuck fuck fuck'
+
 		profile = {
 			nickname: $(e.target).find '[name=nickname]' .val!
 			sex: $(e.target).find '[name=sex]' .val!

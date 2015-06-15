@@ -25,6 +25,13 @@ Template.changeProfile.events {
 					}
 				]
 			}
+			passwordConfirm: {
+				identifier : 'confirmPassword'
+				rules: [
+					identifier : 'match[password]'
+					prompt: 'Please check out your password again'
+				]
+			}
 			tel: {
 				identifier : 'tel'
 				rules: [

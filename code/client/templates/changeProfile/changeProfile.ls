@@ -12,8 +12,10 @@ Template.changeProfile.events {
 		reader.onload = (e)!->
 			$ '#cover' .attr 'src', reader.result
 
-	"click .confirm": (e) !->
+	"click .confirmForModifyProfile": (e) !->
 		# $(".segment") .addClass "error"
+		# $ ".password" .removeClass 'error'
+		# $ ".confirmPassword" .removeClass 'error'
 
 		$(".changeProfile").form {
 			nickname: {
@@ -81,39 +83,46 @@ Template.changeProfile.events {
 		# $('.qq') .removeClass 'error'
 		# $ ".password" .removeClass 'error'
 		# $ ".confirmPassword" .removeClass 'error'
-
+		$ ".passwordLengthProblem" .addClass 'hidden'
+		$ ".passwordDifferentProblem" .addClass 'hidden'
 		
 
 		# passwordForSubmit = $('.password').find('[name=password]') .val!
 		# confirmPassword = $('.confirmPassword').find('[name=confirmPassword]') .val!
 
-		# # msg3 = '<li>Your password number must be only number more than six</li>'
-		# if passwordForSubmit.length < 6
-		# 	$ ".password" .addClass 'error'
+		# if passwordForSubmit.length < 6 and passwordForSubmit.length != 0
+		# 	$ ".passwordLengthProblem" .removeClass 'hidden'
+		# 	# $(".changeProfile").form {}
+		# 	# e.target.reset!
 		# 	return
-		# 	# $('.message').find('ul') .append msg3
-		# if passwordForSubmit != confirmPassword
-		# 	$ ".confirmPassword" .addClass 'error'
+		# else if passwordForSubmit != confirmPassword and passwordForSubmit.length != 0
+		# 	$ ".passwordDifferentProblem" .removeClass 'hidden'
+		# 	# $(".changeProfile").form {}
+		# 	# e.target.reset!
 		# 	return
+		# else
 
 		avatar = $(e.target).find('[name=avatar]')[0].files
-		password = $(e.target).find('[name=password]')
+		# password = $(e.target).find('[name=password]')
 
+		tempUser = User.current-user!	
 		profile = {
 			nickname: $(e.target).find '[name=nickname]' .val!
 			sex: $(e.target).find '[name=sex]' .val!
 			tel: $(e.target).find '[name=tel]' .val!
 			qq: $(e.target).find '[name=qq]' .val!
 			mail: $(e.target).find '[name=mail]' .val!
-			# avatarId: null
+			avatarId: tempUser.profile.avatarId
 		}
 		
 
-		User.change-information(profile, password, (error) ->
+		User.change-information(profile,  (error) ->
 			if not error
-				if avatar is not null
-					UploadAvatar.insert avatar
-				Router.go '/'
+				if avatar.length isnt 0
+					UploadAvatar.update avatar
+					Router.go '/'
+				else
+					Router.go '/'
 			)
 }
 

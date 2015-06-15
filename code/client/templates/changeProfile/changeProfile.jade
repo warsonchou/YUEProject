@@ -29,22 +29,25 @@ template(name="changeProfile")
               label &#37038;&#31665;
               .login-mail
                 input(type="text", placeholder="Mail", name="mail", value="#{Currentuser.profile.mail}")
-            .field.password
-              label 密码
-              .login-qq
-                input(type="password", placeholder="Password", name="password")
-            .field.confirmPassword
-              label 确认密码
-              .login-qq
-                input(type="password", placeholder="Password", name="confirmPassword")
+            //- .field.password
+            //-   label 密码
+            //-   .login-qq
+            //-     input(type="password", placeholder="Password", name="password")
+            //- .ui.message.red.hidden.passwordLengthProblem 密码不能小于六位
+            //- .field.confirmPassword
+            //-   label 确认密码
+            //-   .login-qq
+            //-     input(type="password", placeholder="Password", name="confirmPassword")
+            //-   .ui.message.red.hidden.passwordDifferentProblem 两次密码不一致
             .field
             .field.show-avatar-field-changeprofile
               .show-avatar-changeprofile
                 img(src="", id="cover")
               .ui.input
                 input(type="file", name="avatar" class="avatar-input")
-            .ui.error.message
+            
+              .ui.message.error.hidden.timeProblemForBeginGtEnd 活动开始时间不能大于活动结束时间
             .ui.vertical.left.aligned.basic.segment
-              button.ui.positive.button.submit.confirm(type="submit") &#30830;&#23450;
+              button.ui.positive.button.submit.confirmForModifyProfile(type="submit") &#30830;&#23450;
               a.item(href="/")
                     .negative.ui.button 取消

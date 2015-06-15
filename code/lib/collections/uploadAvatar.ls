@@ -27,6 +27,32 @@ root.UploadAvatar = {
 					profile.avatarId = fileObj._id
 					console.log fileObj._id
 					User.change-information profile
+	update: (avatar)->
+		if avatar.length != 0
+			current-user =  User.current-user!
+			current-profile = current-user.profile
+			current-avtarid = current-profile.avatarId
+			for file in avatar
+				this.collection.insert file, (err, fileObj)!->
+					if err
+						console.log "insert new avatar fail!"
+					else
+						current-profile.avatarId = fileObj._id
+						User.change-information current-profile
+						this.collection.remove {
+							"_id": current-avtarid
+						}
+
+	remove: (avatarId)->
+		current-user =  User.current-user!
+		if !current-user
+			return "error"
+		else
+			this.collection.remove {
+				"_id": avatarId
+			}
+
+
 
 	find: ->
 		this.collection.find!

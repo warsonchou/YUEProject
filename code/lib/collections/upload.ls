@@ -43,6 +43,11 @@ root.UploadForActivity = {
 						currentUserUsername = currentUser.username
 						Activity.update  id, ActivityName, PeopleNumber, Deadeline, ActivityPlace, fileObj._id, ActivityStartTime, ActivityEndTime, open-or-not-information, ActivityCategory, currentUserUsername, ActivityDescription
 
+	delete: (activityId)->
+		this.collection.remove {
+			"_id": activityId
+		}
+
 
 	find: ->
 		this.collection.find!

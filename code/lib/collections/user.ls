@@ -21,16 +21,16 @@ root.User = {
     change-password: (old-password, new-password, callback)->
         Accounts.change-password old-password, new-password, callback
 
-    change-information: (profile, passwd, callback)->
+    change-information: (profile, callback)->
         user = this.current-user!
         if not user
             callback 1
         else
             id = Meteor.user-id!
-            if passwd is ""
-                Meteor.users.update id, {$set: {profile: profile}}, callback
-            else
-                Meteor.users.update id, {$set: {password: passwd, profile: profile}}, callback
+            # if passwd is ""
+            Meteor.users.update id, {$set: {profile: profile}}, callback
+            # else
+            #     Meteor.users.update id, {$set: {password: passwd, profile: profile}}, callback
     find-username: (username)->
         is-found = Meteor.users.find {"username" : username}
         if is-found.count() >= 1

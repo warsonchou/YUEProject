@@ -124,24 +124,35 @@ template(name="layout")
 							.introductiondiv
 								.introduction_pic
 									.introduction_txt
-										a.ui.header SEEK 
+										.ui.header SEEK 
 											.sub.header	一款专注线下的web社交平台
+										.ui.header SEEK 语丝
 										.ui.list
 											a.item
 												i.leaf.icon
 												.content
-												| 我本是个不安分的小孩，有时还爱异想天开，一心要在生活中寻找某种不同寻常的夺目光彩。
+													| 我本是个不安分的小孩，有时还爱异想天开，一心要在生活中寻找某种不同寻常的夺目光彩。
+													br
+													span —— 《钢铁是怎样炼成的》
 											a.item
 												i.leaf.icon
 												.content
-												| 我一直在寻找那种感觉，那种在寒冷的日子里，牵起一双温暖的手，踏实地向前走的感觉。
+													| 我在冰峰的深海，寻找希望的缺口，却在惊醒时，瞥见绝美的阳光！
+													br
+													span —— 几米
+											a.item
+												i.leaf.icon
+												.content
+													| ...
 						
-						//- .ui.vertical.divider
-						.five.wide.column.register_div
+						.six.wide.center.aligned.column
 							if isLogin
+								.ui.header 登录
 								+login
 							else
+								.ui.header 注册
 								+register
+				.ui.inverted.teal.segment
 				//- .login_footer
 				//- 	.ui.center.aligned.inverted.teal.segment
 				//- 		ul.footer_ul

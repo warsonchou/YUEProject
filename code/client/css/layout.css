@@ -37,20 +37,37 @@ border-radius: 6px; */
 	height:36px;
 	/* border: 1px solid #000; */
 	margin: 20px auto 10px;
+
+	transition: all 0.5s linear;
+	-webkit-transition: all 0.5s linear;
+}
+
+.apptitle:hover {
+	background-position: 60px 0px;
 }
 
 .introduction_pic {
 	background-image: url("/images/introduction.jpg");
+	/* background-size: 480px 300px; */
 	background-repeat: no-repeat;
 	background-position: right 68px;
 	height: 400px;
 }
 
 .introduction_txt {
-	width: 230px;
+	width: 80%;
 }
 
+span {
+	float: right;
+}
+
+/* .introduction_txt .header {
+	text-shadow: 1px 1px 1px gray;
+} */
+
 #login_main {
+	width: 100%;
 	margin: 50px auto;
 	/* box-shadow: 5px 5px 5px gray; */
 	/* border: 2px solid #000; */
@@ -61,10 +78,9 @@ border-radius: 6px; */
 	position: absolute;
 	bottom: 0px;
 } */
-/* .register_div {
-	position: relative;
+.border_test_div {
 	border: 2px solid #000;
-} */
+}
 
 /* .login_footer {
 	position: fixed;

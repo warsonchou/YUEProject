@@ -108,14 +108,19 @@ template(name="layout")
 							.ui.horizontal.list
 								a.item(href="") 欢迎页面
 								a.item(href="") 关于我们
-								a.item(href="") 问题反馈
+								a.item(href="") 问题反馈 (不可用)
 							br
-							| All Copyright Reserved
+							|	Copyright &copy; SYSU SS SPI Group 5
+							br
+							|	2015 05/06
 
 			else
 				.ui.inverted.teal.segment
 				.apptitle
 					//- img(src="/images/logo.jpg")
+					//- .ui.move.up.reveal.revealmes.border_test_div
+					//- 	.visible.content Hello
+					//- 	.hidden.content 加入SEEK
 
 				.ui.divider
 				#login_main
@@ -125,7 +130,7 @@ template(name="layout")
 								.introduction_pic
 									.introduction_txt
 										.ui.header SEEK 
-											.sub.header	一款专注线下的web社交平台
+											.sub.header 一款专注线下的web社交平台
 										.ui.header SEEK 语丝
 										.ui.list
 											a.item
@@ -144,6 +149,8 @@ template(name="layout")
 												i.leaf.icon
 												.content
 													| ...
+										//- .ui.header 而你又在SEEK什么？ 
+										//- 	.sub.header	加入SEEK，重新认识生活
 						
 						.six.wide.center.aligned.column
 							if isLogin

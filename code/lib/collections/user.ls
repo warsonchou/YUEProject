@@ -19,7 +19,7 @@ root.User = {
         Meteor.user!
 
     change-password: (old-password, new-password, callback)->
-        Accounts.change-password old-password, new-password, callback
+        Accounts.changePassword old-password, new-password, callback
 
     change-information: (profile, callback)->
         user = this.current-user!

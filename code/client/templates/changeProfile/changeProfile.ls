@@ -81,33 +81,34 @@ Template.changeProfile.events {
 		if !re1.test(qq)
 			$('.qq') .addClass 'error'
 			$('.message').find('ul') .append msg2
-			# return
+			return
 
 
 	"submit form": (e) ->
 		e.prevent-default!
 		# $('.tel') .removeClass 'error'
 		# $('.qq') .removeClass 'error'
-		# $ ".password" .removeClass 'error'
-		# $ ".confirmPassword" .removeClass 'error'
+		# $ ".password" .addClass 'hidden'
+		# $ ".confirmPassword" .addClass 'hidden'
 		$ ".passwordLengthProblem" .addClass 'hidden'
 		$ ".passwordDifferentProblem" .addClass 'hidden'
+		$ ".oldPasswordEmpty" .addClass "hidden"
+		$ ".OldPasswordNotCorrect" .addClass "hidden"
 		
 
-		# passwordForSubmit = $('.password').find('[name=password]') .val!
-		# confirmPassword = $('.confirmPassword').find('[name=confirmPassword]') .val!
+		passwordForSubmit = $('.password').find('[name=password]') .val!
+		confirmPassword = $('.confirmPassword').find('[name=confirmPassword]') .val!
+		oldPassword = $(e.target).find '[name=Oldpassword]' .val!
 
-		# if passwordForSubmit.length < 6 and passwordForSubmit.length != 0
-		# 	$ ".passwordLengthProblem" .removeClass 'hidden'
-		# 	# $(".changeProfile").form {}
-		# 	# e.target.reset!
-		# 	return
-		# else if passwordForSubmit != confirmPassword and passwordForSubmit.length != 0
-		# 	$ ".passwordDifferentProblem" .removeClass 'hidden'
-		# 	# $(".changeProfile").form {}
-		# 	# e.target.reset!
-		# 	return
-		# else
+		if passwordForSubmit.length != 0 and oldPassword.length == 0
+			$ ".oldPasswordEmpty" .removeClass "hidden"
+			return
+		if passwordForSubmit.length < 6 and passwordForSubmit.length != 0
+			$ ".passwordLengthProblem" .removeClass 'hidden'
+			return
+		else if passwordForSubmit != confirmPassword and passwordForSubmit.length != 0
+			$ ".passwordDifferentProblem" .removeClass 'hidden'
+			return
 
 		avatar = $(e.target).find('[name=avatar]')[0].files
 		# password = $(e.target).find('[name=password]')
@@ -122,14 +123,27 @@ Template.changeProfile.events {
 			avatarId: tempUser.profile.avatarId
 		}
 		
-
-		User.change-information(profile,  (error) ->
-			if not error
-				if avatar.length isnt 0
-					UploadAvatar.update avatar
-					Router.go '/'
+		
+		User.change-information(profile,  (error1) ->
+			if not error1
+				if oldPassword != ""
+					User.change-password oldPassword, passwordForSubmit, (error2)->
+						if error2
+							$ ".OldPasswordNotCorrect" .removeClass "hidden"
+						else
+							if avatar.length isnt 0
+								UploadAvatar.update avatar
+								Router.go '/'
+							else
+								Router.go '/'
 				else
-					Router.go '/'
+					if avatar.length isnt 0
+						UploadAvatar.update avatar
+						Router.go '/'
+					else
+						Router.go '/'
+			else
+				Router.go '/'
 			)
 }
 

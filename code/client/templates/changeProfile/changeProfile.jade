@@ -29,16 +29,23 @@ template(name="changeProfile")
               label &#37038;&#31665;
               .login-mail
                 input(type="text", placeholder="Mail", name="mail", value="#{Currentuser.profile.mail}")
-            //- .field.password
-            //-   label 密码
-            //-   .login-qq
-            //-     input(type="password", placeholder="Password", name="password")
-            //- .ui.message.red.hidden.passwordLengthProblem 密码不能小于六位
-            //- .field.confirmPassword
-            //-   label 确认密码
-            //-   .login-qq
-            //-     input(type="password", placeholder="Password", name="confirmPassword")
-            //-   .ui.message.red.hidden.passwordDifferentProblem 两次密码不一致
+
+            .field.password
+              label 旧密码
+              .login-qq
+                input(type="password", placeholder="OldPassword", name="Oldpassword")
+            .ui.message.red.hidden.OldPasswordNotCorrect 原密码不正确
+            .ui.message.red.hidden.oldPasswordEmpty 原密码不能为空
+            .field.password
+              label 新密码
+              .login-qq
+                input(type="password", placeholder="Password", name="password")
+            .ui.message.red.hidden.passwordLengthProblem 密码不能小于六位
+            .field.confirmPassword
+              label 确认密码
+              .login-qq
+                input(type="password", placeholder="Password", name="confirmPassword")
+              .ui.message.red.hidden.passwordDifferentProblem 两次密码不一致
             .field
             .field.show-avatar-field-changeprofile
               .show-avatar-changeprofile

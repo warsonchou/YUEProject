@@ -1,22 +1,19 @@
 .login {
-	width: 40%;
+	width: 80%;
 	margin: 0 auto;
+}
+
+/* .login-log {
 	position: absolute;
 	top: 30%;
 	left: 30%;
-}
+} */
 
-.login-log {
-	position: absolute;
-	top: 30%;
-	left: 30%;
-}
-
-.login-register {
+/* .login-register {
 	position: absolute;
 	top: 6%;
 	left: 30%;
-}
+} */
 
 .login-user, .login-password, .login-mail, .login-tel, .login-sexual, .login-qq, .login-name {
 	position: relative;
@@ -48,7 +45,7 @@
 	width: 36px;
 	height: 36px;
 	position: absolute;
-	top: 3px;
+	top: 24px;
 	left: 5px;
 	z-index: 2;
 }

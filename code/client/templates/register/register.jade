@@ -3,16 +3,21 @@ template(name="register")
     form(method="post")
       .ui.form.segment
         .field
-          label Username
+          label 用户名
           .login-user
             i.user.icon
             input(type="text", placeholder="Username", name="usernameForRegister")
             .username-existed #{registerUsernameError}
         .field
-          label Password
+          label 密码
           .login-password
             i.lock.icon
             input(type="password", placeholder="Password", name="passwordForRegister")
+        .field
+          label 确认密码
+          .login-password
+            i.lock.icon
+            input(type="password", placeholder="Password Confirm", name="passwordForRegisterConfirm")
         .field
           label 昵称
           .login-name
@@ -33,7 +38,7 @@ template(name="register")
         .field.qq
           label QQ
           .login-qq
-            i.chat.icon
+            i.qq.icon
             input(type="text", placeholder="QQ", name="qq")
         .field
           label 邮箱

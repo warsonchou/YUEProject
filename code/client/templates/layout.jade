@@ -10,7 +10,7 @@ template(name="layout")
 						.ui.blue.large.menu
 							if userinformation
 								.left.menu
-									a.header.item.home-btn SEEK(APP Name)
+									a.header.item.home-btn SEEK
 										.ui.red.horizontal.label 欢迎
 								.right.menu
 									a.item.home-btn.active.homeMenuItem
@@ -25,7 +25,7 @@ template(name="layout")
 											|               登出
 							else
 								.left.menu
-									a.header.item.home-btn SEEK(App Name)
+									a.header.item.home-btn SEEK
 										.ui.green.horizontal.label 欢迎
 								.right.menu
 									a.item
@@ -52,15 +52,15 @@ template(name="layout")
 												a.item.home-btn
 													i.search.icon
 													.content
-														.header	我要参与活动
+														.header 我要参与活动
 												a.item.createActivity-btn
 													i.flag.icon
 													.content
-														.header	我要发布活动
+														.header 我要发布活动
 												a.item.changeProfile-btn
 													i.setting.icon
 													.content
-														.header	修改个人资料
+														.header 修改个人资料
 
 									.sidebarBlock
 										.ui.fluid.blue.label 活动分类
@@ -103,11 +103,71 @@ template(name="layout")
 						.twelve.wide.column
 							+yield
 					.ui.divider
-					#footer
-						.ui.blue.center.aligned.segment
-							h3 这是网站尾部
+					.layout_footer
+						.ui.center.aligned.blue.segment
+							.ui.horizontal.list
+								a.item(href="") 欢迎页面
+								a.item(href="") 关于我们
+								a.item(href="") 问题反馈 (不可用)
+							br
+							|	Copyright &copy; SYSU SS SPI Group 5
+							br
+							|	2015 05/06
+
 			else
-				if isLogin
-					+login
-				else
-					+register
+				.ui.inverted.teal.segment
+				.apptitle
+					//- img(src="/images/logo.jpg")
+					//- .ui.move.up.reveal.revealmes.border_test_div
+					//- 	.visible.content Hello
+					//- 	.hidden.content 加入SEEK
+
+				.ui.divider
+				#login_main
+					.ui.centered.two.column.grid
+						.six.wide.column
+							.introductiondiv
+								.introduction_pic
+									.introduction_txt
+										.ui.header SEEK 
+											.sub.header 一款专注线下的web社交平台
+										.ui.header SEEK 语丝
+										.ui.list
+											a.item
+												i.leaf.icon
+												.content
+													| 我本是个不安分的小孩，有时还爱异想天开，一心要在生活中寻找某种不同寻常的夺目光彩。
+													br
+													span —— 《钢铁是怎样炼成的》
+											a.item
+												i.leaf.icon
+												.content
+													| 我在冰峰的深海，寻找希望的缺口，却在惊醒时，瞥见绝美的阳光！
+													br
+													span —— 几米
+											a.item
+												i.leaf.icon
+												.content
+													| ...
+										//- .ui.header 而你又在SEEK什么？ 
+										//- 	.sub.header	加入SEEK，重新认识生活
+						
+						.six.wide.center.aligned.column
+							if isLogin
+								.ui.header 登录
+								+login
+							else
+								.ui.header 注册
+								+register
+				.ui.inverted.teal.segment
+				//- .login_footer
+				//- 	.ui.center.aligned.inverted.teal.segment
+				//- 		ul.footer_ul
+				//- 			li
+				//- 				a(href="") 关于我们
+				//- 			li
+				//- 				a(href="") 欢迎页面
+				//- 			li
+				//- 				a(href="") 帮助中心
+
+

@@ -8,6 +8,9 @@ root.Activity = {
     all: ->
         return this.collection.find!
 
+    allInAarray: ->
+        return this.collection.find!.fetch!
+
     insert: (name, num-of-people,  deadline, place, cover, startingTime, endingTime, open-or-not, type, sponsor, description)->
         return this.collection.insert {
             name: name,
@@ -22,6 +25,7 @@ root.Activity = {
             cover: cover,
             applyList: [],
             description: description
+            createAt: new Date()
             # aver-sponsor-score: undefined
         }
 
@@ -86,6 +90,19 @@ root.Activity = {
         }
 
     find-by-username: (username)->
+        this.collection.find {
+            $or: [
+                {
+                    "applyList.applierName": username
+                }
+                {
+                    "sponsor": username
+                }
+            ]
+           
+        }
+
+    find-as-participator: (username)->
         this.collection.find {
             "applyList.applierName": username
         }

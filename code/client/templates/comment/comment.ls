@@ -1,6 +1,6 @@
 
 #Activity.insert '一起跑吧' 100 '2015-06-13' '内环' '/public/images/11.jpg' '2015-06-14' '2015-06-15' true 'sex' 'wangqing'
-activities = Activity.all!
+activities = Activity.allInAarray!
 user-id = Meteor.user-id!
 is-participator = true
 if activities[0].sponsor is user-id

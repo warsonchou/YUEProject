@@ -38,7 +38,7 @@ root.User = {
         else
             return false
     find-user: (username)->
-        Meteor.users.findOne $or: [{'username': username}]
+        Meteor.users.findOne {'username': username}
 
     find-all-users: ->
         Meteor.users.find!

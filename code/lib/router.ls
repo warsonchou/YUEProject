@@ -12,6 +12,11 @@ get-local-time = (time)->
         time-string += time.get-minutes!
         return time-string
 
+Meteor.methods {
+  'userInCurrentWindow': -> Meteor.user!
+}
+
+
 Router.configure {
     layoutTemplate: 'layout'
     wait-on: ->
@@ -30,6 +35,9 @@ Router.route 'index/:activityLimit?', {
         find-options = {sort: {starting-time: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'userAccount'
+        Meteor.subscribe 'uploadAvatar'
+
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
@@ -37,6 +45,8 @@ Router.route 'index/:activityLimit?', {
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 5) + 5})
         now-time = new Date!
         now-time = get-local-time now-time
+        console.log  "zhuye"
+        
         return {
             activities: Activity.collection.find {deadline: {$gt: now-time}}
             next-path: next
@@ -51,6 +61,9 @@ Router.route 'type/:typename/:activityLimit?', {
         find-options = {sort: {starting-time: -1}, limit: activity-limit}
         Meteor.subscribe 'activities', find-options
         Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'uploadAvatar'
+        Meteor.subscribe 'userAccount'
+
     data: ->
         more = (parse-int(this.params.activity-limit) || 5) is Activity.all!.count!
         next = null
@@ -91,13 +104,16 @@ Router.route '/profile/:activityLimit?', {
         Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 6
         find-options = {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        find-options.userinfo = User.current-user!
+        Meteor.subscribe 'acvitityForProfile', find-options
+        # Meteor.subscribe 'acvitityForProfile', {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'userAccount'
     data: ->
         name = User.current-user!
         more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username-as-sponor(name.username).count!
         next = null
+        console.log "here are me"
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
         
@@ -113,9 +129,11 @@ Router.route '/profileParticipated/:activityLimit?', {
         Session.set('is-login-register', true)
         activity-limit = parse-int(this.params.activity-limit) || 6
         find-options = {sort: {createAt: -1}, limit: activity-limit}
-        Meteor.subscribe 'activities', find-options
-        Meteor.subscribe 'activities', {sort: {createAt: -1}, limit: activity-limit}
+        find-options.userinfo = User.current-user!
+        Meteor.subscribe 'acvitityForprofileParticipated', find-options
+        # Meteor.subscribe 'acvitityForProfile', {sort: {createAt: -1}, limit: activity-limit}
         Meteor.subscribe 'uploadForActivity'
+        Meteor.subscribe 'userAccount'
     data: ->
         name = User.current-user!
         more = (parse-int(this.params.activity-limit) || 6) is Activity.find-by-username(name.username).count!
@@ -126,7 +144,7 @@ Router.route '/profileParticipated/:activityLimit?', {
         if more
             next = this.route.path({activity-limit: (parse-int(this.params.activity-limit) || 6) + 6})
         return {
-            activities: Activity.find-by-username(User.current-user!.username)
+            activities: Activity.find-as-participator(User.current-user!.username)
             next-path: next
         }
 }
@@ -172,4 +190,4 @@ require-login = !->
     else
         this.next!
 
-Router.on-before-action require-login, {only: 'createActivity', 'profile'}
+Router.on-before-action require-login, {only: {'createActivity', 'profile', 'modifyActivity', 'changeProfile'}}

@@ -1,3 +1,4 @@
+
 Meteor.publish 'activities', (options)->
 	if not options
 		check options, {
@@ -26,4 +27,37 @@ Meteor.publish 'activityForComment', (activityId)->
 #publish user account 
 Meteor.publish 'userAccount', ->
 	return Meteor.users.find!
+
+#publish acvitity for special user
+Meteor.publish 'acvitityForProfile', (options)->
+	if options
+		otherOptions = {}
+		otherOptions.sort = options.sort
+		otherOptions.limit = options.limit
+		check otherOptions, {
+			sort: Object,
+			limit: Number
+		}
+	console.log options.userinfo
+	return Activity.collection.find {
+		"sponsor": options.userinfo.username
+	}, otherOptions
+
+
+Meteor.publish 'acvitityForprofileParticipated', (optionsInparticipate)->
+	if optionsInparticipate
+		otherOptionsInparticipate = {}
+		otherOptionsInparticipate.sort = optionsInparticipate.sort
+		otherOptionsInparticipate.limit = optionsInparticipate.limit
+		check otherOptionsInparticipate, {
+			sort: Object,
+			limit: Number
+		}
+	console.log optionsInparticipate.userinfo
+	return Activity.collection.find {
+		"applyList.applierName": optionsInparticipate.userinfo.username
+	}, otherOptionsInparticipate
+
+
+
 

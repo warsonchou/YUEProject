@@ -6,3 +6,8 @@ Template.profile.helpers ({
 
 })
 
+Template.profile.events {
+	"click .asparticipator": ->
+		Router.go "/profileParticipated/"
+}
+

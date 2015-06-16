@@ -2,26 +2,6 @@ Template['modifyActivity'].events {
 	'submit form': (e)->
 		e.preventDefault!
 
-		# $(".modifyActivityForm").form {
-		# 	ActivityName: {
-		# 		identifier: 'ActivityName'
-		# 		rules: [
-		# 			{
-		# 				type: 'empty'
-		# 			}
-		# 		]
-		# 	}
-		# 	# ActivityPlace:
-		# 	# ActivityDeadline:
-		# 	# ActivityCover:
-		# 	# ActivityStartTime:
-		# 	# ActivityEndTime:
-		# 	# ActivityCategory:
-		# 	# PeopleNumber:
-		# 	# ActivityDescription:
-		# }
-
-
 		ActivityName = $(e.target).find('[name=ActivityName]').val()
 
 		ActivityPlace = $(e.target).find('[name=ActivityPlace]').val()
@@ -29,8 +9,6 @@ Template['modifyActivity'].events {
 		Deadeline = $(e.target).find('[name=ActivityDeadline]').val()
 
 		files = $(e.target).find('[name=ActivityCover]')[0].files
-		# files-length = files.length
-		# console.log files-length
 
 		open-or-not = $('input:radio[name="PublicInfo"]:checked').val()
 		open-or-not-information = false

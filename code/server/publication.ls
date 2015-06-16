@@ -12,6 +12,22 @@ Meteor.publish 'activities', (options)->
 Meteor.publish 'Activity', ->
 	return Activity.collection.find {}
 
+Meteor.publish 'ActivityForType', (optionsForType)->
+	finalOptionsfForType = {
+		sort: optionsForType.sort
+		limit: optionsForType.limit
+	}
+	return Activity.collection.find {
+		$and: [
+			{
+				"type": optionsForType.type
+			}
+			{
+				"deadline": {$gt: optionsForType.time}
+			}
+		]
+	}, finalOptionsfForType
+
 # here people related the images should add some logic here
 Meteor.publish 'uploadAvatar', ->
 	return UploadAvatar.find!

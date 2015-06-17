@@ -18,14 +18,14 @@ Meteor.methods {
 
 
 Router.configure {
-    notFoundTemplate: 'notFound',
-    layoutTemplate: 'layout',
+    notFoundTemplate: 'notFound'
+    layoutTemplate: 'layout'
     wait-on: ->
         Meteor.subscribe 'uploadAvatar'
 
 }
 
-Router.plugin 'dataNotFound', {notFoundTemplate: 'notFound'}
+# Router.plugin 'dataNotFound', {notFoundTemplate: 'notFound'}
 
 Router.route '/', -> 
     Router.go '/index'

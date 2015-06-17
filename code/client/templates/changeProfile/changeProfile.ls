@@ -159,3 +159,6 @@ Template.changeProfile.helpers {
 					return "selected"
 		}
 }
+# Template.changeProfile.onRendered !->
+# 	if not User.current-user!
+# 		Router.redirect "/login"

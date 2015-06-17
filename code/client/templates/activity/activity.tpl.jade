@@ -26,7 +26,7 @@
               p #{activity.description}
               #sponsor-info-contact.ui.teal.ribbon.label 个人联系方式
               if isAgree
-                p #{sponsorPhone}
+                p qq: #{isAgree}
               else
                 p 保密
       unless isSponsor
@@ -109,7 +109,7 @@
                 .grouped.fields
                   .field
                     .ui.button
-                      | 你已经评论过，谢谢你的评论！
+                      | 你已经评论过，你可以在下面进行修改！
                   .field
                     textarea(name='comment') #{commentContext}
                   button.ui.fluid.blue.labeled.submit.icon.button(type='submit')

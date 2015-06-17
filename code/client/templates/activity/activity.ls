@@ -2,7 +2,11 @@ Template.activity.helpers {
 	activity : ->
 		Activity.find-by-id Session.get "activityId"
 	is-agree : ->
-		Activity.find-by-id Session.get "activityId" .open-or-not
+		# Activity.find-by-id Session.get "activityId" .open-or-not
+		if Activity.find-as-participator User.current-user!.username
+			return User.current-user!.profile.qq
+		else
+			return false
 	is-sponsor: ->
 		Meteor.user! .username == Activity.find-by-id Session.get "activityId" .sponsor
 	sponsor-phone: ->
@@ -56,9 +60,12 @@ Template.activity.helpers {
 
 Template.activity.events {
 	"click .apply" : !->
-		console.log(Session.get("activityId"), Meteor.user()._id)
-		result = Activity.add-application (Session.get "activityId"), (Meteor.user! ._id), 2, (Meteor.user! .profile.tel)
-		alert(result)
+		if not User.current-user!
+			Router.go "/login"
+		else
+			console.log(Session.get("activityId"), Meteor.user()._id)
+			result = Activity.add-application (Session.get "activityId"), (Meteor.user! ._id), 2, (Meteor.user! .profile.tel)
+			alert(result)
 	"click .select" : (event)!->
 		if Meteor.user! .username == Activity.find-by-id Session.get "activityId" .sponsor
 			parent = event.target.parentNode

@@ -2,28 +2,28 @@ template(name="register")
   .login.login-register
     form(method="post")
       .ui.form.segment
-        .field
+        .field.username
           label 用户名
           .login-user
             i.user.icon
             input(type="text", placeholder="Username", name="usernameForRegister")
             .username-existed #{registerUsernameError}
-        .field
+        .field.password
           label 密码
           .login-password
             i.lock.icon
             input(type="password", placeholder="Password", name="passwordForRegister")
-        .field
+        .field.passwordConfirm
           label 确认密码
           .login-password
             i.lock.icon
             input(type="password", placeholder="Password Confirm", name="passwordForRegisterConfirm")
-        .field
+        .field.nickname
           label 昵称
           .login-name
             i.users.icon
             input(type="text", placeholder="Name", name="nickname")
-        .field
+        .field.sex
           label 性别
           .login-sexual
             i.male.icon
@@ -40,12 +40,12 @@ template(name="register")
           .login-qq
             i.qq.icon
             input(type="text", placeholder="QQ", name="qq")
-        .field
+        .field.mail
           label 邮箱
           .login-mail
             i.mail.icon
             input(type="text", placeholder="Mail", name="mail")
-        .field.show-avatar-field
+        .field.show-avatar-field.avatar
           .show-avatar
             img(src="", id="cover")
           label 头像

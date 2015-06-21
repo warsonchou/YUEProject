@@ -4,7 +4,7 @@
 而且还可以对发起者进行评分，发起者也可以对参与者进行评分。提高用户的信用度。我们这样子可以提高人与人之间的线下交流。
 
 
-我们的网址是：https://SPSGroup5.meteor.com
+我们的网址是：https://spsgroup5.meteor.com
 或者可以到我们的github(https://github.com/zhougch5/YUEProject)下载源码，本机运行方式是：
 （当然这之前要装meteor和mongodb，支持平台：windows， macos， linux）
 1.cd YUEProject/code

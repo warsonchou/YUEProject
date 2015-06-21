@@ -1,6 +1,8 @@
 本机运行方式是：（当然这之前要装meteor和mongodb，支持平台：windows， macos， linux）
 1.cd YUEProject/code
+
 2.meteor
+
 3.然后在浏览器直接打开localhost:3000就可以看到我们的首页了
 即可
 
